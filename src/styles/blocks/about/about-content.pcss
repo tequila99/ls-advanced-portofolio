@@ -1,6 +1,8 @@
 .about-content {
   width: 70%;
   display: flex;
+  font-size: 16px;
+  color: $text-color;
   &__left {
     min-width: 330px;
     display: flex;
@@ -18,6 +20,7 @@
     margin-top: 79px;
     display: flex;
     flex-direction: column;
+    height: 100%;
   }
   &__row {
     margin-top: 26px;
@@ -28,5 +31,40 @@
   }
   &__row-label {
     width: 40%;
+    opacity: .3;
+  }
+  &__row-data {
+    font-weight: 700;
+  }
+  &__hello {
+    opacity: .5;
+  }
+  &__name {
+    margin-top: 30px;
+    font-size: 36px;
+    font-weight: 700;    
+  }
+  &__whoiam {
+    margin-top: 38px;
+    opacity: .5;
+    font-weigth: 700;
+  }
+  &__bottom {
+    margin-top: 105px;
+    opacity: .5;
+    font-style: italic;
+    position: relative;
+    
+    &:before {
+      content: '*';
+      color: $aster-color;
+      opacity: .1;
+      font-size: 48px;
+      font-style: italic;
+      position: absolute;
+      left: -53px;
+      top: 0;
+      line-height: 30px;
+    }
   }
 }
