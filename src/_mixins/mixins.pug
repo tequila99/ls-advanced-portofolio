@@ -1,0 +1,28 @@
+mixin icon(className,name)
+  - var icon = require(`images/icons/${name}.svg`);
+  svg(class=`${className}__icon` viewBox=icon.viewBox preserveAspectRatio="none")
+    use(xlink:href=icon.url)
+
+mixin image(className, path)
+  img(src=require(`images/${path}`) class=className)
+
+mixin navlink(className,name,ref='#')
+  li(class=`${className}__item`)
+    a(class=`${className}__link` href=`${ref}`)=name
+
+mixin nav(className,items,activeItem=0)    
+  nav(class=`${className}`)
+    ul(class=`${className}__list`)
+      each item in items
+        +navlink(className,item.name,item.ref)
+
+mixin social-icon(className,name,icon,ref='#')
+    li(class=`${className}__item`)
+      a(class=`${className}__link` href=`${ref}` title=`${name}`)
+        +icon(className,icon)
+
+mixin socials(className,items,activeItem=0)        
+  ul(class=`${className}`)
+    each item in items
+      //- console.log(item)
+      +social-icon(className,item.name,item.icon,item.ref)
