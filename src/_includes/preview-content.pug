@@ -1,0 +1,30 @@
+- 
+  var previewItems = [
+    {path: 'preview/1.jpg', title: 'Сайт школы образования', text: 'Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 2 месяца только самых тяжелых испытаний и бессонных ночей!', href:'#'},
+    {path: 'preview/2.jpg', title: 'Сайт института', text: 'Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 2 месяца только самых тяжелых испытаний и бессонных ночей!',href:'#'},
+    {path: 'preview/3.jpg', title: 'Сайт школы водителей', text: 'Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 2 месяца только самых тяжелых испытаний и бессонных ночей!',href:'#'},
+    {path: 'preview/4.jpg', title: 'Сайт университета', text: 'Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 2 месяца только самых тяжелых испытаний и бессонных ночей!',href:'#'},
+    {path: 'preview/5.jpg', title: 'Сайт чего-то там еще', text: 'Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 2 месяца только самых тяжелых испытаний и бессонных ночей!',href:'#'}
+  ]
+
+-var activeItem= 0
+
+-var tags = ['HTML', 'CSS', 'Javascript']
+    
+    
+
+.preview-content
+  .preview-content__img
+    +preview('preview-image',previewItems[activeItem].path,previewItems,activeItem)
+  .preview-content__container
+    .preview-content__index=activeItem+1
+    .preview-content__text-content
+      ul.preview-content__tags  
+        each tag in tags 
+          li.preview-content__tag
+            span=tag
+      h3.preview-content__title=previewItems[activeItem].title
+      p.preview-content__content=previewItems[activeItem].text
+      a.preview-content__link(href='${previewItems[activeItem]}') 
+        +icon( 'preview-content','link')
+        | Посмотреть сайт

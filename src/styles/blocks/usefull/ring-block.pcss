@@ -1,0 +1,26 @@
+.ring-block {
+  dispaly: flex;
+  flex-direction: column;
+}
+.ring-row {
+  display: flex;
+  flex-direction: column;
+  margin-top: 50px;
+  &:first-child {
+    margin-top: none;
+  }
+  &__title {
+    font-size: 24px;
+    font-weight: 700;
+  }
+  &__list {
+    margin-top: 50px;
+    display: flex;
+  }
+  &__ring {
+    margin-right: 60px;
+    &:last-child {
+      margin-right: none;
+    }
+  }
+}

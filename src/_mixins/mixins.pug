@@ -24,5 +24,52 @@ mixin social-icon(className,name,icon,ref='#')
 mixin socials(className,items,activeItem=0)        
   ul(class=`${className}`)
     each item in items
-      //- console.log(item)
       +social-icon(className,item.name,item.icon,item.ref)
+
+mixin ring(className,label)      
+  div.ring.ring__border(class=`${className}__ring`)
+    span.ring__label= label
+
+mixin ring-block(className,items,title)    
+  div(class=`${className}`)
+    h3(class=`${className}__title`)=title
+    ul(class=`${className}__list`)
+      each item in items
+        +ring(`${className}`,item.label)
+
+mixin preview-img-thmb(className,path,activeClass='')
+  img(src=require(`images/${path}`) class=`${className}__thmb preview-img__thmb ${activeClass}`)
+
+mixin preview-block-thmb(className, items, activeItem)  
+  ul(class=`${className}__block-thmb preview-img__block-thmb`)
+    each item,index in items 
+      if index === activeItem 
+        +preview-img-thmb(className,item.path, 'preview-img__thmb--active') 
+      else 
+        +preview-img-thmb(className,item.path)
+
+mixin preview(className,path,items,activeItem)
+  div(class=`${className} preview-img`)
+    +image(`${className}__img preview-img__img`,path)
+    +preview-block-thmb(className,items,activeItem)
+    div(class=`{className}__nav preview-img__nav`)
+      a(class=`{className}__nav-button preview-img__nav-button preview-img__nav-button-up` href='#') 
+        +icon(`preview-img__icon ${className}`,'short-arrow')
+      a(class=`{className}__nav-button preview-img__nav-button preview-img__nav-button-down` href='#') 
+        +icon(`preview-img__icon ${className}`,'short-arrow')
+
+mixin review-item(item)
+  li.review-item
+    .review-item__content= item.text
+    .review-item__footer
+      .review-item__avatar
+        .avatar-mini
+          +image('avatar-mini__img',`${item.path}`)
+      .review-item__user
+        .review-item__user-name= item.username
+        .review-item__user-position= item.position
+
+mixin reviews(className,items)
+  ul(class=`${className} review-block`)
+    each item in items
+      +review-item(item)

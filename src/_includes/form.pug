@@ -1,0 +1,17 @@
+form.feedback__form
+  .feedback__form-row
+    .feedback__form-col.feedback__form-col--name
+      label.feedback__form-element
+        span.feedback__form-label Введите Ваше имя
+        input.feedback__form-input.feedback__form-input_name(type="text" name="name" placeholder="Ковальчук Дмитрий")
+    .feedback__form-col.feedback__form-col--email
+      label.feedback__form-element
+        span.feedback__form-label Введите Ваш email
+        input.feedback__form-input.feedback__form-input--email(type="text" name="email" placeholder="loftschool@study.com")
+  .feedback__form-row
+    .feedback__form-col.feedback__form-col--comment
+      label.feedback__form-element
+      span.feedback__form-label Сообщение к письму
+      textarea.feedback__form-textarea(name="comment" placeholder="Требуется Ваша помощь в создании сайта. Интересуют сроки и цена вопроса")
+  .feedback__form-row.feedback__form-row--submit
+    button(type="submit").feedback__form--submit ОТПРАВИТЬ

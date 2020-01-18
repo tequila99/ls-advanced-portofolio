@@ -1,0 +1,128 @@
+.feedback {  
+  &__form {
+    margin-top: 97px;
+    width: 70%;
+  }
+  &__form-row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 41px;
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  &__form-col {
+    flex: 1;
+    margin-right: 5%;
+    position: relative;
+
+    &--name {
+      &::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 0;
+        width: 30px;
+        height: 30px;
+        background: svg-load('user.svg', fill=$text-color, opacity=0.3,  width=100%, height=100%) center center no-repeat;
+      }
+    }
+
+    &--email {
+      &::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 0;
+        width: 30px;
+        height: 30px;
+        background: svg-load('envelope.svg', fill=$text-color,  opacity=0.3, width=100%, height=100%) center center no-repeat;
+      }
+    }
+
+    &--comment {
+      &::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 0;
+        width: 30px;
+        height: 30px;
+        background: svg-load('message.svg', fill=$text-color, opacity=0.3, width=100%, height=100%) center center no-repeat;
+      }
+    }
+
+  }
+
+  &__form-label {
+    display: block;
+    color: $text-color;
+    opacity: .3;
+    font-weight: 600;
+    padding-left: 48px;
+    margin-bottom: 22px;
+  }
+
+  &__form-input,
+  &__form-textarea {
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    border-bottom: 1px solid black;
+    background: transparent;
+    font-weight: bold;
+    padding-left: 2rem;
+
+    &::placeholder {
+      color: $text-color;
+
+    }
+
+    &:focus {
+      border-color: #9100ef;
+      outline: 0;
+
+      &::placeholder {
+        color: $text-color;
+      }
+    }
+
+  }
+
+  &__form-input {
+    width: 80%;
+    padding: 8px 0 8px 48px;
+
+  }
+
+  &__form-textarea {
+    overflow: auto;
+    resize: none;
+    width: 90%;
+
+    padding-left: 3rem;
+    /* padding-top: 1rem; */
+    padding-right: 45%;
+    padding-bottom: 1rem;
+    line-height: 1.8rem;
+  }
+
+  &__form--submit {
+    padding: 30px 100px;
+    /* background: linear-gradient(90deg, #9100ef, $text-color 50%); */
+    background: $submit-color;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 35px 0 35px 0;
+    opacity: 1;
+
+    &:hover,
+    &:active,
+    &:focus {
+      opacity: 0.8;
+      transition: 1s;
+    }
+  }
+}
