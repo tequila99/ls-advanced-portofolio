@@ -3,6 +3,9 @@ mixin icon(className,name)
   svg(class=`${className}__icon` viewBox=icon.viewBox preserveAspectRatio="none")
     use(xlink:href=icon.url)
 
+mixin icon-bg(className, name)
+  div(class=`${className}__icon ${className}__icon--${name}`)
+
 mixin image(className, path)
   img(src=require(`images/${path}`) class=className)
 
@@ -18,8 +21,8 @@ mixin nav(className,items,activeItem=0)
 
 mixin social-icon(className,name,icon,ref='#')
     li(class=`${className}__item`)
-      a(class=`${className}__link` href=`${ref}` title=`${name}`)
-        +icon(className,icon)
+      a(class=`${className}__link ${className}__link--${icon}` href=`${ref}` title=`${name}`)
+        //- +icon-bg(className,icon)
 
 mixin socials(className,items,activeItem=0)        
   ul(class=`${className}`)
@@ -28,6 +31,10 @@ mixin socials(className,items,activeItem=0)
 
 mixin ring(className,label)      
   div.ring.ring__border(class=`${className}__ring`)
+    svg(viewBox="0 0 200 200" preserveAspectRatio="none").skill__shape
+      circle(r="80" cx="100" cy="100").skill__circle.skill__circle--position-under
+      circle(r="80" cx="100" cy="100").skill__circle.skill__circle--position-above
+      linear-gradient()
     span.ring__label= label
 
 mixin ring-block(className,items,title)    
@@ -54,9 +61,9 @@ mixin preview(className,path,items,activeItem)
     +preview-block-thmb(className,items,activeItem)
     div(class=`{className}__nav preview-img__nav`)
       a(class=`{className}__nav-button preview-img__nav-button preview-img__nav-button-up` href='#') 
-        +icon(`preview-img__icon ${className}`,'short-arrow')
+        //- +icon(`preview-img__icon ${className}`,'short-arrow')
       a(class=`{className}__nav-button preview-img__nav-button preview-img__nav-button-down` href='#') 
-        +icon(`preview-img__icon ${className}`,'short-arrow')
+        //- +icon(`preview-img__icon ${className}`,'short-arrow')
 
 mixin review-item(item)
   li.review-item

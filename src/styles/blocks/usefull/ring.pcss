@@ -1,5 +1,10 @@
 .ring {
+  dispaly:flex;
+  position: relative;
   width: 130px;
+  height: 130px;
+
+  /* width: 130px;
   height: 130px;
   display: flex;
   position:relative;
@@ -8,13 +13,40 @@
   border-radius: 50%;
   &__border {
     border: 10px solid $ring-color;
-  }
+  } */
   &__label {
     font-weight: 700;
     color: $text-color;
     opacity: 0.5;
-    margin: auto;
     text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+.skill__shape {
+  width: 130px;
+  height: 130px;
+  /* fill: transparent;
+  stroke: $ring-color;
+  stroke-width: 5px; */
+}
 
+.skill__circle {
+  &--position-under {
+    fill: transparent;
+    stroke: $ring-color; 
+    stroke-width: 10px;
+  }
+}
+
+.skill__circle {
+  &--position-above {
+    fill: transparent;
+    stroke: blue;
+    stroke-width: 20px;
+    stroke-dasharray: 272, 224;
+    stroke-dashoffset: 248;
   }
 }

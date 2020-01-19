@@ -16,17 +16,13 @@
     &:last-child {
       margin-right: 0;
     }
+    background: svg-load('short-arrow.svg',fill=$preview-nav-bg, width=10px, height=10px) center center no-repeat;
+    &:hover {
+      background: svg-load('short-arrow.svg',fill=$active-color, width=10px, height=10px) center center no-repeat;
+      border:1px solid $active-color;
+    }
   }
-  &__icon {
-    width: 10px;
-    height: 10px;
-    margin: auto;
-    fill: $text-color;
-  }
-  &__button-left .review-nav__icon {
+  &__button-left {
     transform: rotate(180deg);
   }
-  /* &__nav-button-down .preview-img__icon {
-    transform: rotate(-90deg);
-  }     */
 }

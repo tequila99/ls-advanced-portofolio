@@ -1,10 +1,28 @@
 .usefull {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  /* justify-content: center; */
   align-items: center;
   position: relative;
+  /* position: relative;
   background-image: url('../images/bg/bugpack.png');
   background-position: bottom 50px left 0;
   background-repeat: no-repeat;
-  background-size: 500px;
+  background-size: auto; */
+  &:before {
+    position: absolute;
+    content: '';
+    left: 0;
+    bottom: 0;
+    content: '';
+    width: 40%;
+    height: 100%;
+    background-image: url('../images/bg/backpack.png');
+    background-repeat: no-repeat;
+    background-size: auto;
+    background-position: bottom 200px center;    
+  }
+  &__skils {
+    margin: 80px 0 0 40%;
+  }
 }

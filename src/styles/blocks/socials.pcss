@@ -1,9 +1,87 @@
 .top-socials {
   display: flex;
-  &__icon {
-    width: 25px;
-    height: 25px;
-    fill: $text-color;
+  &__link {
+    margin: auto;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    &--vk {
+      background: svg-load('vk.svg', fill=$text-color, width=25px, height=25px) center center no-repeat;
+      &:hover {
+        background: svg-load('vk.svg', fill=$active-color, width=25px, height=25px) center center no-repeat;
+        transition: .3s;
+      }      
+    }
+    &--insta {
+      background: svg-load('insta.svg', fill=$text-color, width=25px, height=25px) center center no-repeat;
+      &:hover {
+        background: svg-load('insta.svg', fill=$active-color, width=25px, height=25px) center center no-repeat;
+        transition: .3s;
+      }      
+
+    }
+    &--github {
+      background: svg-load('github.svg',  fill=$text-color, width=25px, height=25px) center center no-repeat;
+      &:hover {
+        background: svg-load('github.svg', fill=$active-color, width=25px, height=25px) center center no-repeat;
+        transition: .3s;
+      }      
+
+    }
+  }
+
+  &__item {
+    margin-right: 18px;
+    &:last-child {
+      margin-right: 0;
+    }
+  } 
+}
+.footer-socials {
+  display: flex;
+  &__link {
+    margin: auto;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 1px solid $footer-color;
+    opacity: .2;
+    overflow: hidden;
+    display: flex;
+    &:hover {
+      opacity: 1;
+      border: 1px solid $active-color;
+      transition: .3s;
+    }
+    &--vk {
+      background: svg-load('vk.svg', fill=$footer-color, width=25px, height=25px) center center no-repeat;
+      &:hover {
+        background: svg-load('vk.svg', fill=$active-color, width=25px, height=25px) center center no-repeat;
+        transition: .3s;
+      }      
+    }
+    &--insta {
+      background: svg-load('insta.svg', fill=$footer-color, width=25px, height=25px) center center no-repeat;
+      &:hover {
+        background: svg-load('insta.svg', fill=$active-color, width=25px, height=25px) center center no-repeat;
+        transition: .3s;
+      }      
+
+    }
+    &--github {
+      background: svg-load('github.svg',  fill=$footer-color, width=25px, height=25px) center center no-repeat;
+      &:hover {
+        background: svg-load('github.svg', fill=$active-color, width=25px, height=25px) center center no-repeat;
+        transition: .3s;
+      }      
+
+    }
+  }
+  &__item {
+    margin-right: 18px;
+    &:last-child {
+      margin-right: 0;
+    }
   }
 }
 
