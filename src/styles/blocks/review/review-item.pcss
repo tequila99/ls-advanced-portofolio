@@ -1,13 +1,13 @@
 .review-item {
   display: flex;
   flex-direction: column;
-  min-width: 425px;
+  max-width: 435px;
   width: 50%;
-  margin-right: 85px;
-  margin-left: 96px;
+  margin-right: 86px;
+  padding-left: 96px;
   position: relative;
   &:last-child {
-    margin-right: none;
+    margin-right: 0px;
   }
   &:before {
     content: '';
@@ -20,10 +20,9 @@
     opacity: .05;
     position: absolute;
     top: 0;
-    left: -96px;
+    left: 0;
   }
   &__content {
-    max-width: 320px;
     height: 100%;
     opacity: .5;
     font-size: 16px;
