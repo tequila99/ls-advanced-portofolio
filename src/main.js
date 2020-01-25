@@ -7,8 +7,12 @@ if (process.env.NODE_ENV === "development") {
 }
 
 import "./scripts/skills";
+import "./scripts/feedback-slider";
+import "./scripts/preview";
 
-let mainParallaxItems = Array.prototype.slice.call(document.querySelectorAll(".parralax-scene--main .js-parallax-item"));
+const mainParallaxItems = Array.from(document.querySelectorAll(".parralax-scene--main .js-parallax-item"));
+const buddaParallaxItems = Array.from(document.querySelectorAll(".parralax-scene--budda .js-parallax-item"));
+const buddaOffset = document.querySelector('#budda-section').offsetTop
 
 window.addEventListener("wheel", () => {
 	let scroll = window.pageYOffset;
@@ -21,4 +25,15 @@ window.addEventListener("wheel", () => {
 			parallax.strafe(block, scroll, accel);
 		});
   }
+
+  if (buddaOffset-250 <= scroll) {
+    buddaParallaxItems.forEach(block => {
+      let accel = block.dataset.speed,
+      buddaScroll = scroll - buddaOffset+150;
+      console.log(accel)
+
+      parallax.strafe(block, buddaScroll, accel)
+    })
+  }
+
 });

@@ -76,9 +76,10 @@
 	}
 
 	&--budda {
-		top: 0;
+		top: -100px;
 		bottom: 0;
-
+    z-index: -1;
+    clip-path: polygon(0% 0%, 0% 100%,100% 100%,100% 0%,50% 10%);
 		.parralax-scene__item {
 			&:nth-child(1) {
 				.parralax-scene__item-image {

@@ -1,0 +1,33 @@
+script(type='x/template')#preview-nav
+  div(class='preview-img__nav' :class='classNav')
+    a(class='preview-img__nav-button preview-img__nav-button-up' :class='classNavButton' href='#' @click.prevent='$emit("up")') 
+    a(class='preview-img__nav-button preview-img__nav-button-down' :class='classNavButton' href='#' @click.prevent='$emit("down")') 
+
+script(type='x/template')#preview-thmb
+  img(:src='image' :class='classThmb' class=`${className}__thmb preview-img__thmb ${activeClass}` @click.prevent='handleClick')
+
+script(type='x/template')#preview-slider
+  ul(:class='classSlider' class='preview-img__block-thmb')
+    li(v-for='(item,index) in items' :key='index')
+      previewThmb(:className='className' :image='item.realpath' :index='index' :active='activeIndex===index' @select='$emit("select",$event)')
+
+script(type='x/template')#preview-image
+  div(class='preview-img' :class='className')
+    img(:src='currentImage' :class='classImage' class='preview-img__img')
+    previewSlider(:className='className' :items='items' :activeIndex='activeIndex' @select='$emit("select",$event)')
+    previewNav(:className='className' @up='$emit("up")' @down='$emit("down")')
+
+script(type='x/template')#preview-main
+  .preview-content
+    .preview-content__img
+      previewImage(:className=className :items='items' :activeIndex='activeIndex' @up='changeImage("up")' @down='changeImage("down")' @select='selectImage')
+    .preview-content__container
+      .preview-content__index {{ activeIndex+1 }}
+      .preview-content__text-content
+        ul.preview-content__tags  
+          li.preview-content__tag(v-for='(tag,index) in tags' :key='index')
+            span {{ tag }}
+        h3.preview-content__title {{ title }}
+        p.preview-content__content {{ text }}
+        a.preview-content__link(:href='link') 
+          | Посмотреть сайт
