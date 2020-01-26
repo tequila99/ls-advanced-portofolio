@@ -1,3 +1,31 @@
+-
+  var menuItems = [
+    {
+      name: 'Главная',
+      anchorSelector: 'main'
+    },
+    {
+      name: 'Обо мне',
+      anchorSelector: 'about'
+    },
+    {
+      name: 'Навыки',
+      anchorSelector: 'skills'
+    },
+    {
+      name: 'Работы',
+      anchorSelector: 'portfolio'
+    },
+    {
+      name: 'Отзывы',
+      anchorSelector: 'feedback'
+    },
+    {
+      name: 'Связаться',
+      anchorSelector: 'contacts'
+    }
+  ]
+
 mixin icon(className,name)
   - var icon = require(`images/icons/${name}.svg`);
   svg(class=`${className}__icon` viewBox=icon.viewBox preserveAspectRatio="none")
@@ -80,3 +108,9 @@ mixin reviews(className,items)
   ul(class=`${className} review-block`)
     each item in items
       +review-item(item)
+
+mixin nav-list(listClass, itemClass, linkClass)
+  ul(class=`${listClass}`)
+    each item in menuItems 
+      li(class=`${itemClass}`)
+        a(href="#" class=`${linkClass} js-anchor-link`, target="_blank", data-anchor=`${item.anchorSelector}`)= item.name

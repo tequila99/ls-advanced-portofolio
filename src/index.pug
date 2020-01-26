@@ -11,12 +11,15 @@ html(lang="en")
     .wrapper
       main.maincontent
         include _includes/parallax-main
-        include _includes/intro
-        include _includes/about
-        include _includes/triangle
+        .bg-wrapper
+          include _includes/intro
+          include _includes/about
         include _includes/usefull
         include _includes/preview
         include _includes/review
         include _includes/footer
+
+        include _includes/mobile-navigation
+        include _includes/nav-btn
 
         include templates/index

@@ -8,8 +8,8 @@ script(type='x/template')#preview-thmb
 
 script(type='x/template')#preview-slider
   ul(:class='classSlider' class='preview-img__block-thmb')
-    li(v-for='(item,index) in items' :key='index')
-      previewThmb(:className='className' :image='item.realpath' :index='index' :active='activeIndex===index' @select='$emit("select",$event)')
+    li(v-for='(item,index) in windowItems' :key='index')
+      previewThmb(:className='className' :image='item.realpath' :index='index' :active='activeIndex===index+startOffset' @select='$emit("select",$event)')
 
 script(type='x/template')#preview-image
   div(class='preview-img' :class='className')

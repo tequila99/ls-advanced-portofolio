@@ -1,6 +1,10 @@
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
 import 'swiper/dist/css/swiper.css'
 import Vue from "vue";
+import vMediaQuery from "v-media-query"
+console.log(vMediaQuery)
+
+Vue.use(vMediaQuery)
 
 new Vue({
 	el: "#feed-slider",
@@ -14,19 +18,23 @@ new Vue({
 			desktop: window.matchMedia("(min-width: 768px)").matches,
       swiperOption: {
         slidesPerView: 2,
+        spaceBetween: 30,
         loop: true,    
       },
       items: [
-        {realpath: '', path: 'avatars/dm.png', username: 'Ковальчук Дмитрий', position: 'Основатель Loftschool', text: 'Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 2 месяца только самых тяжелых испытаний и бессонных ночей!', href:'#'},
-        {realpath: '', path: 'avatars/vl.png', username: 'Владимир Сабанцев', position: 'Преподаватель', text: 'Этот код выдержит любые испытания. Только пожалуйста, не загружайте сайт на слишком старых браузерах',href:'#'},
-        {realpath: '', path: 'avatars/dm.png', username: 'Ковальчук Дмитрий', position: 'Основатель Loftschool', text: 'Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 2 месяца только самых тяжелых испытаний и бессонных ночей!', href:'#'},
-        {realpath: '', path: 'avatars/vl.png', username: 'Владимир Сабанцев', position: 'Преподаватель', text: 'Этот код выдержит любые испытания. Только пожалуйста, не загружайте сайт на слишком старых браузерах',href:'#'},
-        {realpath: '', path: 'avatars/dm.png', username: 'Ковальчук Дмитрий', position: 'Основатель Loftschool', text: 'Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 2 месяца только самых тяжелых испытаний и бессонных ночей!', href:'#'},
-        {realpath: '', path: 'avatars/vl.png', username: 'Владимир Сабанцев', position: 'Преподаватель', text: 'Этот код выдержит любые испытания. Только пожалуйста, не загружайте сайт на слишком старых браузерах',href:'#'}
+        {realpath: '', path: 'avatars/dm.png', username: 'Ковальчук Дмитрий', position: 'Основатель Loftschool(1)', text: '1. Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 2 месяца только самых тяжелых испытаний и бессонных ночей!', href:'#'},
+        {realpath: '', path: 'avatars/vl.png', username: 'Владимир Сабанцев', position: 'Преподаватель(2)', text: '2. Этот код выдержит любые испытания. Только пожалуйста, не загружайте сайт на слишком старых браузерах',href:'#'},
+        {realpath: '', path: 'avatars/dm.png', username: 'Ковальчук Дмитрий', position: 'Основатель Loftschool(3)', text: '3. Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 2 месяца только самых тяжелых испытаний и бессонных ночей!', href:'#'},
+        {realpath: '', path: 'avatars/vl.png', username: 'Владимир Сабанцев', position: 'Преподаватель(4)', text: '4. Этот код выдержит любые испытания. Только пожалуйста, не загружайте сайт на слишком старых браузерах',href:'#'},
+        {realpath: '', path: 'avatars/dm.png', username: 'Ковальчук Дмитрий', position: 'Основатель Loftschool(5)', text: '5. Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 2 месяца только самых тяжелых испытаний и бессонных ночей!', href:'#'},
+        {realpath: '', path: 'avatars/vl.png', username: 'Владимир Сабанцев', position: 'Преподаватель(6)', text: '6. Этот код выдержит любые испытания. Только пожалуйста, не загружайте сайт на слишком старых браузерах',href:'#'}
       ]      
       
 		};
-	},
+  },
+  watch: {
+    '$mq.resize': 'screenResize'
+  },
 	methods: {
     getImagePath(path) {
       return require(`images/${path}`)
@@ -36,6 +44,14 @@ new Vue({
         el.realpath = require(`images/${el.path}`)
       })
     },
+    screenResize() {
+      if (this.$mq.below(480)) {
+        this.swiperOption.slidesPerView = 1;
+      } else {
+        this.swiperOption.slidesPerView = 2;
+
+      }
+    },    
     next() {
       console.log(this.$refs.swiper)
       this.$refs.swiper.swiper.slideNext()
@@ -46,5 +62,7 @@ new Vue({
 	},
 	created() {
     this.handleImages()
-	}
+    this.screenResize()
+  },
+  
 });

@@ -8,6 +8,7 @@
   "preview-nav-bg": "#353e4e",
   "submit-color": "#4a00ed",
   "footer-bg": "#252830",
+  "violet-color": "#5500f2",
   "footer-color": "#fff",
   "tag-background-color": "#f3f5f9",
   "preview-link-color": "#586ed3",
@@ -17,4 +18,5 @@
   "bp-desktop": "1200px",
   "bp-tablets": "768px",
   "bp-phones": "480px"
+  
 }

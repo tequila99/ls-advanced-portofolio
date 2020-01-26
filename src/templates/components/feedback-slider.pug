@@ -6,15 +6,16 @@ script(type='x/template')#feedback-slider
       .review-nav
         .review-nav__button.review-nav__button-left(@click='prev')
         .review-nav__button.review-nav__button-right(@click='next')
-    swiper(:options="swiperOption" ref='swiper')
-      swiperSlide(v-for='(item,index) in items' :key='index')
-        .review-item
-          .review-item__content {{item.text}}
-          .review-item__footer
-            .review-item__avatar
-              .avatar-mini
-                img(:src='item.realpath' class='avatar-mini__img')
-                //- +image('avatar-mini__img',`${item.path}`)
-            .review-item__user
-              .review-item__user-name {{ item.username }}
-              .review-item__user-position {{item.position}}
+    .review__slider
+      swiper(:options="swiperOption" ref='swiper')
+        swiperSlide(v-for='(item,index) in items' :key='index')
+          .review-item
+            .review-item__content {{item.text}}
+            .review-item__footer
+              .review-item__avatar
+                .avatar-mini
+                  img(:src='item.realpath' class='avatar-mini__img')
+                  //- +image('avatar-mini__img',`${item.path}`)
+              .review-item__user
+                .review-item__user-name {{ item.username }}
+                .review-item__user-position {{item.position}}

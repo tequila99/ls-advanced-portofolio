@@ -1,11 +1,23 @@
 .header {
   padding-top: 64px;
+  @include tablets {
+    padding-right: 120px;
+  }
   &__container {
     display: flex;
     justify-content: space-between;
+    
   }
   &__menu { 
     display: flex;
     align-items: center;
+    @include tablets {
+      display: none;
+    }
+  }
+  &__socials {
+    @include phones {
+      display: none;
+    }
   }
 }

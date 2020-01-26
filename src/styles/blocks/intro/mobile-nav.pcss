@@ -1,0 +1,67 @@
+.mobile-nav {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 325px;
+  height: 100%;
+  background-color: #ffffff;
+  z-index: 20;
+  padding: 0 70px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  transform: translateX(100%);
+  transition: transform .3s cubic-bezier(0.77, 0, 0.175, 1);
+
+  &.is-active {
+      transform: translateX(0);
+      transition: transform .6s cubic-bezier(0.165, 0.84, 0.44, 1);
+  }
+
+  // nav
+  &__nav-list {
+      display: flex;
+      flex-direction: column;
+  }
+
+  &__nav-item {
+
+      &:nth-child(n+2) {
+          margin-top: 40px;
+      }
+  }
+
+  &__nav-link {
+      font-weight: 600;
+      font-size: 18px;
+      line-height: 18px;
+      color: $text-color;
+  }
+
+  // social
+  &__social-list {
+      display: flex;
+      align-items: center;
+      margin-top: 60px;
+  }
+
+  &__social-item {
+
+      &:nth-child(n+2) {
+          margin-left: 40px;
+      }
+  }
+
+  &__social-icon {
+      height: 25px;
+      fill: $text-color;
+  }
+}
+
+// 320px
+@include phones {
+  .mobile-nav {
+      width: 100%;
+  }
+}

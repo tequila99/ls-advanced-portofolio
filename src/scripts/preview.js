@@ -66,9 +66,27 @@ const previewSlider = {
       default: () => []
     }
   },
+  data() {
+    return {
+      maxItems: 3,
+      startOffset: 0
+    }
+  },
+  watch: {
+    activeIndex: function(newval,oldval) {
+      if (newval >= this.maxItems) {
+        this.startOffset = newval- this.maxItems +1;
+      } else {
+        this.startOffset =0;
+      }
+    }
+  },
   computed: {
     classSlider() {
       return `${this.className}__block-thmb`
+    },
+    windowItems() {
+      return this.items.slice(this.startOffset,this.startOffset+this.maxItems)
     }
   },
   components: {

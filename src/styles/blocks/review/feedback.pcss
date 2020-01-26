@@ -2,6 +2,10 @@
   &__form {
     margin-top: 77px;
     width: 70%;
+    @include tablets {
+      width: 100%;
+      margin-top: 67px;
+    }
   }
   &__form-row {
     display: flex;
@@ -9,6 +13,16 @@
     margin-top: 41px;
     &:first-child {
       margin-top: 0;
+      @include phones {
+        flex-direction :column;
+      }
+    }
+    &--submit {
+      margin-bottom: 134px;
+      @include tablets {
+        justify-content: center;
+        margin-bottom: 111px;
+      }
     }
   }
 
@@ -28,10 +42,17 @@
         width: 30px;
         height: 30px;
         background: svg-load('user.svg', fill=$text-color, opacity=0.3,  width=100%, height=100%) center center no-repeat;
+        @include phones {
+          display: none;
+        } 
       }
+
     }
 
     &--email {
+      @include phones {
+        margin-top: 40px;
+      }
       &::before {
         content: "";
         position: absolute;
@@ -40,6 +61,10 @@
         width: 30px;
         height: 30px;
         background: svg-load('envelope.svg', fill=$text-color,  opacity=0.3, width=100%, height=100%) center center no-repeat;
+        @include phones {
+          display: none;
+        } 
+
       }
     }
 
@@ -53,6 +78,10 @@
         width: 30px;
         height: 30px;
         background: svg-load('message.svg', fill=$text-color, opacity=0.3, width=100%, height=100%) center center no-repeat;
+        @include phones {
+          display: none;
+        } 
+
       }
     }
 
@@ -64,7 +93,7 @@
     opacity: .3;
     font-weight: 600;
     padding-left: 48px;
-    margin-bottom: 22px;
+    margin-bottom: 20px;
   }
 
   &__form-input,
@@ -79,6 +108,10 @@
 
     &::placeholder {
       color: $text-color;
+      @include phones {
+        font-size: 14px;
+        line-height: 24px;
+      }
 
     }
 
@@ -96,6 +129,9 @@
   &__form-input {
     width: 80%;
     padding: 8px 0 8px 48px;
+    @include phones {
+      width: 100%;
+    }
 
   }
 
@@ -103,6 +139,10 @@
     overflow: auto;
     resize: none;
     width: 90%;
+    @include phones {
+      width: 100%;
+      padding-right: 0;
+    }
 
     padding-left: 54px;
     padding-right: 35%;
@@ -118,6 +158,7 @@
     font-weight: bold;
     border-radius: 35px 0 35px 0;
     opacity: 1;
+    
 
     &:hover,
     &:active,

@@ -4,9 +4,21 @@
   color: $text-color;
   max-width: 600px;
   padding-top: 150px;
+  @include desktop {
+    padding-top: 100px;
+  }
   &__title {
     font-size: 30px;
     font-weight: 700;
+    @include tablets {
+      text-align: center;
+      padding: 0 20%;
+    }
+    @include phones {
+      font-size: 24px;
+      text-align: left;
+      padding: 0;
+    }
   }
   &__text {
     display: block;
@@ -14,5 +26,17 @@
     font-size: 16px;
     font-weight: 700;
     opacity: .5;
+    @include tablets {
+      text-align: center;
+      padding: 0 10%;
+    }
+    @include phones {
+      margin-top: 30px;
+      padding: 0;
+      text-align: left;
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 24px;
+    }
   }
 }
