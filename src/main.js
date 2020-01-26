@@ -18,8 +18,6 @@ const buddaOffset = document.querySelector('#budda-section').offsetTop
 
 window.addEventListener('load', () => {
   menuScript.init();
-  // anchorsLinks.init();
-  // formWorker.init('#feedback-form');
 });
 
 
@@ -39,8 +37,6 @@ window.addEventListener("wheel", () => {
     buddaParallaxItems.forEach(block => {
       let accel = block.dataset.speed,
       buddaScroll = scroll - buddaOffset;
-      console.log(accel)
-
       parallax.strafe(block, buddaScroll, accel)
     })
   }

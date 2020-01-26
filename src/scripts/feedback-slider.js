@@ -2,7 +2,7 @@ import { swiper, swiperSlide } from 'vue-awesome-swiper'
 import 'swiper/dist/css/swiper.css'
 import Vue from "vue";
 import vMediaQuery from "v-media-query"
-console.log(vMediaQuery)
+import throttle from 'lodash.throttle'
 
 Vue.use(vMediaQuery)
 
@@ -32,9 +32,12 @@ new Vue({
       
 		};
   },
-  watch: {
-    '$mq.resize': 'screenResize'
-  },
+  // watch: {
+  //   'this.$mq.resize': function() {
+  //     console.log(1111111)
+  //     this.screenResize()
+  //   }
+  // },
 	methods: {
     getImagePath(path) {
       return require(`images/${path}`)
@@ -46,14 +49,12 @@ new Vue({
     },
     screenResize() {
       if (this.$mq.below(480)) {
-        this.swiperOption.slidesPerView = 1;
+        Vue.set(this.swiperOption,'slidesPerView',1)
       } else {
-        this.swiperOption.slidesPerView = 2;
-
+        Vue.set(this.swiperOption,'slidesPerView',2)
       }
     },    
     next() {
-      console.log(this.$refs.swiper)
       this.$refs.swiper.swiper.slideNext()
     },
     prev() {
@@ -64,5 +65,16 @@ new Vue({
     this.handleImages()
     this.screenResize()
   },
+  mounted() {
+    // this.screenResize()
+    window.addEventListener('resize', throttle(() => {
+      this.screenResize()
+    } , 150))
+  },
+  destroyed() {
+    window.addEventListener('resize', throttle(() => {
+      this.screenResize()
+    } , 150))
+  }
   
 });

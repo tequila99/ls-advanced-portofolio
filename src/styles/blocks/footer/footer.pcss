@@ -16,6 +16,10 @@
     width: 25%;
     display: flex;
     justify-content: space-between;
+    @include desktop {
+      flex-direction: column;
+      justify-content: flex-start;
+    }
     @include tablets {
       flex-direction: column;
       justify-content: flex-start;
@@ -136,7 +140,10 @@
     opacity: .1;
     position: relative;
     padding-left: 3rem;
-
+    margin-right: 60px;
+    @include desktop {
+      margin-right: 0;
+    }
     &::before {
       content: "©";
       position: absolute;
@@ -160,8 +167,11 @@
   &__text {
     /* width: 41%; */
     /* padding-top: 9px; */
-    @include tablets {
+    @include desktop {
       margin-top: 30px;
+      padding-right: 40%;
+    }
+    @include tablets {
       padding-right: 20%;
     }
   }
