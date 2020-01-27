@@ -21,13 +21,13 @@
     display: flex;
     @include tablets {
       margin-top: 20px;
+      padding: 0 8%;
     }
     @include phones {
       justify-content: center;
       flex-wrap: wrap;
-      @include phones {
-        margin-right: -10px;
-      }      
+      margin-right: -10px;
+      padding: 0 8%;
     }
     li {
       margin-right: 60px;
@@ -37,7 +37,11 @@
       @include phones {
         margin-right: 10px;
       }
-  
+      &:nth-child(even) {
+        @include phones {
+          margin-right: 0;
+        }
+      }
       &:last-child {
         margin-right: none;
       }

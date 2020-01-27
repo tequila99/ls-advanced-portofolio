@@ -16,7 +16,8 @@ new Vue({
       swiperOption: {
         slidesPerView: 2,
         spaceBetween: 30,        
-        loop: true,    
+        loop: true,  
+        grabCursor: true,  
         breakpoints: {
           480: {
             slidesPerView: 1,

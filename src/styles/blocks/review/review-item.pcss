@@ -8,6 +8,10 @@
   /* margin-right: 86px; */
   padding-left: 96px;
   position: relative;
+  @include tablets {
+    padding-left: 48px;
+    max-width: 400px;
+  }
   @include phones {
     padding-left: 0;
   }
@@ -26,6 +30,10 @@
     position: absolute;
     top: 0;
     left: 0;
+    @include tablets {
+      width: 30px;
+      height: 26px;      
+    }
     @include phones {
       display: none;
     }
@@ -42,6 +50,9 @@
   &__avatar {
     margin-right: 32px;
     width: 25%;
+    @include tablets {
+      margin-right: 17px;
+    }
   }
   &__user-name {
     font-weight: 700;
