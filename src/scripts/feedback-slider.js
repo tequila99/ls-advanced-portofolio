@@ -17,7 +17,7 @@ new Vue({
         slidesPerView: 2,
         spaceBetween: 30,        
         loop: true,  
-        grabCursor: true,  
+        grabCursor: true,
         breakpoints: {
           480: {
             slidesPerView: 1,

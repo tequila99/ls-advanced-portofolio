@@ -13,6 +13,39 @@
     /* width: 55%;
     min-width: 680px; */
     z-index: 10;
+    display: flex;
+    position: relative;
+    margin-right: 15%;
+    @include tablets {
+      margin-right: 8%;
+    }
+    @include phones {
+      margin-right: 0;
+    }
+    &:after {
+      content: attr(data-index);
+      position: absolute;
+      width: 25%;
+      height: 100%;
+      right: -15%;
+      /* bottom: 20%; */
+      color: $ring-color;
+      font-size: 400px;
+      font-weight: 800;
+      line-height: 400px;      
+      z-index: -1;
+      @include desktop {
+        font-size: 300px;
+        line-height: 300px;
+      }
+      @include tablets {
+        right: -18%;
+      }
+      @include phones {
+        display: none;
+      }
+    }    
+    
   }
   &__content {
     display: flex;
@@ -45,7 +78,7 @@
   }
   &__container {
     display: flex;
-    margin-left: -70px;
+    /* margin-left: -70px; */
     width: 70%;
     @include tablets {
       margin-left: 0;
@@ -62,7 +95,7 @@
     font-size: 400px;
     font-weight: 800;
     line-height: 400px;
-    
+    margin-left: -50px;
     @include desktop {
       font-size: 300px;
       line-height: 200px;

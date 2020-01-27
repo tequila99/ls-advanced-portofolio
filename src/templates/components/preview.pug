@@ -19,10 +19,12 @@ script(type='x/template')#preview-image
 
 script(type='x/template')#preview-main
   .preview-content
-    .preview-content__img
+    .preview-content__img(:data-index='activeIndex+1')
       previewImage(:className=className :items='items' :activeIndex='activeIndex' @up='changeImage("up")' @down='changeImage("down")' @select='selectImage')
+      //- .preview-content__index 
+      //-   span {{ activeIndex+1 }}
     .preview-content__container
-      .preview-content__index {{ activeIndex+1 }}
+      //- .preview-content__index {{ activeIndex+1 }}
       .preview-content__text-content
         ul.preview-content__tags  
           li.preview-content__tag(v-for='(tag,index) in tags' :key='index')

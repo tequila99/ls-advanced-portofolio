@@ -7,8 +7,8 @@ script(type='x/template')#feedback-slider
         .review-nav__button.review-nav__button-left(@click='prev')
         .review-nav__button.review-nav__button-right(@click='next')
     .review__slider
-      swiper(:options="swiperOption" ref='swiper')
-        swiperSlide(v-for='(item,index) in items' :key='index')
+      swiper(:options="swiperOption" ref='swiper' class='review__swiper')
+        swiperSlide(v-for='(item,index) in items' :key='index' class='review__swiper-item')
           .review-item
             .review-item__content {{item.text}}
             .review-item__footer
