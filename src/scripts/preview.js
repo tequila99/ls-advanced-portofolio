@@ -134,38 +134,7 @@ new Vue({
   },
   data() {
     return {
-      items: [
-          {
-            realpath: '', path: 'preview/1.jpg', title: 'Сайт школы образования', 
-            text: '1 Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 2 месяца только самых тяжелых испытаний и бессонных ночей!', 
-            href:'#',
-            tags: ['HTML', 'CSS', 'Javascript']
-          },
-          {
-            realpath: '', path: 'preview/2.jpg', title: 'Сайт института', 
-            text: '2 Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 2 месяца только самых тяжелых испытаний и бессонных ночей!',
-            href:'#',
-            tags: ['HTML', 'CSS', 'Javascript']
-          },
-          {
-            realpath: '', path: 'preview/3.jpg', title: 'Сайт школы водителей', 
-            text: '3 Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 2 месяца только самых тяжелых испытаний и бессонных ночей!',
-            href:'#',
-            tags: ['HTML', 'CSS', 'Javascript']
-          },
-          {
-            realpath: '', path: 'preview/4.jpg', title: 'Сайт университета', 
-            text: '4 Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 2 месяца только самых тяжелых испытаний и бессонных ночей!',
-            href:'#',
-            tags: ['HTML', 'CSS', 'Javascript']
-          },
-          {
-            realpath: '', path: 'preview/5.jpg', title: 'Сайт чего-то там еще', 
-            text: '5 Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 2 месяца только самых тяжелых испытаний и бессонных ночей!',
-            href:'#',
-            tags: ['HTML', 'CSS', 'Javascript']
-          }
-      ],
+      items: [],
       activeIndex: 0
     }
   },
@@ -201,6 +170,7 @@ new Vue({
     }
   },
   created() {
+    this.items = require('../json/preview.json')
     this.handleImages()
 	},
   components: {

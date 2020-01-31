@@ -75,30 +75,14 @@ new Vue({
   },
   data() {
     return {
-      skills: [
-        {
-          title: 'Front-end', 
-          items: [
-            {label: 'HTML5', value: 30},
-            {label: 'CSS3', value: 40},
-            {label: 'Javascript', value: 70},
-            {label: 'jquery и Vue.js', value: 10}            
-          ]
-        },
-        {
-          title: 'Work Flow',
-          items: [
-            {label: 'GIT', value: 60},
-            {label: 'Terminal', value: 35},
-            {label: 'Gulp', value: 64},
-            {label: 'Webpack', value: 20}            
-          ]
-        }
-      ]
+      skills: []
     }
   },
   components: {
     Row
+  },
+  created() {
+    this.skills = require('../json/skills.json')
   }
 })
   

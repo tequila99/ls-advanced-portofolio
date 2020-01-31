@@ -33,6 +33,11 @@
 				.parralax-scene__item-image {
 					right: 0;
 					top: 360px;
+					height: 100%;
+					width: 100%;
+					@include desktop {
+						height: 60%;
+					}
 				}
 			}
 
@@ -51,7 +56,7 @@
 
 			&--cloud {
 				.parralax-scene__item-image {
-					top: 35%;
+					top: 29%;
 					left: 0;
 					width: 100%;
 				}
@@ -60,25 +65,24 @@
 			&--man {
 				.parralax-scene__item-image {
 					top: 35%;
-					left: 0;
-					@include desktop {
-						left: -25%;
-					}
+					left: -25%;
+
 				}
 			}
 
 			&--mountain-second {
 				.parralax-scene__item-image {
 					right: 0;
-					top: 43%;
+					height: 29%;
+					top: 46%;
 				}
 			}
 
 			&--white {
 				.parralax-scene__item-image {
-					height: 50%;
+					height: 70%;
 					left: 0;
-					bottom: -15%;
+					bottom: -10%;
 					width: 100%;
 				}
 			}
@@ -89,7 +93,7 @@
 		top: -150px;
 		bottom: 0;
     z-index: -1;
-    clip-path: polygon(0% 0%, 0% 100%,100% 100%,100% 0%,50% 10%);
+    clip-path: polygon(0% 0%, 0% 100%,100% 100%,100% 0%,50% 7%);
 		.parralax-scene__item {
 			&:nth-child(1) {
 				.parralax-scene__item-image {

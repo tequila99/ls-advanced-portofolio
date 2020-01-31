@@ -21,7 +21,7 @@ window.addEventListener('load', () => {
 });
 
 
-window.addEventListener("wheel", () => {
+window.addEventListener("scroll", () => {
 	let scroll = window.pageYOffset;
 
   // main parallax
