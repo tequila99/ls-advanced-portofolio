@@ -31,6 +31,7 @@ module.exports = (env, argv) => {
     exclude: /node_modules/,
     options: {
       presets: ['@babel/preset-env'],
+      // presets: ['es2015'],
       plugins: ["@babel/plugin-syntax-dynamic-import"]
     }
   };
