@@ -2,7 +2,8 @@
   .input-field
     label.input-field__element
       span.input-field__label(v-if='!!label') {{ label }}
-      input.input-field__input(:type='type' :name='name' :placeholder='placeholder' :value='value' :disabled='disable')
+      input.input-field__input(v-if='type==="number"' type='number' :name='name' :placeholder='placeholder' :value='value' :disabled='disable' :required='required' :min='min' :max='max') 
+      input.input-field__input(v-else :type='type' :name='name' :placeholder='placeholder' :value='value' :disabled='disable' :required='required')
 </template>
 
 <script>
@@ -19,7 +20,7 @@ export default {
     },
     placeholder: {
       type: String,
-      default: 'Введите значение'
+      default: ''
     },
     label: {
       type: String,
@@ -32,6 +33,18 @@ export default {
     disable: {
       type: Boolean,
       default: false
+    },
+    required: {
+      type: Boolean,
+      default: false
+    },
+    min: {
+      type: Number,
+      default: -Infinity
+    },
+    max: {
+      type: Number,
+      default: Infinity
     }
   },
   data: () => ({}),
@@ -66,7 +79,7 @@ export default {
       background: transparent;
       font-weight: bold;
       font-size: 18px;
-      padding: 10px 0;
+      padding: 10px 0 10px 25px;
       &::placeholder {
         color: #414c63;
         opacity: .5;
@@ -76,7 +89,33 @@ export default {
         font-weight: 400;
         border: 0;
       }
+      &:active {
+        outline: 0;
+        outline-offset: 0;
+      }
+      &:focus {
+        border-top: 0;
+        border-left: 0;
+        border-right: 0;
+        border-bottom: 1px solid  #383bcf;
+        outline: 0;
+        outline-offset: 0;
+      }
+      &:required:valid {
+        background: svg-load('check-mark.svg', fill='green', opacity=0.3,  width=100%, height=100%);
+        background-size: 20px;
+        background-repeat: no-repeat;
+        background-position: 0 10px;        
+      }
+      &:required:invalid:not(:focus):not(:placeholder-shown) {
+        background: svg-load('exclamation.svg', fill='red', opacity=0.5,  width=100%, height=100%);
+        background-size: 20px;
+        background-repeat: no-repeat;
+        background-position: 0 10px;
+      }
     }
+
   }
+  
 
 </style>

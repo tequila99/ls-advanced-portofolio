@@ -11,8 +11,8 @@
         li.skills-card__item(v-for='(item,index) in items' :key='index' )
           skill-item(:label='item.label' :amount='item.value' :is-edit='index===randomIndex')
     .skills-card__footer
-      input-field(class='skills-card__skill' name='skill', placeholder='Новый навык')
-      input-field(class='skills-card__amount' name='amount', placeholder='100 %')
+      input-field(class='skills-card__skill' name='skill', placeholder='Новый навык', :required='true')
+      input-field(class='skills-card__amount' name='amount', placeholder='100' :required='true')
       fab-add-button(class='skills-card__fab' @click='handleClick')
 
 </template>
@@ -109,7 +109,14 @@ export default {
     margin: 0 0 0 auto;
   }
   &__amount {
-
+      &::after {
+        content: '%';
+        font-size: 18px;
+        font-weight:700;
+        position: absolute;
+        right: 0;
+        top: 7px;
+      }
   }
   &__list {
     padding-top: 15px;

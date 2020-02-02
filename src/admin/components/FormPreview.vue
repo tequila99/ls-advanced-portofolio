@@ -1,21 +1,23 @@
 <template lang='pug'>
-  .preview-form
-    .preview-form__header
-      h3 Редактирование работы
-    .preview-form__body
-      .preview-form__upload
-        upload-area
-      .preview-form__content
-        input-field(class='preview-form__input preview-form__input--title' type='text' name='title' placeholder='Дизайн сайта для авто салона Porsche' label='Название') 
-        input-field(class='preview-form__input preview-form__input--link' type='text' name='link' placeholder='https://www.porsche-pulkovo.ru' label='Ссылка') 
-        text-field( class='preview-form__input preview-form__input--text' name='text' :placeholder='text' label='Описание') 
-        input-field(class='preview-form__input preview-form__input--tags' type='text' name='tags' placeholder='Jquery, Vue.js, HTML5' label='Добавление тэга') 
-        ul.preview-form__tags
-          li.preview-form__tag(v-for='(tag,index) in tags' :key='index')
-            span {{ tag }}
-              font-awesome-icon(icon='times' class='preview-form__tag-icon')
-    .preview-form__footer
-      bottom-buttons
+  div 
+    modal-warning(v-model='showError')
+    .preview-form
+      .preview-form__header
+        h3 Редактирование работы
+      .preview-form__body
+        .preview-form__upload
+          upload-area
+        .preview-form__content
+          input-field(class='preview-form__input preview-form__input--title' :value='title' type='text' name='title' placeholder='Дизайн сайта для авто салона Porsche' label='Название' required) 
+          input-field(class='preview-form__input preview-form__input--link' :value='link' type='url' name='link' placeholder='https://www.porsche-pulkovo.ru' label='Ссылка' required) 
+          text-field(class='preview-form__input preview-form__input--text' :value='text' name='text' :placeholder='placeholder' label='Описание' required) 
+          input-field(class='preview-form__input preview-form__input--tags' :value='tagsStr' type='text' name='tags' placeholder='Jquery, Vue.js, HTML5' label='Добавление тэга') 
+          ul.preview-form__tags
+            li.preview-form__tag(v-for='(tag,index) in tags' :key='index')
+              span {{ tag }}
+                font-awesome-icon(icon='times' class='preview-form__tag-icon')
+      .preview-form__footer
+        bottom-buttons(@save='saveForm')
 </template>
 
 <script>
@@ -23,6 +25,7 @@ import BottomButtons from './BottomButtons'
 import UploadArea from './UploadArea'
 import InputField from './InputField'
 import TextField from './TextField'
+import ModalWarning from './ModalWarning'
 export default {
   name: 'FromPreview',
   props: {
@@ -30,16 +33,35 @@ export default {
   },
   data() {
     return {
-      text: 'Порше Центр Пулково - является официальным дилером марки Порше в Санкт-Петербурге и предоставляет полный цикл услуг по продаже и сервисному обслуживанию автомобилей',
-      tags: ['Jquery', 'Vue.js', 'HTML5']
+      placeholder: 'Порше Центр Пулково - является официальным дилером марки Порше в Санкт-Петербурге и предоставляет полный цикл услуг по продаже и сервисному обслуживанию автомобилей',
+      title: '',
+      link: '',
+      text: '',      
+      tags: ['Jquery', 'Vue.js', 'HTML5'],
+      showError: false
     }
-
+  },
+  computed: {
+    tagsStr: {
+      set: function(val) {
+        this.tags = val.split(',').map(el => el.trim())
+      },
+      get: function() {
+        return this.tags.join(',');
+      }
+    }
+  },
+  methods: {
+    saveForm() {
+      this.showError = !this.title || !this.link || !this.text
+    }
   },
   components: {
     'bottom-buttons': BottomButtons,
     'upload-area': UploadArea,
     'input-field': InputField,
-    'text-field': TextField
+    'text-field': TextField,
+    'modal-warning': ModalWarning
 
   }
 

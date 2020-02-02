@@ -1,7 +1,7 @@
 <template lang='pug'>
   .bottom-buttons
     a.bottom-buttons__button.bottom-buttons__button--cancel Отменить
-    a.bottom-buttons__button.bottom-buttons__button--save {{ 'Сохранить' | uppercase }}
+    a.bottom-buttons__button.bottom-buttons__button--save(@click='$emit("save")') {{ 'Сохранить' | uppercase }}
 </template>
 
 <script>

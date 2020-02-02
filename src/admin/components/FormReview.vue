@@ -1,21 +1,18 @@
 <template lang='pug'>
-  .review-form
-    .review-form__header
-      h3 Новый отзыв
-    .review-form__body
-      .review-form__upload
-        upload-avatar
-      .review-form__content
-        input-field(class='review-form__input review-form__input--username' type='text' name='username' placeholder='Ковальчук Дмитрий' label='Имя автора') 
-        input-field(class='review-form__input review-form__input--position' type='text' name='position' placeholder='Основатель LoftSchool' label='Титул автора') 
-        text-field( class='review-form__input review-form__input--text' name='text' :placeholder='text' label='Отзыв') 
-      //-   input-field(class='preview-form__input preview-form__input--tags' type='text' name='tags' placeholder='Jquery, Vue.js, HTML5' label='Добавление тэга') 
-      //-   ul.preview-form__tags
-      //-     li.preview-form__tag(v-for='(tag,index) in tags' :key='index')
-      //-       span {{ tag }}
-      //-         font-awesome-icon(icon='times' class='preview-form__tag-icon')
-    .review-form__footer
-      bottom-buttons
+  div 
+    modal-warning(v-model='showError')
+    .review-form
+      .review-form__header
+        h3 Новый отзыв
+      .review-form__body
+        .review-form__upload
+          upload-avatar
+        .review-form__content
+          input-field(class='review-form__input review-form__input--username' v-model='username' type='text' name='username' placeholder='Ковальчук Дмитрий' label='Имя автора' required) 
+          input-field(class='review-form__input review-form__input--position' v-model='position' type='text' name='position' placeholder='Основатель LoftSchool' label='Титул автора' required) 
+          text-field( class='review-form__input review-form__input--text' v-model='text' name='text' :placeholder='placeholder' label='Отзыв' required) 
+      .review-form__footer
+        bottom-buttons(@save='saveFrom')
 </template>
 
 <script>
@@ -23,6 +20,7 @@ import BottomButtons from './BottomButtons'
 import InputField from './InputField'
 import TextField from './TextField'
 import UploadAvatar from './UploadAvatar'
+import ModalWarning from './ModalWarning'
 export default {
   name: 'FromReview',
   props: {
@@ -30,16 +28,25 @@ export default {
   },
   data() {
     return {
-      text: 'Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 4,5 месяца только самых тяжелых испытаний и бессонных ночей!',
-      tags: ['Jquery', 'Vue.js', 'HTML5']
+      showError: false,
+      username: '',
+      position: '',
+      text: '',
+      placeholder: 'Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 4,5 месяца только самых тяжелых испытаний и бессонных ночей!',
     }
 
+  },
+  methods: {
+    saveFrom() {
+      this.showError = !this.username || !this.position || !this.text
+    }
   },
   components: {
     'bottom-buttons': BottomButtons,
     'input-field': InputField,
     'text-field': TextField,
-    'upload-avatar': UploadAvatar
+    'upload-avatar': UploadAvatar,
+    'modal-warning': ModalWarning
   }
 
 }
