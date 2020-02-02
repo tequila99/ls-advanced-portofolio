@@ -2,11 +2,14 @@
   .skills-card
     .skills-card__header
       .skills-card__header-title
-        input-field(name='title', placeholder='Название новой группы' v-if='isNew')    
+        input-field(name='title', placeholder='Название новой группы' v-if='newGroup')    
         h3.skills-card__title(v-else) {{ title }}    
       .skills-card__header-buttons
-        edit-buttons(:icons='isNew ? "ok close" : "edit"')
+        edit-buttons(:icons='newGroup ? "ok close" : "edit"')
     .skills-card__body
+      ul.skills-card__list
+        li.skills-card__item(v-for='(item,index) in items' :key='index' )
+          skill-item(:label='item.label' :amount='item.value' :is-edit='index===randomIndex')
     .skills-card__footer
       input-field(class='skills-card__skill' name='skill', placeholder='Новый навык')
       input-field(class='skills-card__amount' name='amount', placeholder='100 %')
@@ -18,6 +21,7 @@
 import InputField from './InputField'
 import FabAddButton from './FabAddButton'
 import EditButtons from './EditButtons'
+import SkillItem from './SkillItem'
 export default {
   name: 'SkillsCard',
   props: {
@@ -28,31 +32,41 @@ export default {
     items: {
       type: Array,
       default: () => []
+    },
+    newGroup: {
+      type: Boolean,
+      default: false
     }
   },
   data() {
     return {
-      isNew: true
+     
     }
   },
-  computed: {},
+  computed: {
+    randomIndex() {
+      return Math.floor(Math.random()*this.items.length)
+    }
+  },
   methods: {
     handleClick() {
       console.log('Клик')
     }
   },
-  mounted() {},
+  mounted() {
+    console.log(111)
+  },
   components: {
-    'input-field': InputField,
+    'input-field':    InputField,
     'fab-add-button': FabAddButton,
-    'edit-buttons': EditButtons
+    'edit-buttons':   EditButtons,
+    'skill-item':     SkillItem
   },
 }
 </script>
 
 <style lang='pcss'>
 .skills-card {
-  margin: 50px;
   width: 525px;
   height: 387px;
   padding: 0 22px;
@@ -61,12 +75,10 @@ export default {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 74px 1fr 74px;
-  box-sizing: content-box;
+  /* box-sizing: content-box; */
   &__header {
-    /* height: 74px; */
     border-bottom: 1px solid rgba(31,35,45,.15);
     display: grid;    
-    grid-template-rows: 1fr;
     grid-template-columns: 1fr 15%;
     grid-column-gap: 35px;
     align-items: center;
@@ -81,20 +93,26 @@ export default {
     font-weight: 600;
     color: #414c63;
   }
+  &__header-buttons {
+    display: flex;
+    justify-content: flex-end;
+  }
   &__footer {
-    width: 100%;
     display: grid;
-    grid-template-rows: 1fr;
-    grid-template-columns: 1fr 15% 15%;
+    grid-template-columns: 1fr 75px 10%;
     grid-column-gap: 35px;
     align-items: center;
+    padding-bottom: 25px;
   }
   &__skill {
     width: 70%;
     margin: 0 0 0 auto;
   }
   &__amount {
-    width: 100%
+
+  }
+  &__list {
+    padding-top: 15px;
   }
   &__fab {
     /* margin: 0 auto; */

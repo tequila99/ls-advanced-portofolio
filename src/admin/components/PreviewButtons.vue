@@ -23,6 +23,7 @@ export default {
 <style lang='pcss'>
   .preview-buttons {
     height: 100%;
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;    

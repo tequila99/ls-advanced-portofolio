@@ -3,7 +3,7 @@
     .admin-container
       ul.toolbar-admin__list
         li(class='toolbar-admin__item' v-for='(item,index) in items' :key='index')
-          a(class='toolbar-admin__link' :class='{ active: index===activeItem}') {{ item.label}}
+          router-link(:to='item.path' class='toolbar-admin__link' :class='{ active: index===activeItem}') {{ item.label}}
 </template>
 
 <script>
@@ -13,17 +13,17 @@ export default {
     items: {
       type: Array,
       default: () => [
-        {label: 'Обо мне'},
-        {label: 'Работы'},
-        {label: 'Отзывы'}
+        {label: 'Обо мне', path: '/about'},
+        {label: 'Работы', path: '/works'},
+        {label: 'Отзывы', path: '/reviews'}
       ]
     },
-    activeItem: {
-      type: Number,
-      default: 0
+  },
+  computed: {
+    activeItem() {
+      return this.items.findIndex(el => el.path === this.$route.path)
     }
   },
-  computed: {},
   methods: {
   },
   mounted() {
@@ -56,6 +56,9 @@ export default {
       height: 100%;
       display: flex;
       align-items: center;
+      color: #414c63;
+      text-decoration: none;
+      border-bottom: 3px solid #fff;
       
     }
     &__link.active {

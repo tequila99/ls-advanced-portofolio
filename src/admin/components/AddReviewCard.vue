@@ -1,29 +1,29 @@
 <template lang='pug'>
-  .preview-add
-    .preview-add__container
-      .preview-add__button-add
-        font-awesome-icon(icon='plus' class='preview-add__button-add--icon')
-      .preview-add__label Добавить работу
+  .review-add
+    .review-add__container
+      .review-add__button-add
+        font-awesome-icon(icon='plus' class='review-add__button-add--icon')
+      .review-add__label Добавить работу
 
 </template>
 
 <script>
 export default {
-  name: 'AddPreviewCard',
+  name: 'AddReviewCard',
 }
 </script>
 
 <style lang='pcss'>
-  .preview-add {
-      background-color: #204edb;
-      display: grid;
-      grid-template-columns: 1fr;
-      grid-template-rows: 1fr;
-      justify-content: center;
-      align-items: center;
-      width: 340px;
-      height: 556px;
-      box-shadow: 4px 3px 20px rgba(0, 0, 0, 0.07);          
+  .review-add {
+    width: 340px;
+    height: 380px;
+    box-shadow: 4px 3px 20px rgba(0, 0, 0, 0.07);   
+    background-color: #204edb;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    justify-content: center;
+    align-items: center;    
     &__container {
       width: 160px;
       display: flex;

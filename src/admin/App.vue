@@ -3,12 +3,15 @@
     header-admin(:avatar='avatar' :user-name='userName')
     toolbar-admin
     .admin-container
-      skills-card
-      preview-card(:image='previews[0].realpath' :title='previews[0].title' :text='previews[0].text' :tags='previews[0].tags' :link='previews[0].href')
-      h1 Welcome to the Vue App
-      add-preview-card
-      review-card(:avatar='reviews[0].realpath' :user-name='reviews[0].username' :position='reviews[0].position' :text='reviews[0].text')
-  
+      router-view
+    //- 
+    //-   skills-card(style='margin-top:30px')
+    //-   preview-card(style='margin-top:30px' :image='previews[0].realpath' :title='previews[0].title' :text='previews[0].text' :tags='previews[0].tags' :link='previews[0].href')
+    //-   add-preview-card(style='margin-top:30px')
+    //-   review-card(style='margin-top:30px' :avatar='reviews[0].realpath' :user-name='reviews[0].username' :position='reviews[0].position' :text='reviews[0].text')
+    //-   form-preview(style='margin-top:30px')
+    //-   form-review(style='margin-top:30px')
+    //-   add-review-card(style='margin-top:30px')
 </template>
 
 <script>
@@ -17,7 +20,10 @@ import Toolbar from './components/Toolbar'
 import SkillsCard from './components/SkillsCard'
 import PreviewCard from './components/PreviewCard'
 import AddPreviewCard from './components/AddPreviewCard'
+import AddReviewCard from './components/AddReviewCard'
 import ReviewCard from './components/ReviewCard'
+import FormPreview from './components/FormPreview'
+import FormReview from './components/FormReview'
 
 // const Header = require('./components/Header')
 const avatarPath = 'content/user.jpg'
@@ -56,7 +62,10 @@ export default {
     'skills-card': SkillsCard,
     'preview-card': PreviewCard,
     'add-preview-card': AddPreviewCard,
-    'review-card': ReviewCard
+    'review-card': ReviewCard,
+    'form-preview': FormPreview,
+    'form-review': FormReview,
+    'add-review-card': AddReviewCard,
   }
 }
 </script>

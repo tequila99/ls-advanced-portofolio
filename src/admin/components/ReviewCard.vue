@@ -75,6 +75,7 @@ export default {
       opacity: 0.7;
       font-weight: 500;
       line-height: 30px;
+      overflow: hidden;
     }
     &__header-title {
       display:flex;
@@ -93,6 +94,8 @@ export default {
     }
     &__footer {
       padding: 0 8px;
+      display: flex;
+      align-items: center;
     }
   }
 

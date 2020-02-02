@@ -1,18 +1,14 @@
 <template lang='pug'>
-  .input-field
-    label.input-field__element
-      span.input-field__label(v-if='!!label') {{ label }}
-      input.input-field__input(:type='type' :name='name' :placeholder='placeholder' :value='value' :disabled='disable')
+  .text-field
+    label.text-field__element
+      span.text-field__label(v-if='!!label') {{ label }}
+      textarea.text-field__input(:name='name' :placeholder='placeholder')
 </template>
 
 <script>
 export default {
   name: 'InputField',
   props: {
-    type: {
-      type: String,
-      default: 'text'
-    },
     name: {
       type: String,
       default: 'field'
@@ -24,14 +20,6 @@ export default {
     label: {
       type: String,
       default: ''
-    },
-    value: {
-      type:[String,Number],
-      default: ''
-    },
-    disable: {
-      type: Boolean,
-      default: false
     }
   },
   data: () => ({}),
@@ -43,38 +31,37 @@ export default {
 </script>
 
 <style lang='pcss'>
-  .input-field {    
+  .text-field {    
     color: #414c63;
     width: 100%;
     &__element {
       display: flex;
       flex-direction: column;
       justify-content: center;
+      height: 100%;
     }
     &__label {
       opacity: .5;
       font-weight: 600;
       font-size: 16px;
-      /* margin-bottom: 10px; */
+      margin-bottom: 20px;
     }
     &__input {
-      border-top: 0;
-      border-left: 0;
-      border-right: 0;
-      /* border-bottom: 1px solid black; */
-      border-bottom: 1px solid #414c63;
+      height: 100%;
+      overflow: hidden;
+      border: 1px solid rgba(28,28,28,.2);
       background: transparent;
-      font-weight: bold;
+      padding: 20px 20px;
       font-size: 18px;
-      padding: 10px 0;
+      font-weight: 600;
+      line-height: 30px;
+      color: #414c63;
+      resize: none;
       &::placeholder {
+        font-size: 18px;
         color: #414c63;
-        opacity: .5;
-      }
-      &:disabled {
-        color: #414c63;
+        opacity: .5;        
         font-weight: 400;
-        border: 0;
       }
     }
   }
