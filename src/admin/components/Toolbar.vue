@@ -35,6 +35,7 @@ export default {
 </script>
 
 <style lang='pcss'>
+@import url('../../styles/mixins.pcss');
   .toolbar-admin {
     width: 100%;
     height: 77px;
@@ -43,9 +44,16 @@ export default {
     display: flex;
     align-items: center;
     font-size: 16px;
+    @include phones  {
+      font-size: 14px;
+      justify-content: center;
+    }
     &__list {
       display: flex;
       height: 100%;
+      @include phones {
+        justify-content: center;
+      }
     }
     &__item {
       height: 100%;
@@ -59,6 +67,9 @@ export default {
       color: #414c63;
       text-decoration: none;
       border-bottom: 3px solid #fff;
+      @include phones {
+        padding: 0 20px;
+      }
       
     }
     &__link.active {

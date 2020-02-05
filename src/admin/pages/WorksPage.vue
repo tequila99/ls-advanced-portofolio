@@ -6,8 +6,8 @@
       .works-page__form(v-if='isEdit')
         form-preview
       .works-page__previews
-        add-preview-card
-        preview-card(v-for='(item,index) in works' :key='index' :image='item.realpath' :title='item.title' :text='item.text' :link='item.href' :tags='item.tags')
+        add-preview-card(class='works-page__preview-card')
+        preview-card(class='works-page__preview-card' v-for='(item,index) in works' :key='index' :image='item.realpath' :title='item.title' :text='item.text' :link='item.href' :tags='item.tags')
 </template>
 
 <script>
@@ -43,6 +43,7 @@ export default {
 </script>
 
 <style lang='pcss'>
+  @import url('../../styles/mixins.pcss');
  .works-page {
     background: #f7f9fe;
     display: grid;
@@ -59,13 +60,29 @@ export default {
       display: grid;
       grid-template-rows: auto 1fr;
       grid-row-gap: 32px;
+      justify-content: center;
+      align-items: center;
+    }
+    &__form {
+      width: 100%;
     }
     &__previews {
       display: grid;
+      justify-content: center;
+      align-items:center;
       grid-template-columns: 1fr 1fr 1fr;
       grid-auto-flow: row;
       grid-gap: 30px;
       padding-bottom: 40px;
+      @include desktop {
+        grid-template-columns: 1fr 1fr;
+      }
+      @include tablets {
+        grid-template-columns: 1fr;
+      }
+    }
+    &__preview-card {
+      justify-self: center;
     }
   }
 </style>

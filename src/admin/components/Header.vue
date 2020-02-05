@@ -3,10 +3,11 @@
     .admin-container
       .header-admin__avatar
         avatar-mini(:avatar='avatar' :userName='userName')
-      .header-admin__user-name {{ userName }}
-      .header-admin__title {{ titleHeader }}
-      .header-admin__exit-link
-        a(class='exit-link' @click='handleExit') Выход
+      .header-admin__container
+        .header-admin__user-name {{ userName }}
+        .header-admin__title {{ titleHeader }}
+        .header-admin__exit-link
+          a(class='exit-link' @click='handleExit') Выход
 </template>
 
 <script>
@@ -40,6 +41,7 @@ export default {
 </script>
 
 <style lang='pcss'>
+  @import url('../../styles/mixins.pcss');
   .header-admin {
     width: 100%;
     height: 80px;
@@ -47,6 +49,17 @@ export default {
     color: #fff;
     display: flex;
     align-items: center;
+    &__container {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+       @include phones {
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+      }
+    }
     .admin-container {
       display: flex;  
       align-items: center;
@@ -59,11 +72,17 @@ export default {
       font-size: 18px;
       font-weight: 500;
       width: 25%;
+      @include phones {
+        width: 100%;
+      }
     }
     &__title {
       opacity: .5;
       font-size: 14px;
       width: 100%;
+      @include phones {
+        display: none;
+      }
     }
     &__exit-link {
       font-size: 16px;

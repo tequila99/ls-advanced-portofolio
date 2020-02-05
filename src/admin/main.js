@@ -1,7 +1,10 @@
 import Vue from 'vue';
 import Router from 'vue-router'
 import routes from './router/routes'
-console.log(routes)
+import 'normalize.css'
+// import '../styles/mixins.pcss';
+// include '../styles/vatiables.json';
+
 Vue.use(Router)
 const router = new Router ({
   base: '/admin/',

@@ -55,6 +55,8 @@ export default {
   .preview-card {
     width: 340px;
     height: 556px;
+    /* width: 100%;
+    height: 100%; */
     box-shadow: 4px 3px 20px rgba(0, 0, 0, 0.07);
     background-color: #ffffff;
     display: grid;
@@ -83,7 +85,8 @@ export default {
       bottom: 0;
       left: 0;
       right: 0;
-      padding: 5% 3% 5%;
+      box-sizing: border-box;
+      padding: 7% 5% 7%  !important;
     }
     &__tag {
       margin-top: 8px;
@@ -101,22 +104,28 @@ export default {
     }
     &__content {
       padding: 40px 30px 0 30px;
+      display: grid;
+      grid-template-rows: 50px 1fr 50px;
       h3 {
         font-weight: 700;
         font-size: 18px;
         color: #414c63;
+        align-self: center;
       }
       p {
         color: #414c63;
         opacity: 0.7;
         font-size: 16px;
         line-height: 30px;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
       a {
         color: #383bcf;
         font-weight: 600;
         text-decoration: none;
         font-size: 16px;
+        align-self: center;
       }
     }
     &__footer {

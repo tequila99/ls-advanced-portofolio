@@ -71,6 +71,7 @@ export default {
 </script>
 
 <style lang='pcss'>
+@import url('../styles/mixins.pcss');
 body {
   font-family: 'Open Sans', Helvetica, sans-serif;
   font-size: 16px;
@@ -86,38 +87,36 @@ body {
   position: relative;
 }
 
-button {
-  border: 0;
-  cursor: pointer;
-}
-
-a {
-  cursor: pointer;
-}
-
-* {
-  box-sizing: border-box;
-}
-
-h1,h2,h3,h4,h5 {
-  padding: 0;
-  margin: 0;
-}
-
-ul {
-  padding: 0;
-  margin: 0;
-  list-style: none;
-}
 
 .admin-container {
   margin: 0 auto;
-  max-width: 1080px;
+  max-width: 1480px;
   width: 95%;
   height: 100%;
-  /* @include phones {
-    width: 85%;
-  } */
+  @include phones {
+    width: 100%;
+  }  
+
+  ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-weight: normal;
+    margin: 0;
+  }
+
+  p {
+    margin: 0;
+    padding: 0;
+  }  
 }
 
 </style>

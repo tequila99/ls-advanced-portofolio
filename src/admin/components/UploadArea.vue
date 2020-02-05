@@ -17,9 +17,17 @@ export default {
 </script>
 
 <style lang='pcss'>
+  @import url('../../styles/mixins.pcss');
   .upload-area {
     width: 494px;
     height: 276px;
+    @include tablets {
+      width: 100%;
+    }
+    @include phones {
+      width: 280px;
+      height: 157px;      
+    }
     border: 1px dashed #a1a1a1;
     background-color: #dee4ed;
     display: flex;
@@ -40,6 +48,9 @@ export default {
       padding: 0 25%;
       text-align: center;
       margin-bottom: 27px;
+      @include phones {
+        display: none;
+      }
     }
     &__button {
       font-size: 16px;

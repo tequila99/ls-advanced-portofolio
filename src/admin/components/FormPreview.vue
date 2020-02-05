@@ -69,12 +69,19 @@ export default {
 </script>
 
 <style lang='pcss'>
+  @import url('../../styles/mixins.pcss');
   .preview-form {
-    width: 1080px;
-    height: 775px;
+    max-width: 1080px;
+    min-height: 775px;
+    @include phones {
+      width: 100%;
+    }
     box-shadow: 4px 3px 20px rgba(0, 0, 0, 0.07);
     background: #fff;
-    padding: 0 22px;    
+    padding: 0 22px; 
+    @include phones {
+      padding: 0 3%;
+    }   
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 74px 1fr 100px;
@@ -94,17 +101,35 @@ export default {
       display: grid;
       grid-template-columns: 1fr 1fr;
       grid-template-rows: 1fr;
+      @include desktop {
+      grid-template-columns: 1fr;
+      grid-template-rows: .5fr 1f;
+
+      }
       grid-column-gap: 32px;
       padding-top: 48px;
+    }
+    &__upload {
+      display: flex;
+      justify-content: center;
+      @include tablets {
+        padding: 0 5%;
+      }
     }
     &__content {
       display: flex;
       flex-direction: column;
+      @include desktop {
+        margin-top: 54px;
+      }
     }
     &__footer {
       display: flex;
       align-items: center;
       justify-content: flex-end;
+      @include desktop {
+        justify-content: center;
+      }
     }
     &__tags {
       display: flex;
