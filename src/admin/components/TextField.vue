@@ -43,13 +43,16 @@ export default {
 </script>
 
 <style lang='pcss'>
+  @import url('../../styles/mixins.pcss');
   .text-field {    
     color: #414c63;
     width: 100%;
+    @include phones {
+      width: 92%;
+    }
     &__element {
       display: flex;
       flex-direction: column;
-      justify-content: center;
       height: 100%;
     }
     &__label {
@@ -57,9 +60,13 @@ export default {
       font-weight: 600;
       font-size: 16px;
       margin-bottom: 20px;
+      @include phones {
+        font-size: 14px;
+      }
     }
     &__input {
       height: 100%;
+      /* min-height: 200px; */
       overflow: hidden;
       border: 1px solid rgba(28,28,28,.2);
       background: transparent;
@@ -69,11 +76,21 @@ export default {
       line-height: 30px;
       color: #414c63;
       resize: none;
+      @include phones {
+        font-size: 16px;
+        line-height: 30px;
+      }
       &::placeholder {
         font-size: 18px;
         color: #414c63;
         opacity: .5;        
         font-weight: 400;
+        @include desktop {
+          font-size: 16px;
+        }
+        @include phones {
+          font-size: 14px;
+        }        
       }
       &:required:valid {
         background: svg-load('check-mark.svg', fill='green', opacity=0.3,  width=100%, height=100%);

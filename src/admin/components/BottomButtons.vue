@@ -1,6 +1,6 @@
 <template lang='pug'>
   .bottom-buttons
-    a.bottom-buttons__button.bottom-buttons__button--cancel Отменить
+    a.bottom-buttons__button.bottom-buttons__button--cancel Отмена
     a.bottom-buttons__button.bottom-buttons__button--save(@click='$emit("save")') {{ 'Сохранить' | uppercase }}
 </template>
 
@@ -30,6 +30,10 @@ export default {
     height: 100%;
     display: flex;
     align-items: center;
+    cursor: pointer;
+    @include phones {
+      justify-content: space-between;
+    }
     &__button {
       font-size: 16px;
       @include tablets {
@@ -45,7 +49,8 @@ export default {
         font-weight: 600;
         margin-right: 20px;
         @include phones {
-          padding: 24px 24px;
+          padding: 24px 12px;
+          margin-rigth: 0;
         }
       }
       &--save {

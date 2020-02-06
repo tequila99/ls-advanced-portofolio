@@ -49,6 +49,9 @@ export default {
     color: #fff;
     display: flex;
     align-items: center;
+    @include phones {
+      padding: 0 5%;
+    }
     &__container {
       width: 100%;
       height: 100%;

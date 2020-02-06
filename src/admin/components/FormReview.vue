@@ -1,5 +1,5 @@
 <template lang='pug'>
-  div 
+  div.review-form__wrapper 
     modal-warning(v-model='showError')
     .review-form
       .review-form__header
@@ -53,16 +53,35 @@ export default {
 </script>
 
 <style lang='pcss'>
+@import url('../../styles/mixins.pcss');
   .review-form {
-    width: 1080px;
-    height: 519px;
+    &__wrapper {
+      width: 100%;
+      justify-content: center;
+      display: flex;
+    }
+    max-width: 1080px;
+    width: 100%;
+    padding: 0 30px;
+    min-height: 519px;
+    @include phones {
+      width: 100%;
+      max-width: 320px;
+      height: 100%;
+      padding: 0px;
+    }
     box-shadow: 4px 3px 20px rgba(0, 0, 0, 0.07);
     background: #fff;
-    padding: 0 22px;    
+    /* padding: 0 22px;   */
+     @include phones {
+      padding: 0;
+    }    
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 74px 1fr 100px;
-    /* box-sizing: content-box; */
+    grid-template-rows: 74px 1fr 134px;
+    @include phones {
+      padding: 0;
+    }
     &__header {
       display: flex;
       border-bottom: 1px solid rgba(31,35,45,.15);
@@ -73,22 +92,43 @@ export default {
         font-size: 18px;
         font-weight: 700;
       }
+      @include phones {
+        padding: 0 5%;
+      }
     }
     &__body {
       display: grid;
       grid-template-columns: 205px 1fr;
-      grid-template-rows: 1fr;
       grid-column-gap: 32px;
+      grid-template-areas: "avatar content"; 
       padding-top: 48px;
+      @include tablets {
+        grid-template-columns: 1fr;
+        grid-template-rows: 280px 1fr;
+        grid-template-areas: "avatar" "content"
+      }
+    }
+    &__upload {
+      grid-area: avatar;
+      display: flex;
+      justify-content: center;
     }
     &__content {
-      padding-right: 190px;
+      grid-area: content;
+      padding-right: 20%;
       display: grid;
       grid-template-columns: 1fr 1fr;
       grid-template-rows: 80px 1fr;
       grid-template-areas: "username position"
                            "text text";
       grid-gap: 20px 20px;
+      @include desktop {
+        padding-right: 0;
+        grid-gap: 40px;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto 1fr;
+        grid-template-areas: "username" "position" "text"
+      }
 
     }
     &__footer {
@@ -96,17 +136,52 @@ export default {
       align-items: center;
       justify-content: flex-end;
       padding-right: 190px;
+      @include desktop {
+        padding-right: 0;
+      }
+      @include tablets {
+        justify-content: center;
+      }
     }
     &__input {
       &--username {
         grid-area: username;
+        @include desktop {
+          width: 75%;
+        }
+        @include tablets {
+          width: 100%
+        }
+        @include phones {
+          width: 90%;
+          justify-self: center;
+        }        
       }
       &--position {
         grid-area: position;
+        @include desktop {
+          width: 75%;
+        }
+        @include tablets {
+          width: 100%;
+        }        
+        @include phones {
+          width: 90%;
+          justify-self: center;
+        }
       }
       &--text {
         grid-area: text;
-        height: 170px;
+        min-height: 170px;
+        height: 100%;
+        @include desktop {
+          min-height: 200px;
+        }
+        @include phones {
+          width: 90%;
+          justify-self: center;
+          min-height: 215px;
+        }
       }
     }
     

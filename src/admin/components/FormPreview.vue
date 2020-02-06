@@ -1,5 +1,5 @@
 <template lang='pug'>
-  div 
+  div.preview-from__wrapper
     modal-warning(v-model='showError')
     .preview-form
       .preview-form__header
@@ -71,16 +71,23 @@ export default {
 <style lang='pcss'>
   @import url('../../styles/mixins.pcss');
   .preview-form {
+    &__wrapper {
+      width: 100%;
+      justify-content: center;
+      display: flex;      
+    }
     max-width: 1080px;
     min-height: 775px;
     @include phones {
       width: 100%;
+      max-width: 320px;
+      height: 100%;
     }
     box-shadow: 4px 3px 20px rgba(0, 0, 0, 0.07);
     background: #fff;
     padding: 0 22px; 
     @include phones {
-      padding: 0 3%;
+      padding: 0;
     }   
     display: grid;
     grid-template-columns: 1fr;
@@ -91,10 +98,16 @@ export default {
       border-bottom: 1px solid rgba(31,35,45,.15);
       align-items: center;
       height: 100%;
+      @include phones {
+        padding: 0 6%;
+      }
       h3 {
         color: #414c63;
         font-size: 18px;
-        font-weight: 700;
+        font-weight: bold;
+        @include phones {
+          font-size: 16px;
+        }
       }
     }
     &__body {
@@ -102,9 +115,8 @@ export default {
       grid-template-columns: 1fr 1fr;
       grid-template-rows: 1fr;
       @include desktop {
-      grid-template-columns: 1fr;
-      grid-template-rows: .5fr 1f;
-
+        grid-template-columns: 1fr;
+        grid-template-rows: .5fr 1f;
       }
       grid-column-gap: 32px;
       padding-top: 48px;
@@ -119,6 +131,7 @@ export default {
     &__content {
       display: flex;
       flex-direction: column;
+      align-items: center;
       @include desktop {
         margin-top: 54px;
       }
@@ -136,11 +149,19 @@ export default {
       flex-wrap: wrap;
       width: 100%;
       margin-bottom: -10px;
+      @include phones {
+        width: 95%
+      }
     }
     &__input {
       margin-bottom: 30px;
       &--text {
-        height: 200px;
+        height: 100%;
+        /* min-height: 285px; */
+        @include phones {
+          height: 100%;
+          min-height: 215px;
+        }
       }
       &--tags {
         margin-bottom: 20px;
@@ -153,6 +174,9 @@ export default {
       background: #f4f4f4;
       border-radius: 23px;
       margin-bottom: 10px;
+      @include phones {
+        padding: 7px 10px 7px 15px;
+      }
       &:last-child {
         margin-right: 0px;
       }

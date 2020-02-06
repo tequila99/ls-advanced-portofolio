@@ -14,6 +14,7 @@ export default {
 </script>
 
 <style lang='pcss'>
+@import url('../../styles/mixins.pcss');
   .preview-add {
       background-color: #204edb;
       display: grid;
@@ -23,6 +24,11 @@ export default {
       align-items: center;
       width: 340px;
       height: 556px;
+      @include phones {
+        width: 100%;
+        max-width: 320px;
+        height: 100%;
+      }
       box-shadow: 4px 3px 20px rgba(0, 0, 0, 0.07);          
     &__container {
       width: 160px;
@@ -32,6 +38,12 @@ export default {
       justify-content: center;
       align-items: center;
       justify-self: center;
+      @include phones {
+        width: 100%;
+        flex-direction: row;
+        height: 100%;
+        padding: 10%;
+      }
     }
     &__button-add {
       display: flex;
@@ -39,11 +51,19 @@ export default {
       align-items: center;
       width: 150px;
       height: 150px;
+      @include phones {
+        width: 50px;
+        height: 50px;
+      }
       border-radius: 50%;
       border: 2px solid #ffffff;
       &--icon {
         width: 34px !important;
         height: 34px !important;
+        @include phones {
+          width: 19px !important;
+          height: 19px !important;
+        }
       }
     }
     &__label {
@@ -52,6 +72,10 @@ export default {
       font-weight: 700;
       padding: 0 10%;
       text-align: center;
+      @include phones {
+        margin: 0;
+        padding: 0 5%;
+      }
     }
   }
 </style>

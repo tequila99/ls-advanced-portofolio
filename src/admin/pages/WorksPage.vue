@@ -1,8 +1,8 @@
 <template lang='pug'>
   .works-page
-    .works-page__header
-      h1 Блок "Работы"
     .works-page__content     
+      .works-page__header
+        h1 Блок "Работы"
       .works-page__form(v-if='isEdit')
         form-preview
       .works-page__previews
@@ -46,27 +46,38 @@ export default {
   @import url('../../styles/mixins.pcss');
  .works-page {
     background: #f7f9fe;
-    display: grid;
+    /* display: grid;
     grid-template-rows: 136px 1fr;
+    @include phones {
+      grid-template-rows: 97px 1fr;
+    } */
     &__header {
+      /* background: #f7f9fe; */
       display: flex;
       align-items: center;
       h1 {
         color: #414c63;
         font-size: 21px;
       }
+      @include phones {
+        padding: 0 5%;
+      }
     }
     &__content {
       display: grid;
-      grid-template-rows: auto 1fr;
-      grid-row-gap: 32px;
+      grid-template-rows: 136px auto 1fr;
+      /* grid-row-gap: 0 32px; */
       justify-content: center;
       align-items: center;
+      @include phones {
+        grid-template-rows: 97px auto 1fr;
+      }
     }
     &__form {
       width: 100%;
     }
     &__previews {
+      margin-top: 32px;
       display: grid;
       justify-content: center;
       align-items:center;

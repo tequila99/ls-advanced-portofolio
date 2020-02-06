@@ -56,9 +56,13 @@ export default {
 </script>
 
 <style lang='pcss'>
+@import url('../../styles/mixins.pcss');
   .input-field {    
     color: #414c63;
     width: 100%;
+    @include phones {
+      width: 92%;
+    }
     &__element {
       display: flex;
       flex-direction: column;
@@ -69,6 +73,9 @@ export default {
       font-weight: 600;
       font-size: 16px;
       /* margin-bottom: 10px; */
+      @include phones {
+        font-size: 14px;
+      }
     }
     &__input {
       border-top: 0;
@@ -79,10 +86,16 @@ export default {
       background: transparent;
       font-weight: bold;
       font-size: 18px;
+      @include phones {
+        font-size: 14px;
+      }
       padding: 10px 0 10px 25px;
       &::placeholder {
         color: #414c63;
         opacity: .5;
+        @include phones {
+          font-size: 14px;
+        }
       }
       &:disabled {
         color: #414c63;

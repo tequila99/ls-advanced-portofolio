@@ -52,16 +52,20 @@ export default {
 </script>
 
 <style lang='pcss'>
+@import url('../../styles/mixins.pcss');
   .preview-card {
     width: 340px;
     height: 556px;
-    /* width: 100%;
-    height: 100%; */
     box-shadow: 4px 3px 20px rgba(0, 0, 0, 0.07);
     background-color: #ffffff;
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 190px 1fr 75px;
+    @include phones {
+      width: 100%;
+      max-width: 320px;
+      height: 100%;
+    }
     &__image {
       width: 100%;
       height: 100%;

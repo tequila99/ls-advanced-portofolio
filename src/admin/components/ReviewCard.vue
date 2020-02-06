@@ -47,6 +47,7 @@ export default {
 </script>
 
 <style lang='pcss'>
+@import url('../../styles/mixins.pcss');
   .review-card {
     width: 340px;
     height: 380px;
@@ -55,7 +56,13 @@ export default {
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 110px 1fr 75px;
-    /* box-sizing: content-box; */
+    @include phones {
+      width: 100%;
+      max-width: 320px;
+      height: 100%;
+      padding: 0;
+    }
+    box-sizing: border-box;
     padding: 0 22px;
     &__header {
       border-bottom: 1px solid rgba(31,35,45,.15);
@@ -64,6 +71,9 @@ export default {
       grid-template-columns:  75px 1fr;
       grid-column-gap: 20px;
       align-items: center;
+      @include phones {
+        padding: 0 5%;;
+      }
     }
     &__avatar {
       margin: auto;
@@ -76,6 +86,11 @@ export default {
       font-weight: 500;
       line-height: 30px;
       overflow: hidden;
+      p {
+        @include phones {
+          padding: 0 5% !important;
+        }   
+      }   
     }
     &__header-title {
       display:flex;
@@ -96,6 +111,9 @@ export default {
       padding: 0 8px;
       display: flex;
       align-items: center;
+      @include phones {
+        padding: 0 5%;
+      }         
     }
   }
 

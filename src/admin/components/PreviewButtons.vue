@@ -5,7 +5,7 @@
       font-awesome-icon(icon='edit' class='preview-buttons__icon--edit preview-buttons__icon')
     a(@click='$emit("remove")' class='preview-buttons__link')
       | Удалить
-      font-awesome-icon(icon='trash' class='preview-buttons__icon--remove preview-buttons__icon')      
+      font-awesome-icon(icon='times' class='preview-buttons__icon--remove preview-buttons__icon')      
 </template>
 
 <script>

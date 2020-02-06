@@ -25,7 +25,8 @@ export default {
       width: 100%;
     }
     @include phones {
-      width: 280px;
+      max-width: 280px;
+      width: 100%;
       height: 157px;      
     }
     border: 1px dashed #a1a1a1;
