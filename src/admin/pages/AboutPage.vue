@@ -1,15 +1,21 @@
 <template lang='pug'>
   .about-page
-    .about-page__header
-      h1 Блок "Обо мне"
-      a.about-page__link
-        .about-page__button
-          font-awesome-icon(class='about-page__icon' icon='plus')
-        span Добавить группу
+    //- .about-page__header
+    //-   h1 Блок "Обо мне"
+    //-   a.about-page__link
+    //-     .about-page__button
+    //-       font-awesome-icon(class='about-page__icon' icon='plus')
+    //-     span Добавить группу
     .about-page__content
+      .about-page__header
+        h1 Блок "Обо мне"
+        a.about-page__link(@click='visible=true')
+          .about-page__button
+            font-awesome-icon(class='about-page__icon' icon='plus')
+          span Добавить группу
       .about-page__skills
-        skills-card(new-group)
-        skills-card(v-for='(skill,index) in skills' :key='index+1' :title='skill.title' :items='skill.items')
+        skills-card(class='about-page__skills-card' v-if='visible' @close='visible=false')
+        skills-card(class='about-page__skills-card' v-for='(skill,index) in skills' :key='index+1' :title='skill.category' :id='skill.id' :user='skill.user_id' :skills='skill.skills' @close='visible=false')
 </template>
 
 <script>
@@ -18,12 +24,17 @@ export default {
   name: 'AboutPage',
   data() {
     return {
-      isEdit: true,
-      skills: []
+      visible: false,
+    }
+  },
+  computed: {
+    skills() {
+      return this.$store.getters.getCategories
     }
   },
   created() {
-    this.skills = require('../../json/skills.json')
+    // this.skills = require('../../json/skills.json')
+    this.$store.dispatch('getCategories')
   },
   components: {
     'skills-card': SkillsCard
@@ -32,10 +43,11 @@ export default {
 </script>
 
 <style lang='pcss'>
+@import url('../../styles/mixins.pcss');
   .about-page {
     background: #f7f9fe;
     display: grid;
-    grid-template-rows: 136px 1fr;
+    grid-template-rows: 1fr;
     &__header {
       display: flex;
       align-items: center;
@@ -43,16 +55,34 @@ export default {
         color: #414c63;
         font-size: 21px;
       }
+      @include tablets {
+        flex-direction: column;
+        align-items: flex-start;
+        height: 100%;
+        justify-content: center;
+      }
+    }
+    &__content {
+      display: grid;
+      grid-template-rows: 136px 1fr;
+      margin: 0 auto;
+      justify-content: center;
+      align-items: center;
     }
     &__link {
       display: flex;
       margin-left: 65px;
       align-items: center;
+      @include tablets {
+        margin-left: 0px;
+        margin-top: 36px;
+      }
       span {
         color: #383bcf;
         text-decoration: none;
         font-weight: 600;
       }
+      cursor: pointer;  
     }
     &__button {
       width: 22px;
@@ -64,6 +94,7 @@ export default {
       align-items: center;
       background:  #383bcf;
       margin-right: 20px;
+      cursor: pointer;
     }
     &__icon {
       color: white;
@@ -75,7 +106,15 @@ export default {
       grid-template-columns: 1fr 1fr;
       grid-auto-flow: row;
       grid-gap: 30px;
-      padding-bottom: 40px;      
+      padding-bottom: 40px; 
+      justify-self: center;     
+      @include tablets {
+        grid-template-columns: 1fr;
+        grid-gap: 10px;
+      }
+    }
+    &__skills-card {
+      justify-self: center;
     }
   }
 </style>

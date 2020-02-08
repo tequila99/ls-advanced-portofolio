@@ -2,8 +2,8 @@
   .input-field
     label.input-field__element
       span.input-field__label(v-if='!!label') {{ label }}
-      input.input-field__input(v-if='type==="number"' type='number' :name='name' :placeholder='placeholder' :value='value' :disabled='disable' :required='required' :min='min' :max='max') 
-      input.input-field__input(v-else :type='type' :name='name' :placeholder='placeholder' :value='value' :disabled='disable' :required='required')
+      input.input-field__input(v-if='type==="number"' type='number' :name='name' :placeholder='placeholder' :value='value' :disabled='disable' :required='required' :min='min' :max='max' @input='handleInput') 
+      input.input-field__input(v-else :type='type' :name='name' :placeholder='placeholder' :value='value' :disabled='disable' :required='required' @input='handleInput')
 </template>
 
 <script>
@@ -49,7 +49,11 @@ export default {
   },
   data: () => ({}),
   computed: {},
-  methods: {},
+  methods: {
+    handleInput(e) {
+      this.$emit('input',e.target.value)
+    }
+  },
   mounted() {},
   components: {},
 }
@@ -67,6 +71,7 @@ export default {
       display: flex;
       flex-direction: column;
       justify-content: center;
+      width: 100%;
     }
     &__label {
       opacity: .5;
@@ -86,6 +91,9 @@ export default {
       background: transparent;
       font-weight: bold;
       font-size: 18px;
+      @include desktop {
+        font-size: 16px;
+      }
       @include phones {
         font-size: 14px;
       }
@@ -129,6 +137,13 @@ export default {
     }
 
   }
-  
+  input[type='number'] {
+      -moz-appearance:textfield;
+  }
+
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+  }  
 
 </style>

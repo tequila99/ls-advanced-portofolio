@@ -1,6 +1,6 @@
 <template lang='pug'>
   .edit-buttons
-    a.edit-buttons__button(v-for='(icon, index) in iconsFilter' :key='index' @click.prevent='$emit("input",icon.name)')
+    a.edit-buttons__button(v-for='(icon, index) in iconsFilter' :key='index' @click.prevent='$emit(icon.name)')
       font-awesome-icon(class='edit-buttons__icon'  :icon='icon.icon' :color='icon.color'  )
 </template>
 
@@ -41,11 +41,12 @@ export default {
     /* justify-content: space-between; */
     &__button {
       /* margin-right: 20px; */
-      padding: 10px;
+      padding: 6px;
       display: flex;
       justify-content: center;
       align-items: center;
       border-radius: 50%;
+      cursor: pointer;
       &:hover {
         background: #ddd;
         transition: .4s;

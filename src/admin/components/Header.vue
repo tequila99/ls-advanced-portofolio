@@ -31,7 +31,7 @@ export default {
   computed: {},
   methods: {
     handleExit() {
-      console.log('Пытаемся выйти')
+      this.$store.dispatch('authLogout')
     }    
   },
   components: {
@@ -94,5 +94,8 @@ export default {
       text-decoration: underline;
     }
 
+  }
+  .exit-link {
+    cursor: pointer;
   }
 </style>

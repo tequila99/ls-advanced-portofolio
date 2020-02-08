@@ -1,14 +1,26 @@
 <template lang='pug'>
-  .fab-add-button
+  .fab-add-button(:style='{opacity: opacity, cursor: cursor }')
     font-awesome-icon(icon='plus')
 </template>
 
 <script>
 export default {
   name: 'FabAddButton',
-  props: {},
+  props: {
+    disable: {
+      type: Boolean,
+      default: false
+    }
+  },
   data: () => ({}),
-  computed: {},
+  computed: {
+    opacity() {
+      return !!this.disable ? '0.5' : '1'
+    },
+    cursor() {
+      return !!this.disable ? 'unset' : 'pointer'
+    }
+  },
   methods: {},
   mounted() {},
   components: {},

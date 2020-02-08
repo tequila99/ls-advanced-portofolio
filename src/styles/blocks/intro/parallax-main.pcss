@@ -24,7 +24,6 @@
 			&--sky {
 				.parralax-scene__item-image {
 					object-fit: cover;
-					image-rendering: optimizeSpeed;
 					width: 100%;
 					height: 100%;
 				}
@@ -33,31 +32,33 @@
 			&--mountain {
 				.parralax-scene__item-image {
 					right: 0;
-					top: 360px;
+					top: 17%;
 					height: 100%;
 					width: 100%;
+					object-fit: cover;
 					@include desktop {
-						height: 60%;
+						/* height: 60%; */
 					}
 				}
 			}
 
 			&--baloon {
 				.parralax-scene__item-image {
-					top: 25%;
-					left: calc(50% + 150px);
-					margin-left: 7%;
+					/* display: none; */
+					top: 30%;
+					left: calc(60% + 150px);
+					/* margin-left: 7%; */
 					@include desktop {
-						width: 18%;
+						/* width: 18%;
 						right: 0px;
-						left: initial;
+						left: initial; */
 					}
 				}
 			}
 
 			&--cloud {
 				.parralax-scene__item-image {
-					top: 29%;
+					top: 33%;
 					left: 0;
 					width: 100%;
 				}
@@ -65,22 +66,30 @@
 
 			&--man {
 				.parralax-scene__item-image {
-					top: 35%;
-					left: -25%;
+					/* display: none; */
+					top: 37%;
+					width: 46%;
+					height: 46%;
+					object-fit: cover;
+					/* left: -25%; */
 
 				}
 			}
 
 			&--mountain-second {
 				.parralax-scene__item-image {
+					/* display: none; */
 					right: 0;
-					height: 29%;
-					top: 46%;
+					/* height: 29%; */
+					width: 70%;
+					top: 42%;
+					object-fit: cover;
 				}
 			}
 
 			&--white {
 				.parralax-scene__item-image {
+					/* display: none; */
 					height: 70%;
 					left: 0;
 					bottom: -10%;

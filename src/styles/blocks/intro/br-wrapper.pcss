@@ -4,18 +4,18 @@
   width: 100%;
   height: 100%;
   background-image: 
-                    url('../images/parallax/white.png'),
-                    url('../images/parallax/mountain1.png'),
-                    url('../images/parallax/man.png'),
-                    url('../images/parallax/cloud.png'),
-                    url('../images/parallax/baloon.png'),
-                    url('../images/parallax/mountain.png'),
-                    url('../images/parallax/sky.jpg');
+                    url('../images/parallax-new/white.png'),
+                    url('../images/parallax-new/mountain1.png'),
+                    url('../images/parallax-new/man.png'),
+                    url('../images/parallax-new/cloud.png'),
+                    url('../images/parallax-new/baloon.png'),
+                    url('../images/parallax-new/mountain.png'),
+                    url('../images/parallax-new/sky.jpg');
   background-repeat: no-repeat;
-  background-position-x: center,center,-250px,-330px, 84%, center, center;
-  background-position-y: bottom,60%,60%,270px, 18%, 0, 50%;
-  background-size: 140%,contain,contain,150%, 177px,cover,cover;
-
+  background-position-x: 20%,center,-250px,-330px, 84%, center, center;
+  background-position-y: bottom,70%,70%,470px, 18%, 0, 50%;
+  background-size: 130% 40%,contain,contain,150%, 177px,cover,cover;
+  clip-path: polygon(0% 0%, 0% 95%,50% 100%,100% 95%,100% 0%);
 
 	@include tablets {
     background-image: url("../images/bg/mountain.png");
