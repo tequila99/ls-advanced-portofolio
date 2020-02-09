@@ -64,7 +64,6 @@ const mutations = {
     state.categories = state.categories.filter(el => el.id !== id)
   },
   CATEGOR_SET_GROUP(state, {category}) {
-    console.log(category)
     state.categories = [...state.categories.map(el => {
       el.category = el.id === category.id ? category.category : el.category
       return el
@@ -77,7 +76,6 @@ const mutations = {
   SKILLS_ADD_SKILL(state,{category,id,percent,title}) {
     state.categories = state.categories.map(el => {
       if (el.id === category) {
-        console.log(typeof(el.skills))
         if ('skills' in el && typeof(el.skills)==='object') {
           el.skills.push({category,id,title,percent})
         } else {
@@ -98,14 +96,12 @@ const mutations = {
           }
           return sk
         })
-        // console.log(r1)
         el.skills = [...r1]
       }
       return el                    
     })    
   },   
   SKILLS_DEL_SKILL(state,{category,id}) {
-    console.log(category,id)
     state.categories = state.categories.map(el => {
       if (el.id === category) {
         let r1 = el.skills.filter(sk => sk.id !=id)

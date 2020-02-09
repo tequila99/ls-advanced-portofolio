@@ -1,7 +1,9 @@
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
 import 'swiper/dist/css/swiper.css'
 import Vue from "vue";
-
+import axios from 'axios'
+axios.defaults.baseURL = 'https://webdev-api.loftschool.com/'
+const USER = 261
 
 new Vue({
 	el: "#feed-slider",
@@ -28,13 +30,17 @@ new Vue({
       items: [],
 		};
   },
+  computed: {
+
+  },
 	methods: {
     getImagePath(path) {
       return require(`images/${path}`)
     },
     handleImages() {
+      
       this.items.forEach(el => {
-        el.realpath = require(`images/${el.path}`)
+        el.photo = `${axios.defaults.baseURL}${el.photo}`
       })
     },
     next() {
@@ -45,7 +51,13 @@ new Vue({
     }
 	},
 	created() {
-    this.items = require('../json/feedback-slider.json');
-    this.handleImages()
+    // this.items = require('../json/feedback-slider.json');
+    // this.handleImages()
+    axios.get(`/reviews/${USER}`)
+      .then(({data}) => {
+        this.items = data 
+        this.handleImages()
+      })
+      .catch(error => console.log(error))
   },  
 });

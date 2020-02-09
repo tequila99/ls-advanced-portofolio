@@ -14,8 +14,8 @@
             font-awesome-icon(class='about-page__icon' icon='plus')
           span Добавить группу
       .about-page__skills
-        skills-card(class='about-page__skills-card' v-if='visible' @close='visible=false')
-        skills-card(class='about-page__skills-card' v-for='(skill,index) in skills' :key='index+1' :title='skill.category' :id='skill.id' :user='skill.user_id' :skills='skill.skills' @close='visible=false')
+        skills-card(class='about-page__skills-card' v-if='visible' @close='visible=false' :key=0)
+        skills-card(class='about-page__skills-card' v-for='(skill,index) in skills' :key='skill.id' :title='skill.category' :id='skill.id' :user='skill.user_id' :skills='skill.skills' @close='visible=false')
 </template>
 
 <script>

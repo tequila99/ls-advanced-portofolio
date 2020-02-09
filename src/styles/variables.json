@@ -14,8 +14,9 @@
   "preview-link-color": "#586ed3",
   "intro-background": "#9ec5f5",
   "active-color": "#ff9a00",
-  "bp-desktop-hd": "1800px",
+  "bp-desktop-hd": "1360px",
   "bp-desktop": "1200px",
+  "bp-laptops": "968px",
   "bp-tablets": "768px",
   "bp-phones": "480px"
   

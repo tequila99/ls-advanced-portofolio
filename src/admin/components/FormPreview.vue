@@ -6,18 +6,18 @@
         h3 Редактирование работы
       .preview-form__body
         .preview-form__upload
-          upload-area
+          upload-area(@input='handleInputImage' @clear='unloadPreview = null; photoPreview=""' :image='photoPreview')
         .preview-form__content
-          input-field(class='preview-form__input preview-form__input--title' :value='title' type='text' name='title' placeholder='Дизайн сайта для авто салона Porsche' label='Название' required) 
-          input-field(class='preview-form__input preview-form__input--link' :value='link' type='url' name='link' placeholder='https://www.porsche-pulkovo.ru' label='Ссылка' required) 
-          text-field(class='preview-form__input preview-form__input--text' :value='text' name='text' :placeholder='placeholder' label='Описание' required) 
-          input-field(class='preview-form__input preview-form__input--tags' :value='tagsStr' type='text' name='tags' placeholder='Jquery, Vue.js, HTML5' label='Добавление тэга') 
+          input-field(class='preview-form__input preview-form__input--title' v-model='titlePreview' type='text' name='title' placeholder='Дизайн сайта для авто салона Porsche' label='Название' required) 
+          input-field(class='preview-form__input preview-form__input--link' v-model='linkPreview' type='url' name='link' placeholder='https://www.porsche-pulkovo.ru' label='Ссылка' required) 
+          text-field(class='preview-form__input preview-form__input--text' v-model='textPreview' name='text' :placeholder='placeholder' label='Описание' required) 
+          input-field(class='preview-form__input preview-form__input--tags' v-model='tagsPreview' type='text' name='tags' placeholder='Jquery, Vue.js, HTML5' label='Добавление тэга') 
           ul.preview-form__tags
             li.preview-form__tag(v-for='(tag,index) in tags' :key='index')
               span {{ tag }}
                 font-awesome-icon(icon='times' class='preview-form__tag-icon')
       .preview-form__footer
-        bottom-buttons(@save='saveForm')
+        bottom-buttons(@save='saveForm' @cancel='$emit("close")')
 </template>
 
 <script>
@@ -27,34 +27,70 @@ import InputField from './InputField'
 import TextField from './TextField'
 import ModalWarning from './ModalWarning'
 export default {
-  name: 'FromPreview',
+  name: 'FormPreview',
   props: {
-
+    item: {
+      type: Object,
+      default: () => ({})
+    }
   },
   data() {
     return {
       placeholder: 'Порше Центр Пулково - является официальным дилером марки Порше в Санкт-Петербурге и предоставляет полный цикл услуг по продаже и сервисному обслуживанию автомобилей',
-      title: '',
-      link: '',
-      text: '',      
-      tags: ['Jquery', 'Vue.js', 'HTML5'],
+      unloadPreview: null,
+      titlePreview: '',
+      linkPreview: '',
+      textPreview: '',      
+      tagsPreview: '',
+      photoPreview: '',
       showError: false
     }
   },
   computed: {
-    tagsStr: {
-      set: function(val) {
-        this.tags = val.split(',').map(el => el.trim())
-      },
-      get: function() {
-        return this.tags.join(',');
-      }
+    tags() {
+      return this.tagsPreview.split(',').map(el => el.trim()).filter(el => !!el )
     }
   },
   methods: {
     saveForm() {
-      this.showError = !this.title || !this.link || !this.text
-    }
+      if (!this.titlePreview || !this.linkPreview || !this.textPreview) {
+        this.showError = true
+      } else {
+        if (!!this.item.id) {
+          this.$store.dispatch('editWorks', {
+            title: this.titlePreview,
+            techs: this.tagsPreview,
+            photo: this.unloadPreview,
+            link:  this.linkPreview,
+            description: this.textPreview,
+            id: this.item.id
+          })
+          .then(() => this.$emit('close'))
+          .catch()
+        } else {
+          this.$store.dispatch('addWorks', {
+            title: this.titlePreview,
+            techs: this.tagsPreview,
+            photo: this.unloadPreview,
+            link:  this.linkPreview,
+            description: this.textPreview
+          })
+          .then(() => this.$emit('close'))
+          .catch()
+        }
+
+      }
+    },
+    handleInputImage(e) {
+      this.unloadPreview = e
+    },
+  },
+  created() {
+    this.photoPreview  = this.item.photo || null
+    this.titlePreview  = this.item.title || ''
+    this.linkPreview   = this.item.link || ''
+    this.textPreview   = this.item.description || ''
+    this.tagsPreview   = this.item.techs || ''
   },
   components: {
     'bottom-buttons': BottomButtons,
@@ -131,6 +167,7 @@ export default {
     &__content {
       display: flex;
       flex-direction: column;
+      height: 100%;
       align-items: center;
       @include desktop {
         margin-top: 54px;
@@ -157,7 +194,7 @@ export default {
       margin-bottom: 30px;
       &--text {
         height: 100%;
-        /* min-height: 285px; */
+        max-height: 200px;
         @include phones {
           height: 100%;
           min-height: 215px;

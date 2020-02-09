@@ -41,6 +41,7 @@ export default {
       height: 100%;
       display: block;
       cursor: pointer;
+      object-fit: cover;
     }
   }
 

@@ -6,13 +6,13 @@
         h3 Новый отзыв
       .review-form__body
         .review-form__upload
-          upload-avatar
+          upload-avatar(@input='handleInputImage' @clear='unloadPreview = null; photoPreview=""' :avatar='photoPreview')
         .review-form__content
           input-field(class='review-form__input review-form__input--username' v-model='username' type='text' name='username' placeholder='Ковальчук Дмитрий' label='Имя автора' required) 
           input-field(class='review-form__input review-form__input--position' v-model='position' type='text' name='position' placeholder='Основатель LoftSchool' label='Титул автора' required) 
           text-field( class='review-form__input review-form__input--text' v-model='text' name='text' :placeholder='placeholder' label='Отзыв' required) 
       .review-form__footer
-        bottom-buttons(@save='saveFrom')
+        bottom-buttons(@save='saveFrom' @cancel='$emit("close")')
 </template>
 
 <script>
@@ -24,10 +24,15 @@ import ModalWarning from './ModalWarning'
 export default {
   name: 'FromReview',
   props: {
-
+    item: {
+      type: Object,
+      default: () => ({})
+    }
   },
   data() {
     return {
+      unloadPreview: null,
+      photoPreview: '',
       showError: false,
       username: '',
       position: '',
@@ -38,8 +43,40 @@ export default {
   },
   methods: {
     saveFrom() {
-      this.showError = !this.username || !this.position || !this.text
+      if (!this.username || !this.position || !this.text) {
+        this.showError = true
+      } else {
+        if (!!this.item.id) {
+          this.$store.dispatch('editReviews', {
+            author: this.username,
+            occ: this.position,
+            photo: this.unloadPreview,
+            text:  this.text,
+            id: this.item.id
+          })
+          .then(() => this.$emit('close'))
+          .catch()
+        } else {
+          this.$store.dispatch('addReviews', {
+            author: this.username,
+            occ: this.position,
+            photo: this.unloadPreview,
+            text:  this.text,
+          })
+          .then(() => this.$emit('close'))
+          .catch()
+        }
+      }
+    },
+    handleInputImage(e) {
+      this.unloadPreview = e
     }
+  },
+  created() {
+    this.photoPreview  = this.item.photo || null
+    this.username      = this.item.author || ''
+    this.position      = this.item.occ || ''
+    this.text          = this.item.text || ''
   },
   components: {
     'bottom-buttons': BottomButtons,

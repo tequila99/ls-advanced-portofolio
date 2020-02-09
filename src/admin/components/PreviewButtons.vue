@@ -33,6 +33,7 @@ export default {
       font-size: 16px;
       display: flex;
       align-items: center;
+      cursor: pointer;
       
     }
     &__icon {

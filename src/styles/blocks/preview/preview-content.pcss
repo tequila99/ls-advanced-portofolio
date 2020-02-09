@@ -1,9 +1,15 @@
 .preview-content {
   display: flex;
+  @include laptops {
+    justify-content: center;
+    align-items: center;    
+  }
   @include tablets {
     justify-content: center;
     align-items: center;
-
+  }
+  @include laptops {
+    flex-direction: column;
   }
   /* padding: 0 10%; */
   @include tablets {
@@ -80,6 +86,11 @@
     display: flex;
     /* margin-left: -70px; */
     width: 70%;
+    @include laptops {
+      margin-left: 0;
+      width: 60%;
+      margin-top: 100px;      
+    }
     @include tablets {
       margin-left: 0;
       width: 60%;
@@ -108,6 +119,11 @@
   &__text-content {
     display: flex;
     flex-direction: column;
+    @include laptops {
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 212px;     
+    }
     @include tablets {
       justify-content: center;
       align-items: center;

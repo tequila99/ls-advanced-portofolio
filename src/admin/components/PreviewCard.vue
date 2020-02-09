@@ -1,20 +1,22 @@
 <template lang='pug'>
   .preview-card
     .preview-card__image
-      img(:src='image' :alt='title')
+      img(:src='imageFull' :alt='title')
       ul.preview-card__list 
-        li.preview-card__tag(v-for='(tag,index) in tags' :key='index')
+        li.preview-card__tag(v-for='(tag,index) in tagsArray' :key='index')
           span {{ tag }}
     .preview-card__content
       h3 {{ title }}
       p  {{ text }}
       a(:href='link' :alt='title') {{ link }}
     .preview-card__footer      
-      preview-buttons
+      preview-buttons(@edit='$emit("edit", id)' @remove='handleRemove')
 </template>
 
 <script>
+
 import PreviewButtons from './PreviewButtons'
+import { getFullPath } from '../helpers'
 export default {
   name: 'PreviewCard',
   props: {
@@ -35,13 +37,29 @@ export default {
       default: 'https:/google.com'
     },
     tags: {
-      type: Array,
-      default: () => ['HTML', 'CSS', 'JavaScript']
+      type: String,
+      default: ''
+    },
+    id: {
+      type: Number,
+      required: true,
+      default: 0
     }
   },
   data: () => ({}),
-  computed: {},
-  methods: {},
+  computed: {
+    tagsArray() {
+      return this.tags.split(',').map(el => el.trim()).filter(el => !!el)
+    },
+    imageFull() {
+      return !!this.image ? getFullPath(this.image) : ''
+    }
+  },
+  methods: {
+    handleRemove() {
+      this.$store.dispatch('delWorks', this.id)
+    },
+  },
   mounted() {
 
   },

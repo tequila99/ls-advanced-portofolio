@@ -28,7 +28,6 @@ const actions = {
       })
   },
   editSkill({commit},{id,title,percent,category}) {
-    console.log(percent)
     axios.post(`/skills/${id}`,{id,title,percent,category})
       .then(({data}) => {
         commit('SKILLS_EDIT_SKILL',data.skill, {root: true})
@@ -41,11 +40,6 @@ const actions = {
 
 }
 const mutations = {
-  // SKILLS_ADD_SKILL(state,data) {
-  //   console.log(state)
-  //     console.log(state.categories.categories)
-
-  // },
   SKILLS_SET_ERROR(state,error) {
 
   } 

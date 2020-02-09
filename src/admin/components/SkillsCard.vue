@@ -8,7 +8,7 @@
         edit-buttons(:icons='editGroup ? "ok close" : "edit remove"' @ok='handleOk' @close='handleClose' @edit='handleEdit' @remove='handleRemove')
     .skills-card__body
       ul.skills-card__list
-        li.skills-card__item(v-for='(item,index) in skills' :key='item.id' )
+        li.skills-card__item(v-for='(item,index) in skillsCopy' :key='item.id' )
           skill-item(:label='item.title' :amount='item.percent' :id='item.id' :category='item.category')
     .skills-card__footer
       .skills-card__footer-skill
@@ -46,12 +46,18 @@ export default {
       titleEdit: this.title,
       skill: '',
       amount: '',
-      editGroup: false
+      editGroup: false,
+      skillsCopy: []
     }
   },
   watch: {
     title: function(newval) {
       this.titleEdit = newval
+    },
+    skills: function(newval) {
+      this.$nextTick(() => {
+        this.skillsCopy =[...newval]  
+      })
     }
   },
   computed: {
@@ -96,6 +102,7 @@ export default {
   },
   mounted() {
     this.editGroup = !this.id
+    this.skillsCopy = [...this.skills]
   },
   components: {
     'input-field':    InputField,
@@ -197,6 +204,11 @@ export default {
   }
   &__list {
     padding-top: 15px;
+    height: 100%;
+    width: 100%;
+  }
+  &__item {
+    width: 100%;
   }
   &__fab {
     /* margin: 0 auto; */

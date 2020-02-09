@@ -4,10 +4,10 @@
       .works-page__header
         h1 Блок "Работы"
       .works-page__form(v-if='isEdit')
-        form-preview
+        form-preview(@close='isEdit=false' :item='currentItem')
       .works-page__previews
-        add-preview-card(class='works-page__preview-card')
-        preview-card(class='works-page__preview-card' v-for='(item,index) in works' :key='index' :image='item.realpath' :title='item.title' :text='item.text' :link='item.href' :tags='item.tags')
+        add-preview-card(class='works-page__preview-card' key='0' @click.native='isEdit=true' v-if='handleNew')
+        preview-card(class='works-page__preview-card' @edit='handleEdit' v-for='(item,index) in works' :key='item.id' :id='item.id' :image='item.photo' :title='item.title' :text='item.description' :link='item.link' :tags='item.techs')
 </template>
 
 <script>
@@ -19,20 +19,33 @@ export default {
   name: 'WorksPage',
   data() {
     return {
-      works: [],
-      isEdit: true
+      isEdit: false,
+      currentItem: {id:0,title:'',techs:'',photo:'',link: '',description: ''}
+    }
+  },
+  computed: {
+    works() {
+      return this.$store.getters.getWorks
     }
   },
   methods: {
-    handleWorks() {
-      this.works.forEach(el => {
-        el.realpath = require(`images/${el.path}`)
-      })      
+    handleEdit(id) {
+      this.currentItem = {...this.works.find(el => el.id === id)}
+      this.isEdit = true
+      window.scrollTo(0,0)
     },
+    handleNew() {
+      this.currentItem = {id:0,title:'',techs:'',photo:'',link: '',description: ''}
+      this.isEdit = true      
+      window.scrollTo(0,0)
+    },
+    handleClose() {
+      this.currentItem = {id:0,title:'',techs:'',photo:'',link: '',description: ''}
+      this.isEdit = false
+    }
   },
   created() {
-     this.works = require('../../json/preview.json')
-     this.handleWorks()
+    this.$store.dispatch('getWorks')
   },
   components: {
     'form-preview': FormPreview,

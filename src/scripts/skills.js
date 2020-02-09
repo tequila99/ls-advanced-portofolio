@@ -1,5 +1,9 @@
 // console.log('this is skills module');
 import Vue from "vue";
+import axios from 'axios'
+axios.defaults.baseURL = 'https://webdev-api.loftschool.com/'
+
+const USER = 261
 
 const Ring = {
   template: '#skills-ring',
@@ -82,7 +86,12 @@ new Vue({
     Row
   },
   created() {
-    this.skills = require('../json/skills.json')
+    // this.skills = require('../json/skills.json')
+    axios.get(`/categories/${USER}`)
+      .then(({data}) => {
+        this.skills = data
+      })
+      .catch(error => console.log(error))
   }
 })
   

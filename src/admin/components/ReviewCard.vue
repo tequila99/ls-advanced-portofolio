@@ -2,19 +2,20 @@
   .review-card
     .review-card__header
       .review-card__avatar
-        avatar-mini(:avatar='avatar' :userName='userName')
+        avatar-mini(:avatar='imageFull' :userName='userName')
       .review-card__header-title
         h3 {{ userName }}        
         span {{ position }}
     .review-card__content
       p {{ text }}
     .review-card__footer
-      preview-buttons
+      preview-buttons(@edit='$emit("edit", id)' @remove='handleRemove')
 </template>
 
 <script>
 import Avatar from './Avatar'
 import PreviewButtons from './PreviewButtons'
+import { getFullPath } from '../helpers'
 export default {
   name: 'ReviewCard',
   props: {
@@ -33,11 +34,23 @@ export default {
     text: {
       type: String,
       default: 'Этот код выдержит любые испытания. Только пожалуйста, не загружайте сайт на слишком старых браузерах'
+    }, 
+    id: {
+      type: Number,
+      default: 0
     }
   },
   data: () => ({}),
-  computed: {},
-  methods: {},
+  computed: {
+    imageFull() {
+      return !!this.avatar ? getFullPath(this.avatar) : ''
+    }    
+  },
+  methods: {
+    handleRemove() {
+      this.$store.dispatch('delReviews', this.id)
+    },    
+  },
   mounted() {},
   components: {
     'preview-buttons': PreviewButtons,

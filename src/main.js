@@ -8,6 +8,8 @@ if (process.env.NODE_ENV === "development") {
   require("file-loader!./index.pug");
 }
 
+import axios from 'axios'
+axios.defaults.baseURL = 'https://webdev-api.loftschool.com/'
 
 import "./scripts/skills";
 import "./scripts/feedback-slider";

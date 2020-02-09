@@ -1,4 +1,7 @@
 import Vue from 'vue'
+import axios from 'axios'
+axios.defaults.baseURL = 'https://webdev-api.loftschool.com/'
+const USER = 261
 
 const previewNav = {
   template: '#preview-nav',
@@ -42,6 +45,7 @@ const previewThmb = {
     classThmb() {
       return !!this.active ? `${this.className}__thmb preview-img__thmb--active` : `${this.className}__thmb`
     }
+
   },
   methods: {
     handleClick() {
@@ -115,7 +119,7 @@ const previewImage = {
       return `${this.className}__img`
     },
     currentImage() {
-      return this.items[this.activeIndex].realpath
+      return !!this.items.length ? this.items[this.activeIndex].photo : ''
     }
   },
   components: {
@@ -140,22 +144,22 @@ new Vue({
   },
   computed: {
     title() {
-      return this.items[this.activeIndex].title
+      return !!this.items.length ? this.items[this.activeIndex].title : ''
     },
     text() {
-      return this.items[this.activeIndex].text
+      return !!this.items.length ? this.items[this.activeIndex].descriptionn : ''
     },
     link() {
-      return this.items[this.activeIndex].href
+      return !!this.items.length ? this.items[this.activeIndex].link : ''
     },
     tags() {
-      return this.items[this.activeIndex].tags
+      return !!this.items.length ? this.items[this.activeIndex].techs.split(',').map(el => el.trim()).filter(el => !!el) : []
     },
   },
   methods: {
     handleImages() {
       this.items.forEach(el => {
-        el.realpath = require(`images/${el.path}`)
+        el.photo = `${axios.defaults.baseURL}${el.photo}`
       })      
     },
     changeImage(direction) {
@@ -170,8 +174,14 @@ new Vue({
     }
   },
   created() {
-    this.items = require('../json/preview.json')
-    this.handleImages()
+    // this.items = require('../json/preview.json')
+    axios.get(`/works/${USER}`)
+      .then(({data}) => {
+        this.items = data
+        this.handleImages()
+      })
+      .catch(error => console.log(error))
+    
 	},
   components: {
     previewImage

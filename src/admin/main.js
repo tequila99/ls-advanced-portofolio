@@ -8,11 +8,29 @@ import 'normalize.css'
 // include '../styles/vatiables.json';
 
 // Vue.use(Router);
-
+import store from './store'
 
 const token = localStorage.getItem('loftschool-user-token') 
 
 axios.defaults.baseURL = 'https://webdev-api.loftschool.com/'
+
+axios.interceptors.response.use(
+  response => response,
+  error => {
+    const originalRequest = error.config;
+
+    if (error.response.status === 401) {
+      return axios.post("/refreshToken").then(response => {
+        const token = response.data.token;       
+        store.dispatch('setToken', token) 
+        axios.defaults.headers["Authorization"] = `Bearer ${token}`;
+        originalRequest.headers["Authorization"] = `Bearer ${token}`;
+        return axios(originalRequest);
+      });
+    }
+    return Promise.reject(error);
+  }
+);
 
 if (!!token) {
   axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
@@ -27,7 +45,7 @@ import router from './router'
 
 import App from './App.vue'
 
-import store from './store'
+// import store from './store'
 
 
 import { library } from '@fortawesome/fontawesome-svg-core'

@@ -2,6 +2,29 @@
   display: flex;
   position:relative;
   width: 100%;
+  width: 977px;
+  height: 549px;
+  border: 1px solid rgba(0,0,0,.1);
+  @include desktopHd {
+    width: 780px;
+    height: 438px;
+  }
+  @include desktop {
+    width: 626px;
+    height: 353px;
+  }
+
+  @include tablets {
+    width: 450px;
+    height: 252px;
+  }
+  
+  @include phones 
+  { 
+    width: 100%;
+    max-width: 330px;
+    max-height: 186px;
+  }
   &__img {
     width: 100%;
     height: 100%;
@@ -14,15 +37,24 @@
     bottom: 0;
     display: flex;
     flex-direction: column;    
-    width: 20%;
+    /* width: 20%; */
+    @include laptops {
+      display: none
+    }
     @include phones {
       display: none;
     }
+    li {
+      width: 170px;
+      height: 100px;
+    }
   }
   &__thmb {
-    width: 100%;
-    max-width: 170px;
+  
+    width: 170px;
     cursor: pointer;
+    overflow: hidden;
+    object-fit: cover;
     &--active {
       border: 3px solid $preview-color;
     }
@@ -32,6 +64,9 @@
     position: absolute;
     bottom: -50px;
     right: 0;
+    @include laptops {
+      bottom: 0;
+    }
     @include phones {
       bottom: 0;
     }

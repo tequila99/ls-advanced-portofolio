@@ -25,6 +25,7 @@ export default {
     grid-template-rows: 1fr;
     justify-content: center;
     align-items: center;  
+    cursor: pointer;
     @include phones {
         width: 100%;
         max-width: 320px;

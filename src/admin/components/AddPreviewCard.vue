@@ -24,6 +24,7 @@ export default {
       align-items: center;
       width: 340px;
       height: 556px;
+      cursor: pointer;
       @include phones {
         width: 100%;
         max-width: 320px;
@@ -75,6 +76,7 @@ export default {
       @include phones {
         margin: 0;
         padding: 0 5%;
+        font-size: 16px;
       }
     }
   }

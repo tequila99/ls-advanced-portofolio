@@ -2,7 +2,7 @@
   .text-field
     label.text-field__element
       span.text-field__label(v-if='!!label') {{ label }}
-      textarea.text-field__input(:name='name' :placeholder='placeholder' :value='value' :disabled='disable' :required='required')
+      textarea.text-field__input(:name='name' :placeholder='placeholder' :value='value' :disabled='disable' :required='required' @input='handleInput')
 </template>
 
 <script>
@@ -36,7 +36,11 @@ export default {
   },
   data: () => ({}),
   computed: {},
-  methods: {},
+  methods: {
+    handleInput(e) {
+      this.$emit('input',e.target.value)
+    }
+  },
   mounted() {},
   components: {},
 }
@@ -71,7 +75,7 @@ export default {
       border: 1px solid rgba(28,28,28,.2);
       background: transparent;
       padding: 20px 20px;
-      font-size: 24px;
+      font-size: 18px;
       font-weight: 600;
       line-height: 30px;
       color: #414c63;

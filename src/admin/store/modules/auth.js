@@ -1,5 +1,5 @@
 import axios from 'axios'
-import router from '../router'
+import router from '../../router'
 
 const state = {
   token: localStorage.getItem('loftschool-user-token') || '',
@@ -48,6 +48,9 @@ const actions = {
         console.log(error)
         commit('AUTH_SET_ERROR', error)
       })
+  },
+  setToken({commit}, token) {
+    commit('AUTH_SET_TOKEN', token)
   }
 }
 

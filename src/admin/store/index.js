@@ -1,9 +1,11 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
-import auth from './auth'
-import categories from './categories'
-import skills from './skills'
+import auth from './modules/auth'
+import categories from './modules/categories'
+import skills from './modules/skills'
+import works from './modules/works'
+import reviews from './modules/reviews'
 
 Vue.use(Vuex)
 
@@ -11,6 +13,8 @@ export default new Vuex.Store({
   modules: {
     auth,
     categories,
-    skills
+    skills,
+    works,
+    reviews,
   }
 })

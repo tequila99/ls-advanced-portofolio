@@ -14,8 +14,8 @@ script(type='x/template')#feedback-slider
             .review-item__footer
               .review-item__avatar
                 .avatar-mini
-                  img(:src='item.realpath' class='avatar-mini__img')
+                  img(:src='item.photo' class='avatar-mini__img')
                   //- +image('avatar-mini__img',`${item.path}`)
               .review-item__user
-                .review-item__user-name {{ item.username }}
-                .review-item__user-position {{item.position}}
+                .review-item__user-name {{ item.author }}
+                .review-item__user-position {{item.occ}}

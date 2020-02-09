@@ -1,6 +1,6 @@
 script(type='x/template')#skills-component
   .ring-block
-    Row(:className='className' v-for='(row,index) in skills' :key='index' :title='row.title' :items='row.items')
+    Row(:className='className' v-for='(row,index) in skills' :key='index' :title='row.category' :items='row.skills')
 
 script(type='x/template')#skills-ring    
   div.ring.ring__border(:class='classRing')
@@ -15,4 +15,4 @@ script(type='x/template')#skills-row
     h3(:class='classTitle') {{ title }}
     ul(:class='classList')
       li(v-for='(item,index) in items' :key='index')
-        Ring(:className='className',:label='item.label', :value='item.value')
+        Ring(:className='className',:label='item.title', :value='item.percent')

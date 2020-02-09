@@ -4,11 +4,10 @@
       .reviews-page__header
         h1 Блок "Отзывы"
       .reviews-page__form(v-if='isEdit')
-        form-review
+        form-review(@close='handleClose' :item='currentItem')
       .reviews-page__reviews
-        add-review-card(class='reviews-page__review-card')
-        review-card(class='reviews-page__review-card' v-for='(item,index) in reviews' :key='index' :avatar='item.realpath' :title='item.title' :text='item.text' :link='item.href' :tags='item.tags')
-
+        add-review-card(class='reviews-page__review-card' key='0' @click.native='isEdit=true' v-if='!isEdit')
+        review-card(class='reviews-page__review-card' @edit='handleEdit' v-for='(item,index) in reviews' :key='item.id' :avatar='item.photo' :user-name='item.author' :text='item.text' :position='item.occ' :id='item.id' )
 </template>
 
 <script>
@@ -20,20 +19,33 @@ export default {
   name: 'ReviewsPage',
   data() {
     return {
-      reviews: [],
-      isEdit: true
+      currentItem: {id:0, photo: '', author: '', occ: ''},
+      isEdit: false
+    }
+  },
+  computed: {
+    reviews() {
+      return this.$store.getters.getReviews
     }
   },
   methods: {
-    handleReviews() {
-      this.reviews.forEach(el => {
-        el.realpath = require(`images/${el.path}`)
-      })        
+    handleEdit(id) {
+      this.currentItem = {...this.reviews.find(el => el.id === id)}
+      this.isEdit = true
+      window.scrollTo(0,0)
+    },
+    handleNew() {
+      this.currentItem = {id:0, photo: '', author: '', occ: ''}
+      this.isEdit = true  
+      window.scrollTo(0,0)    
+    },
+    handleClose() {
+      this.currentItem = {id:0, photo: '', author: '', occ: ''}
+      this.isEdit = false
     }
   },
   created() {
-    this.reviews = require('../../json/feedback-slider.json')
-    this.handleReviews()    
+    this.$store.dispatch('getReviews')
   },
   components: {
     'form-review': FormReview,

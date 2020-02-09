@@ -1,7 +1,7 @@
 <template lang='pug'>
   .bottom-buttons
-    a.bottom-buttons__button.bottom-buttons__button--cancel Отмена
-    a.bottom-buttons__button.bottom-buttons__button--save(@click='$emit("save")') {{ 'Сохранить' | uppercase }}
+    a.bottom-buttons__button.bottom-buttons__button--cancel(@click.prevent='$emit("cancel")') Отмена
+    a.bottom-buttons__button.bottom-buttons__button--save(@click.prevent='$emit("save")') Сохранить
 </template>
 
 <script>
@@ -9,11 +9,6 @@ export default {
   name: 'BottomButtons',
   props: {
 
-  },
-  filters: {
-    uppercase: function(val) {
-      return val.toUpperCase()
-    }
   },
   data() {
     return {
@@ -57,6 +52,7 @@ export default {
         background: #1c52de;
         color: white;
         font-weight: 700;
+        text-transform: uppercase;
       }
     }
   }
