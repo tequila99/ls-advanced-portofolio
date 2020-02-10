@@ -12,7 +12,8 @@ const getters = {
 const actions = {
   getCategories({commit,getters}) {
     let user_id = getters.getUserId
-    axios.get(`/categories/${user_id}`)
+    if (!!user_id) {
+      axios.get(`/categories/${user_id}`)
       .then(({data}) => {
         commit('CATEGOR_SET_LIST', data)
       })
@@ -20,6 +21,7 @@ const actions = {
         console.log(error)
         commit('CATEGOR_SET_ERROR',error)
       })
+    }
   },
   addCategories({commit},title) {
     axios.post('/categories',{title})

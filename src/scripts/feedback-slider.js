@@ -14,11 +14,10 @@ new Vue({
 	},
 	data() {
 		return {
-			desktop: window.matchMedia("(min-width: 768px)").matches,
+      swiperObject: null,
       swiperOption: {
         slidesPerView: 2,
         spaceBetween: 30,        
-        loop: true,  
         grabCursor: true,
         breakpoints: {
           480: {
@@ -31,7 +30,12 @@ new Vue({
 		};
   },
   computed: {
-
+    disableLeft() {
+      return !!this.swiperObject ? this.swiperObject.swiper.isBeginning : false
+    },
+    disableRight() {
+      return !!this.swiperObject ? this.swiperObject.swiper.isEnd : false
+    }
   },
 	methods: {
     getImagePath(path) {
@@ -51,8 +55,6 @@ new Vue({
     }
 	},
 	created() {
-    // this.items = require('../json/feedback-slider.json');
-    // this.handleImages()
     axios.get(`/reviews/${USER}`)
       .then(({data}) => {
         this.items = data 
@@ -60,4 +62,7 @@ new Vue({
       })
       .catch(error => console.log(error))
   },  
+  mounted() {
+    this.swiperObject = this.$refs.swiper
+  }
 });

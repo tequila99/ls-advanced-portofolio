@@ -12,7 +12,8 @@ const getters = {
 const actions = {
   getReviews({commit,getters}) {
     let user_id = getters.getUserId
-    axios.get(`/reviews/${user_id}`)
+    if (!!user_id) {
+      axios.get(`/reviews/${user_id}`)
       .then(({data}) => {
         commit('REVIEWS_SET_LIST', data)
       })
@@ -20,6 +21,7 @@ const actions = {
         console.log(error)
         commit('REVIEWS_SET_ERROR', error)
       })
+    }
   },
   addReviews({commit},payload) {
     let dt = wrapIntoFormData(payload)

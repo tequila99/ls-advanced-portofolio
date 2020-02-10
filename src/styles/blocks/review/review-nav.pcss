@@ -9,6 +9,11 @@
     border-radius: 50%;
     border:1px solid $preview-nav-bg; 
     margin-right: 50px;
+    cursor: pointer;
+    &.disable {
+      opacity: .3;
+      cursor: default;
+    }
     &:last-child {
       margin-right: 0;
     }
@@ -16,6 +21,12 @@
     &:hover {
       background: svg-load('short-arrow.svg',fill=$active-color, width=10px, height=10px) center center no-repeat;
       border:1px solid $active-color;
+      &.disable {
+        background: svg-load('short-arrow.svg',fill=$preview-nav-bg, width=10px, height=10px) center center no-repeat;
+        border:1px solid $preview-nav-bg; 
+        opacity: .3;
+        cursor: default;        
+      }
     }
   }
   &__button-left {

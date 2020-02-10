@@ -39,10 +39,11 @@ const actions = {
         commit('AUTH_SET_ERROR',error)        
       })
   },
-  authUser({commit}) {
+  authUser({commit, dispatch}) {
     axios.get('/user')
       .then(({data}) => {
         commit('AUTH_SET_USER', data)
+        dispatch('getCategories')
       })
       .catch(error => {
         console.log(error)

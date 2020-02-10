@@ -12,7 +12,8 @@ const getters = {
 const actions = {
   getWorks({commit,getters}) {
     let user_id = getters.getUserId
-    axios.get(`/works/${user_id}`)
+    if (!!user_id) {
+      axios.get(`/works/${user_id}`)
       .then(({data}) => {
         commit('WORKS_SET_LIST',data)
       })
@@ -20,6 +21,7 @@ const actions = {
         console.log(error)
         commit('WORKS_SET_ERROR', )
       })
+    }
   },
   addWorks({commit},payload) {
     let dt = wrapIntoFormData(payload)
