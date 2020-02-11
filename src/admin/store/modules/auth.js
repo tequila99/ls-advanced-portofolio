@@ -17,7 +17,8 @@ const getters = {
 const actions = {
   authLogin({dispatch,commit},{name, password}) {
     axios.post('/login', { name,password })
-      .then(({data}) => {        
+      .then(({data}) => {     
+        console.log(data)   
         commit('AUTH_SET_TOKEN',data)
         dispatch('authUser')
         router.push('/about')
