@@ -2,21 +2,59 @@
   .skills-card
     .skills-card__header
       .skills-card__header-title
-        input-field(name='title', placeholder='Название новой группы' v-if='editGroup' v-model='titleEdit')    
+        input-field(
+          name='title' 
+          placeholder='Название новой группы' 
+          v-if='editGroup' 
+          v-model='titleEdit'
+        )    
         h3.skills-card__title(v-else) {{ title }}    
       .skills-card__header-buttons
-        edit-buttons(:icons='editGroup ? "ok close" : "edit remove"' @ok='handleOk' @close='handleClose' @edit='handleEdit' @remove='handleRemove')
+        edit-buttons(
+          :icons='editGroup ? "ok close" : "edit remove"' 
+          @ok='handleOk' 
+          @close='handleClose' 
+          @edit='handleEdit' 
+          @remove='handleRemove'
+        )
     .skills-card__body
-      ul.skills-card__list
-        li.skills-card__item(v-for='(item,index) in skillsCopy' :key='item.id' )
-          skill-item(:label='item.title' :amount='item.percent' :id='item.id' :category='item.category')
+      skill-item(
+        :label='item.title' 
+        v-for='(item,index) in skills' 
+        :amount='item.percent' 
+        :id='item.id' 
+        :category='item.category' 
+        :key='item.id'
+      )
     .skills-card__footer
       .skills-card__footer-skill
-        input-field(class='skills-card__skill' name='skill', placeholder='Новый навык', :required='true' :disable='!id' v-model='skill')
+        input-field(
+          class='skills-card__skill' 
+          name='skill' 
+          placeholder='Новый навык' 
+          :required='true' 
+          :disable='!id' 
+          v-model='skill'
+        )
       .skills-card__footer-amount
-        input-field(class='skills-card__amount' type='number' name='amount', placeholder='100' :min='0' :max='100' :required='true' :disable='!id' v-model='amount')
+        input-field(
+          class='skills-card__amount' 
+          type='number' 
+          name='amount' 
+          placeholder='100' 
+          :min='0' 
+          :max='100' 
+          :required='true' 
+          :disable='!id' 
+          v-model='amount'
+        )
+
       .skills-card__footer-fab
-        fab-add-button(class='skills-card__fab' @click.native='!!id&&handleClick()' :disable='!id||!skill||!amount||(skills.lenght>5)')
+        fab-add-button(
+          class='skills-card__fab' 
+          @click.native='!!id&&handleClick()' 
+          :disable='!id||!skill||!amount||(skills.lenght>5)'
+        )
 
 </template>
 
@@ -51,10 +89,10 @@ export default {
     }
   },
   watch: {
-    title: function(newval) {
+    title(newval) {
       this.titleEdit = newval
     },
-    skills: function(newval) {
+    skills(newval) {
       this.$nextTick(() => {
         this.skillsCopy =[...newval]  
       })
@@ -104,12 +142,6 @@ export default {
     this.editGroup = !this.id
     this.skillsCopy = [...this.skills]
   },
-  components: {
-    'input-field':    InputField,
-    'fab-add-button': FabAddButton,
-    'edit-buttons':   EditButtons,
-    'skill-item':     SkillItem
-  },
 }
 </script>
 
@@ -155,6 +187,7 @@ export default {
   }
   &__body {
     width: 100%;
+    padding-top: 15px;
   }
   &__title {
     font-size: 18px;
@@ -201,14 +234,6 @@ export default {
         right: 0;
         top: 7px;
       }
-  }
-  &__list {
-    padding-top: 15px;
-    height: 100%;
-    width: 100%;
-  }
-  &__item {
-    width: 100%;
   }
   &__fab {
     /* margin: 0 auto; */

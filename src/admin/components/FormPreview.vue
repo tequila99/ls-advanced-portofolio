@@ -6,12 +6,46 @@
         h3 Редактирование работы
       .preview-form__body
         .preview-form__upload
-          upload-area(@input='handleInputImage' @clear='unloadPreview = null; photoPreview=""' :image='photoPreview')
+          upload-area(
+            @input='handleInputImage' 
+            @clear='unloadPreview = null; photoPreview=""' 
+            :image='photoPreview'
+          )
         .preview-form__content
-          input-field(class='preview-form__input preview-form__input--title' v-model='titlePreview' type='text' name='title' placeholder='Дизайн сайта для авто салона Porsche' label='Название' required) 
-          input-field(class='preview-form__input preview-form__input--link' v-model='linkPreview' type='url' name='link' placeholder='https://www.porsche-pulkovo.ru' label='Ссылка' required) 
-          text-field(class='preview-form__input preview-form__input--text' v-model='textPreview' name='text' :placeholder='placeholder' label='Описание' required) 
-          input-field(class='preview-form__input preview-form__input--tags' v-model='tagsPreview' type='text' name='tags' placeholder='Jquery, Vue.js, HTML5' label='Добавление тэга') 
+          input-field(
+            class='preview-form__input preview-form__input--title' 
+            v-model='titlePreview' 
+            type='text' 
+            name='title' 
+            placeholder='Дизайн сайта для авто салона Porsche' 
+            label='Название' 
+            required
+          ) 
+          input-field(
+            class='preview-form__input preview-form__input--link' 
+            v-model='linkPreview'
+            type='url' 
+            name='link'
+            placeholder='https://www.porsche-pulkovo.ru'
+            label='Ссылка' 
+            required
+          ) 
+          text-field(
+            class='preview-form__input preview-form__input--text' 
+            v-model='textPreview' 
+            name='text' 
+            :placeholder='placeholder' 
+            label='Описание' 
+            required
+          ) 
+          input-field(
+            class='preview-form__input preview-form__input--tags' 
+            v-model='tagsPreview' 
+            type='text' 
+            name='tags' 
+            placeholder='Jquery, Vue.js, HTML5' 
+            label='Добавление тэга'
+          ) 
           ul.preview-form__tags
             li.preview-form__tag(v-for='(tag,index) in tags' :key='index')
               span {{ tag }}
@@ -92,14 +126,6 @@ export default {
     this.textPreview   = this.item.description || ''
     this.tagsPreview   = this.item.techs || ''
   },
-  components: {
-    'bottom-buttons': BottomButtons,
-    'upload-area': UploadArea,
-    'input-field': InputField,
-    'text-field': TextField,
-    'modal-warning': ModalWarning
-
-  }
 
 }
 </script>

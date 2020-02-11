@@ -1,8 +1,19 @@
 <template lang='pug'>
   .upload-avatar
     .upload-avatar__img
-      input(type="file" accept="image/*" name="avatar" @change="chooseImage" :value='null')
-      img(class="upload-avatar__unload-img" :src='fullImage' alt='Загруженный аватар' v-if="!!fullImage")
+      input(
+        type="file" 
+        accept="image/*" 
+        name="avatar" 
+        @change="chooseImage" 
+        :value='null'
+      )
+      img(
+        class="upload-avatar__unload-img"
+        :src='fullImage'
+        alt='Загруженный аватар'
+        v-if="!!fullImage"
+      )
       font-awesome-icon(v-else class='upload-avatar__icon' icon='user')
     a.upload-avatar__label(@click='unloadImage=null') {{ !!unloadImage ? 'Удалить фото' : 'Добавить фото' }}
 </template>
@@ -23,7 +34,7 @@ export default {
     }
   },
   watch: {
-    unloadImage: function(newval) {
+    unloadImage(newval) {
       if (newval === null) this.$emit('clear')
     }
   },

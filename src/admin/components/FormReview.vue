@@ -6,11 +6,38 @@
         h3 Новый отзыв
       .review-form__body
         .review-form__upload
-          upload-avatar(@input='handleInputImage' @clear='unloadPreview = null; photoPreview=""' :avatar='photoPreview')
+          upload-avatar(
+            @input='handleInputImage' 
+            @clear='unloadPreview = null; photoPreview=""' 
+            :avatar='photoPreview'
+          )
         .review-form__content
-          input-field(class='review-form__input review-form__input--username' v-model='username' type='text' name='username' placeholder='Ковальчук Дмитрий' label='Имя автора' required) 
-          input-field(class='review-form__input review-form__input--position' v-model='position' type='text' name='position' placeholder='Основатель LoftSchool' label='Титул автора' required) 
-          text-field( class='review-form__input review-form__input--text' v-model='text' name='text' :placeholder='placeholder' label='Отзыв' required) 
+          input-field(
+            class='review-form__input review-form__input--username' 
+            v-model='username'
+            type='text' 
+            name='username' 
+            placeholder='Ковальчук Дмитрий' 
+            label='Имя автора' 
+            required
+          ) 
+          input-field(
+            class='review-form__input review-form__input--position' 
+            v-model='position' 
+            type='text' 
+            name='position' 
+            placeholder='Основатель LoftSchool' 
+            label='Титул автора' 
+            required
+          ) 
+          text-field(
+            class='review-form__input review-form__input--text'
+            v-model='text' 
+            name='text' 
+            :placeholder='placeholder' 
+            label='Отзыв' 
+            required
+          ) 
       .review-form__footer
         bottom-buttons(@save='saveFrom' @cancel='$emit("close")')
 </template>
@@ -78,13 +105,6 @@ export default {
     this.position      = this.item.occ || ''
     this.text          = this.item.text || ''
   },
-  components: {
-    'bottom-buttons': BottomButtons,
-    'input-field': InputField,
-    'text-field': TextField,
-    'upload-avatar': UploadAvatar,
-    'modal-warning': ModalWarning
-  }
 
 }
 </script>

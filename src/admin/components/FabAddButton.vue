@@ -21,9 +21,6 @@ export default {
       return !!this.disable ? 'unset' : 'pointer'
     }
   },
-  methods: {},
-  mounted() {},
-  components: {},
 }
 </script>
 

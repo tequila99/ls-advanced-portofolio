@@ -60,7 +60,7 @@ const mutations = {
     state.categories = data
   },
   CATEGOR_ADD_GROUP(state,data) {
-    state.categories.unshift(data)
+    state.categories.unshift({...data, skills: []})
   },
   CATEGOR_DEL_GROUP(state, id) {
     state.categories = state.categories.filter(el => el.id !== id)

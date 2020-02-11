@@ -16,11 +16,6 @@ export default {
       default: ''
     }
   },
-  data: () => ({}),
-  computed: {},
-  methods: {},
-  mounted() {},
-  components: {},
 }
 </script>
 

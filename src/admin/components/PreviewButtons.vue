@@ -11,12 +11,6 @@
 <script>
 export default {
   name: 'PreviewButtons',
-  props: {},
-  data: () => ({}),
-  computed: {},
-  methods: {},
-  mounted() {},
-  components: {},
 }
 </script>
 

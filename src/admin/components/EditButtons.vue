@@ -28,9 +28,6 @@ export default {
       return this.icons.split(' ').map(el => this.items.find(i => i.name === el))
     }
   },
-  methods: {},
-  mounted() {},
-  components: {},
 }
 </script>
 

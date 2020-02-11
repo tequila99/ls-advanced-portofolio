@@ -19,7 +19,7 @@ export default {
     }
   },
   watch: {
-    value: function(val) {
+    value(val) {
       if (!!val) {
         document.body.style.overflow = "hidden"
       } else {

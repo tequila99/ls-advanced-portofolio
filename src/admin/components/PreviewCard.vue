@@ -63,9 +63,6 @@ export default {
   mounted() {
 
   },
-  components: {
-    'preview-buttons': PreviewButtons
-  },
 }
 </script>
 

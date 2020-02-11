@@ -2,7 +2,14 @@
   .text-field
     label.text-field__element
       span.text-field__label(v-if='!!label') {{ label }}
-      textarea.text-field__input(:name='name' :placeholder='placeholder' :value='value' :disabled='disable' :required='required' @input='handleInput')
+      textarea.text-field__input(
+        :name='name' 
+        :placeholder='placeholder' 
+        :value='value' 
+        :disabled='disable' 
+        :required='required' 
+        @input='handleInput'
+      )
 </template>
 
 <script>
@@ -41,8 +48,6 @@ export default {
       this.$emit('input',e.target.value)
     }
   },
-  mounted() {},
-  components: {},
 }
 </script>
 

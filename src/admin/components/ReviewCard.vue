@@ -51,9 +51,7 @@ export default {
       this.$store.dispatch('delReviews', this.id)
     },    
   },
-  mounted() {},
   components: {
-    'preview-buttons': PreviewButtons,
     'avatar-mini': Avatar,
   },
 }

@@ -1,11 +1,30 @@
 <template lang='pug'>
   .skill-item
     .skill-item__name
-      input-field(v-model='labelEdit' @input='$emit($event)' :disable='!isEdit' :required='true')
+      input-field(
+        v-model='labelEdit' 
+        @input='$emit($event)' 
+        :disable='!isEdit' 
+        :required='true'
+      )
     .skill-item__amount
-      input-field(class='skill-item__input-amount' type='number' :min='0' :max='100' v-model='amountEdit' :disable='!isEdit' :required='true')
+      input-field(
+        class='skill-item__input-amount'
+        type='number' 
+        :min='0' 
+        :max='100' 
+        v-model='amountEdit' 
+        :disable='!isEdit' 
+        :required='true'
+      )
     .skill-item__buttons
-      edit-buttons(:icons='isEdit ? "ok close" : "edit remove"' @ok='handleOk' @edit='isEdit=true' @close='handleClose' @remove='handleRemove')      
+      edit-buttons(
+        :icons='isEdit ? "ok close" : "edit remove"' 
+        @ok='handleOk' 
+        @edit='isEdit=true' 
+        @close='handleClose' 
+        @remove='handleRemove'
+      )      
 </template>
 
 <script>
@@ -56,10 +75,6 @@ export default {
     this.labelEdit = this.label,
     this.amountEdit = this.amount
   },
-  components: {
-    'input-field': InputField,
-    'edit-buttons': EditButtons
-  }
 }
 </script>
 

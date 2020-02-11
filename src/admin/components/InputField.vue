@@ -2,8 +2,28 @@
   .input-field
     label.input-field__element
       span.input-field__label(v-if='!!label') {{ label }}
-      input.input-field__input(v-if='type==="number"' type='number' :name='name' :placeholder='placeholder' :value='value' :disabled='disable' :required='required' :min='min' :max='max' @input='handleInput') 
-      input.input-field__input(v-else :type='type' :name='name' :placeholder='placeholder' :value='value' :disabled='disable' :required='required' @input='handleInput')
+      input.input-field__input(
+        v-if='type==="number"' 
+        type='number' 
+        :name='name' 
+        :placeholder='placeholder' 
+        :value='value' 
+        :disabled='disable' 
+        :required='required' 
+        :min='min' 
+        :max='max' 
+        @input='handleInput'
+      ) 
+      input.input-field__input(
+        v-else 
+        :type='type' 
+        :name='name' 
+        :placeholder='placeholder' 
+        :value='value' 
+        :disabled='disable' 
+        :required='required' 
+        @input='handleInput'
+      )
 </template>
 
 <script>
@@ -54,8 +74,6 @@ export default {
       this.$emit('input',e.target.value)
     }
   },
-  mounted() {},
-  components: {},
 }
 </script>
 

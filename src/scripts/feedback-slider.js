@@ -30,17 +30,17 @@ new Vue({
 		};
   },
   computed: {
-    disableLeft() {
-      return !!this.swiperObject ? this.swiperObject.swiper.isBeginning : false
-    },
-    disableRight() {
-      return !!this.swiperObject ? this.swiperObject.swiper.isEnd : false
-    }
+    // disableLeft() {
+    //   return !!this.swiperObject ? this.swiperObject.swiper.isBeginning : false
+    // },
+    // disableRight() {
+    //   return !!this.swiperObject ? this.swiperObject.swiper.isEnd : false
+    // }
   },
 	methods: {
-    getImagePath(path) {
-      return require(`images/${path}`)
-    },
+    // getImagePath(path) {
+    //   return require(`images/${path}`)
+    // },
     handleImages() {
       
       this.items.forEach(el => {

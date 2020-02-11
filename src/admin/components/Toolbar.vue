@@ -3,7 +3,11 @@
     .admin-container
       ul.toolbar-admin__list
         li(class='toolbar-admin__item' v-for='(item,index) in items' :key='index')
-          router-link(:to='item.path' class='toolbar-admin__link' :class='{ active: index===activeItem}') {{ item.label}}
+          router-link(
+            :to='item.path' 
+            class='toolbar-admin__link' 
+            :class='{ active: index===activeItem}'
+          ) {{ item.label}}
 </template>
 
 <script>
@@ -23,13 +27,6 @@ export default {
     activeItem() {
       return this.items.findIndex(el => el.path === this.$route.path)
     }
-  },
-  methods: {
-  },
-  mounted() {
-
-  },
-  components: {
   },
 }
 </script>

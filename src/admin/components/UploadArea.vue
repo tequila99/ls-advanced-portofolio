@@ -1,9 +1,25 @@
 <template lang='pug'>
   .upload-area
     //- button(id="vue-img-preview-button") 
-    input(type="file" accept="image/*" name="preview" @change="chooseImage" :value='null')
-    img(class="upload-area__img" :src='fullImage' alt='Загруженное изображение' v-if="!!fullImage")
-    font-awesome-icon(icon='times' class='upload-area__icon-close' v-if='!!fullImage' @click='$emit("clear");unloadImage=null')
+    input(
+      type="file" 
+      accept="image/*" 
+      name="preview" 
+      @change="chooseImage" 
+      :value='null'
+    )
+    img(
+      class="upload-area__img" 
+      :src='fullImage' 
+      alt='Загруженное изображение' 
+      v-if="!!fullImage"
+    )
+    font-awesome-icon(
+      icon='times'
+      class='upload-area__icon-close'
+      v-if='!!fullImage'
+      @click='$emit("clear");unloadImage=null'
+    )
     .upload-area__content(v-else)
       .upload-area__label Перетащите или загрузите для загрузки изображения
       a.upload-area__button {{ 'Загрузить'}}
@@ -25,7 +41,7 @@ export default {
     }
   },
   watch: {
-    unloadImage: function(newval) {
+    unloadImage(newval) {
       if (newval === null) this.$emit('clear')
     }
   },
