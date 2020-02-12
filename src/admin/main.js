@@ -20,20 +20,20 @@ axios.interceptors.response.use(
     const originalRequest = error.config;
     if (error.response.status === 401 && !originalRequest._retry) {
       originalRequest._retry = true;
-      return axios.post("/refreshToken")
-        .then(res => {
-            if (res.status === 201) {
-              console.log('Статсу 201')
-              const token = response.data.token;       
-              store.dispatch('setToken', token) 
-              console.log(token)
-              axios.defaults.headers["Authorization"] = `Bearer ${token}`;
-              // originalRequest.headers["Authorization"] = `Bearer ${token}`
-              return axios(originalRequest);
-            }
-        }).catch(err => {
-          console.log(err)
-        });
+      // return axios.post("/refreshToken")
+      //   .then(res => {
+      //       if (res.status === 201) {
+      //         console.log('Статсу 201')
+      //         const token = response.data.token;       
+      //         store.dispatch('setToken', token) 
+      //         console.log(token)
+      //         axios.defaults.headers["Authorization"] = `Bearer ${token}`;
+      //         // originalRequest.headers["Authorization"] = `Bearer ${token}`
+      //         return axios(originalRequest);
+      //       }
+      //   }).catch(err => {
+      //     console.log(err)
+      //   });
     }
     return Promise.reject(error);
   }

@@ -126,6 +126,9 @@ export default {
     this.textPreview   = this.item.description || ''
     this.tagsPreview   = this.item.techs || ''
   },
+  components: {
+    BottomButtons,UploadArea,InputField,TextField,ModalWarning
+  }
 
 }
 </script>

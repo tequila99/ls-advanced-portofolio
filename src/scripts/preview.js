@@ -72,17 +72,23 @@ const previewSlider = {
   },
   data() {
     return {
-      maxItems: 3,
-      startOffset: 0
+      maxItems: 4,
+      startOffset: 0,
+      windowWidth: window.innerWidth
     }
   },
   watch: {
-    activeIndex: function(newval,oldval) {
+    activeIndex(newval,oldval) {
       if (newval >= this.maxItems) {
         this.startOffset = newval- this.maxItems +1;
       } else {
         this.startOffset =0;
       }
+    },
+    windowWidth(newval) {
+      this.$nextTick(() => {
+        this.maxItems = this.windowWidth < 1200 ? 3 : 4;
+      })
     }
   },
   computed: {
@@ -91,6 +97,11 @@ const previewSlider = {
     },
     windowItems() {
       return this.items.slice(this.startOffset,this.startOffset+this.maxItems)
+    }
+  },
+  mounted() {
+    window.onresize = (event) => {
+      this.windowWidth = window.innerWidth
     }
   },
   components: {

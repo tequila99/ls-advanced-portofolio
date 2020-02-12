@@ -75,6 +75,7 @@ export default {
     this.labelEdit = this.label,
     this.amountEdit = this.amount
   },
+  components: { InputField, EditButtons }
 }
 </script>
 

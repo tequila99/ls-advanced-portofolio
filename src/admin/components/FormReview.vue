@@ -105,6 +105,9 @@ export default {
     this.position      = this.item.occ || ''
     this.text          = this.item.text || ''
   },
+  components: {
+    BottomButtons,InputField,TextField,UploadAvatar,ModalWarning
+  }
 
 }
 </script>

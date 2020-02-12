@@ -142,6 +142,9 @@ export default {
     this.editGroup = !this.id
     this.skillsCopy = [...this.skills]
   },
+  components: {
+    InputField,FabAddButton,EditButtons,SkillItem
+  },
 }
 </script>
 
