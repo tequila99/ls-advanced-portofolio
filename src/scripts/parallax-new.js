@@ -1,7 +1,7 @@
 let paral = (function() {
   document.addEventListener("scroll", parallax);
   const speeds = [0,-0.01,-0.01,0.03,0.015,0.1,0]
-  const speedsAdd = [-0.02,0.0,-0.02,-0.01,0.03,0]
+  const speedsAdd = [-0.03,-0.03,-0.03,0.02,0.,0]
   const elem = document.querySelector(".bg-wrapper");
   const budda = document.querySelector('.bg-budda')
   const buddaParent =  budda.parentNode;
@@ -28,7 +28,8 @@ let paral = (function() {
         }).join(', ')
         elem.style.backgroundPositionY = newBgP;
       }
-      if (buddaOffset-500 <= scroll && _w > 768) {
+      if (buddaOffset + 600 <= scroll && _w > 768) {
+        // console.log('будда')
         let newBgP = buddaBgP.map((el,index) => {
           if (el.includes('%')) {
             return `${el.slice(0,-1) - (scroll-buddaOffset+500) * speedsAdd[index] }%`

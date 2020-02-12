@@ -1,0 +1,22 @@
+.triangle-border {
+  position: relative;
+  height: 6rem;
+  margin-top: -6rem;
+  z-index: 100;
+
+  &__item {
+    display: block;
+    height: 100%;
+    width: 50%;
+    position: absolute;
+    fill: white;
+
+    &--left {
+      left: 0;
+    }
+
+    &--right {
+      right: 0;
+    }
+  }
+}
