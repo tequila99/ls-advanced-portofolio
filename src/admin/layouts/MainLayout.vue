@@ -1,5 +1,5 @@
 <template lang='pug'>
-  .div
+  .layout
     header-admin(:avatar='avatar' :user-name='userName')
     toolbar-admin
     .admin-container

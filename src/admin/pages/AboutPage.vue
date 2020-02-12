@@ -1,11 +1,5 @@
 <template lang='pug'>
   .about-page
-    //- .about-page__header
-    //-   h1 Блок "Обо мне"
-    //-   a.about-page__link
-    //-     .about-page__button
-    //-       font-awesome-icon(class='about-page__icon' icon='plus')
-    //-     span Добавить группу
     .about-page__content
       .about-page__header
         h1 Блок "Обо мне"
@@ -33,7 +27,6 @@ export default {
     }
   },
   created() {
-    // this.skills = require('../../json/skills.json')
     this.$store.dispatch('getCategories')
   },
   components: {
@@ -65,8 +58,8 @@ export default {
     &__content {
       display: grid;
       grid-template-rows: 136px 1fr;
-      margin: 0 auto;
-      justify-content: center;
+      /* margin: 0 auto; */
+      /* justify-content: center; */
       align-items: center;
     }
     &__link {
@@ -103,18 +96,18 @@ export default {
     }
     &__skills {
       display: grid;  
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: auto 1fr;
       grid-auto-flow: row;
       grid-gap: 30px;
       padding-bottom: 40px; 
-      justify-self: center;     
+      /* justify-self: center;      */
       @include tablets {
         grid-template-columns: 1fr;
         grid-gap: 10px;
       }
     }
     &__skills-card {
-      justify-self: center;
+      /* justify-self: center; */
     }
   }
 </style>

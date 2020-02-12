@@ -17,6 +17,7 @@ export default {
 </script>
 
 <style lang='pcss'>
+@import url('../../styles/mixins.pcss');
   .submit-button {
     padding: 30px 100px;
     background: #8000ef;
@@ -26,6 +27,9 @@ export default {
     border-radius: 35px 0 35px 0;
     opacity: 1;
     text-transform: uppercase;
+    @include phones {
+      padding: 30px 75px;
+    }
     &:hover,
     &:active,
     &:focus {

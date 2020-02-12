@@ -59,11 +59,6 @@ export default {
   @import url('../../styles/mixins.pcss');
  .works-page {
     background: #f7f9fe;
-    /* display: grid;
-    grid-template-rows: 136px 1fr;
-    @include phones {
-      grid-template-rows: 97px 1fr;
-    } */
     &__header {
       /* background: #f7f9fe; */
       display: flex;
@@ -79,8 +74,7 @@ export default {
     &__content {
       display: grid;
       grid-template-rows: 136px auto 1fr;
-      /* grid-row-gap: 0 32px; */
-      justify-content: center;
+      justify-content: flex-start;
       align-items: center;
       @include phones {
         grid-template-rows: 97px auto 1fr;

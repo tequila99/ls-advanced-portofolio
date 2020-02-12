@@ -3,7 +3,7 @@
     .login-page__container
       h3 Авторизация
       input-field(class='login-page__user'     name='user',     placeholder='Имя пользователя', label='Логин' v-model='user.name')
-      input-field(class='login-page__password' type='password' name='password', placeholder='****',       label='Пароль'  v-model='user.password')
+      input-field(class='login-page__password' type='password' name='password', placeholder='****',       label='Пароль'  v-model='user.password' @keydown.enter.native='handleSend')
       submit-button(class='login-page__submit', label='Отправить' @click='handleSend')
       font-awesome-icon(class='login-page__icon'  icon='times' color='#414c63' @click.stop='$emit("input",false)')
 </template>
@@ -56,6 +56,7 @@ export default {
 </script>
 
 <style lang='pcss'>
+@import url('../../styles/mixins.pcss');
   .login-page {
     position: fixed;
     top: 0;
@@ -69,6 +70,9 @@ export default {
     justify-content: center;
     align-items: center;
     z-index: 1000;
+    @include phones {
+      background-color: white;
+    }
     &__container {
       max-width: 563px;
       width: 100%;
@@ -76,7 +80,7 @@ export default {
       position: relative;
       display: flex;
       flex-direction: column;
-      /* justify-content: center; */
+      justify-content: center;
       align-items: center;
       color: white;
       z-index: 2000;
@@ -86,6 +90,16 @@ export default {
       h3 {
         font-size: 36px;
         font-weight: 600;
+        @include phones {
+          font-size: 30px;
+        }
+      }
+      @include phones {
+        max-width: 332px;
+        max-height: 714px;
+        height: 100%;
+        padding: 0 30px;
+        vertical-align:center;
       }
     }
     &__icon {

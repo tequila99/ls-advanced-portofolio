@@ -1,10 +1,14 @@
 <template lang="pug">
-  router-view
+  .main-app
+    router-view
+    modal-warning
 </template>
 
 <script>
+import ModalWarning from './components/ModalWarning'
 export default {
   name: 'MainApp',
+  components: {ModalWarning}
 }
 </script>
 

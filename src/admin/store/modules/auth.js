@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios from '../../axios'
 import router from '../../router'
 
 const state = {
@@ -18,7 +18,6 @@ const actions = {
   authLogin({dispatch,commit},{name, password}) {
     axios.post('/login', { name,password })
       .then(({data}) => {     
-        console.log(data)   
         commit('AUTH_SET_TOKEN',data)
         dispatch('authUser')
         router.push('/about')
@@ -31,13 +30,13 @@ const actions = {
   },
   authLogout({commit}) {
     axios.post('/logout')
-      .then(() => {
+      .then()
+      .catch(error => {
+        commit('AUTH_SET_ERROR',error)        
+      })
+      .finally(() => {
         commit('AUTH_LOGOUT')
         router.push('login')
-      })
-      .catch(error => {
-        console.log(error)
-        commit('AUTH_SET_ERROR',error)        
       })
   },
   authUser({commit, dispatch}) {

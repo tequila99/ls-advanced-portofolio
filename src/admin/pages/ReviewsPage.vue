@@ -74,12 +74,9 @@ export default {
     }
     &__content {
       display: grid;
-      /* grid-template-rows: auto 1fr; */
       grid-template-rows: 136px auto 1fr;
-      /* grid-row-gap: 32px; */
-      justify-content: center;
+      justify-content: flex-start;
       align-items: center;
-      margin: 0 auto;
       @include phones {
         grid-template-rows: 97px auto 1fr;
       }
@@ -93,7 +90,7 @@ export default {
       display: grid;
       justify-content: center;
       align-items:center;
-      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-columns: auto auto auto;
       grid-auto-flow: row;
       grid-gap: 30px;
       padding-bottom: 40px;
