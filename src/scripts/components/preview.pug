@@ -11,16 +11,26 @@ script(type='x/template')#preview-slider
     li(v-for='(item,index) in windowItems' :key='index')
       previewThmb(:className='className' :image='item.photo' :index='index' :active='activeIndex===index+startOffset' @select='$emit("select",$event)')
 
+//- script(type='x/template')#preview-image
+//-   div(class='preview-img' :class='className')
+//-     img(:src='currentImage' :class='classImage' class='preview-img__img')
+//-     previewSlider(:className='className' :items='items' :activeIndex='activeIndex' @select='$emit("select",$event)')
+//-     previewNav(:className='className' @up='$emit("up")' @down='$emit("down")')
+
 script(type='x/template')#preview-image
-  div(class='preview-img' :class='className')
-    img(:src='currentImage' :class='classImage' class='preview-img__img')
-    previewSlider(:className='className' :items='items' :activeIndex='activeIndex' @select='$emit("select",$event)')
-    previewNav(:className='className' @up='$emit("up")' @down='$emit("down")')
+  transition-group(tag='div' class='preview-img' name='slide')
+    //- div(v-for='number in [activeIndex]' :key='number' class='preview-img__container' )
+    img(v-for='number in [activeIndex]' :key='number' :src='currentImage' :class='classImage' class='preview-img__img')
+    //- previewSlider(:className='className' :items='items' :activeIndex='activeIndex' @select='$emit("select",$event)')
+    //- previewNav(:className='className' @up='$emit("up")' @down='$emit("down")')
 
 script(type='x/template')#preview-main
   .preview-content
     .preview-content__img(:data-index='activeIndex+1')
-      previewImage(:className=className :items='items' :activeIndex='activeIndex' @up='changeImage("up")' @down='changeImage("down")' @select='selectImage')
+      previewImage(:className=className :items='items' :activeIndex='activeIndex')
+      previewSlider(:className='className' :items='items' :activeIndex='activeIndex' @select='selectImage')
+      previewNav(:className='className' @up='changeImage("up")' @down='changeImage("down")' @select='selectImage')
+
       //- .preview-content__index 
       //-   span {{ activeIndex+1 }}
     .preview-content__container

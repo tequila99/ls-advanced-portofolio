@@ -195,6 +195,7 @@ new Vue({
     
 	},
   components: {
-    previewImage
+    previewImage,
+    previewNav, previewSlider
   }
 })
