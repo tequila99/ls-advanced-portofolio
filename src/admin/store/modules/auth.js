@@ -5,6 +5,7 @@ const state = {
   token: localStorage.getItem('loftschool-user-token') || '',
   ttl: '',
   user: JSON.parse(localStorage.getItem('loftschool-user')) || {},
+  errorAuth: ''
 }
 
 const getters = {
@@ -25,7 +26,8 @@ const actions = {
       .catch(error => {
         console.log(error)
         commit('AUTH_LOGOUT')
-        commit('AUTH_SET_ERROR',error)        
+        commit('AUTH_SET_ERROR',error)   
+        commit('SET_ERROR',{message: 'Ошибка при авторизации пользователя'},{root: true})     
       })
   },
   authLogout({commit}) {
@@ -33,6 +35,7 @@ const actions = {
       .then()
       .catch(error => {
         commit('AUTH_SET_ERROR',error)        
+        // commit('SET_ERROR',{message: 'Ошибка при авторизации пользователя'},{root: true})     
       })
       .finally(() => {
         commit('AUTH_LOGOUT')
@@ -48,6 +51,7 @@ const actions = {
       .catch(error => {
         console.log(error)
         commit('AUTH_SET_ERROR', error)
+        commit('SET_ERROR',{message: 'Ошибка при получении данных пользовтеля'},{root: true})     
       })
   },
   setToken({commit}, token) {
@@ -67,6 +71,7 @@ const mutations = {
     localStorage.setItem('loftschool-user', JSON.stringify(user)) 
   },
   AUTH_SET_ERROR(state,error) {
+    state.errorAuth = error;
   },
   AUTH_LOGOUT(state) {
     state.token =''

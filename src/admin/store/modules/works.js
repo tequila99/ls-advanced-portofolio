@@ -3,6 +3,7 @@ import { wrapIntoFormData } from '../../helpers'
 
 const state = {
   works: [],
+  errrorWorks: ''
 }
 
 const getters = {
@@ -19,7 +20,8 @@ const actions = {
       })
       .catch(error => {
         console.log(error)
-        commit('WORKS_SET_ERROR', )
+        commit('WORKS_SET_ERROR', error )
+        commit('SET_ERROR',{message: 'Ошибка при запросе списка работ'},{root: true})
       })
     }
   },
@@ -34,7 +36,8 @@ const actions = {
       })
       .catch(error => {
         console.log(error)
-        commit('WORKS_SET_ERROR')
+        commit('WORKS_SET_ERROR', error)
+        commit('SET_ERROR',{message: 'Ошибка при добавлении работы'},{root: true})
         reject(error)
       })
     })
@@ -49,7 +52,8 @@ const actions = {
       })
       .catch(error => {
         console.log(error)
-        commit('WORKS_SET_ERROR')
+        commit('WORKS_SET_ERROR',error)
+        commit('SET_ERROR',{message: 'Ошибка при изменении работы'},{root: true})
         reject(error)
       })
     })
@@ -61,7 +65,8 @@ const actions = {
       })
       .catch(error => {
         console.log(error)
-        commit('WORKS_SET_ERROR')
+        commit('WORKS_SET_ERROR', error)
+        commit('SET_ERROR',{message: 'Ошибка при удалении работы'},{root: true})
       })
   }
 }
@@ -85,7 +90,7 @@ const mutations = {
 
   },
   WORKS_SET_ERROR(state,error) {
-
+    state.errorWorks = error
   },
 }
 export default {

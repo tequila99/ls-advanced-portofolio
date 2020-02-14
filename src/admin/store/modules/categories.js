@@ -1,7 +1,8 @@
 import axios from '../../axios'
 
 const state = { 
-  categories: []
+  categories: [],
+  errorCategories: ''
 }
 
 const getters = {
@@ -20,6 +21,7 @@ const actions = {
       .catch(error => {
         console.log(error)
         commit('CATEGOR_SET_ERROR',error)
+        commit('SET_ERROR',{message: 'Ошибка при запросе списка категорий'},{root: true})
       })
     }
   },
@@ -31,6 +33,7 @@ const actions = {
       .catch(error => {
         console.log(error)
         commit('CATEGOR_SET_ERROR',error)
+        commit('SET_ERROR',{message: 'Ошибка при добавлении категории'},{root: true})
       })      
   },
   editCategories({commit},{id, title}) {
@@ -41,6 +44,7 @@ const actions = {
       .catch(error => {
         console.log(error)
         commit('CATEGOR_SET_ERROR', error)
+        commit('SET_ERROR',{message: 'Ошибка при изменении категории'},{root: true})
       })
   },
   delCategories({commit},id) {
@@ -51,6 +55,7 @@ const actions = {
       .catch(error => {
         console.log(error)
         commit('CATEGOR_SET_ERROR', error)        
+        commit('SET_ERROR',{message: 'Ошибка при удалении категории'},{root: true})
       })
   }
 }
@@ -73,7 +78,7 @@ const mutations = {
   ]
   },
   CATEGOR_SET_ERROR(state,error) {
-
+    state.errorCategories = error;
   },
   SKILLS_ADD_SKILL(state,{category,id,percent,title}) {
     state.categories = state.categories.map(el => {

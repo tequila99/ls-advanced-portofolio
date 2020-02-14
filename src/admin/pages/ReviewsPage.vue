@@ -6,7 +6,7 @@
       .reviews-page__form(v-if='isEdit')
         form-review(@close='handleClose' :item='currentItem')
       .reviews-page__reviews
-        add-review-card(class='reviews-page__review-card' key='0' @click.native='isEdit=true' v-if='!isEdit')
+        add-review-card(class='reviews-page__review-card' key='0' @click.native='handleNew' v-if='!isEdit')
         review-card(class='reviews-page__review-card' @edit='handleEdit' v-for='(item,index) in reviews' :key='item.id' :avatar='item.photo' :user-name='item.author' :text='item.text' :position='item.occ' :id='item.id' )
 </template>
 
@@ -32,12 +32,18 @@ export default {
     handleEdit(id) {
       this.currentItem = {...this.reviews.find(el => el.id === id)}
       this.isEdit = true
-      window.scrollTo(0,0)
+      window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        })    
     },
     handleNew() {
       this.currentItem = {id:0, photo: '', author: '', occ: ''}
       this.isEdit = true  
-      window.scrollTo(0,0)    
+      window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        })    
     },
     handleClose() {
       this.currentItem = {id:0, photo: '', author: '', occ: ''}

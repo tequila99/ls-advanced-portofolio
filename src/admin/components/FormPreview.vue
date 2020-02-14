@@ -1,6 +1,5 @@
 <template lang='pug'>
   div.preview-from__wrapper
-    modal-warning(v-model='showError')
     .preview-form
       .preview-form__header
         h3 Редактирование работы
@@ -45,6 +44,7 @@
             name='tags' 
             placeholder='Jquery, Vue.js, HTML5' 
             label='Добавление тэга'
+            required
           ) 
           ul.preview-form__tags
             li.preview-form__tag(v-for='(tag,index) in tags' :key='index')
@@ -59,7 +59,6 @@ import BottomButtons from './BottomButtons'
 import UploadArea from './UploadArea'
 import InputField from './InputField'
 import TextField from './TextField'
-import ModalWarning from './ModalWarning'
 export default {
   name: 'FormPreview',
   props: {
@@ -76,8 +75,7 @@ export default {
       linkPreview: '',
       textPreview: '',      
       tagsPreview: '',
-      photoPreview: '',
-      showError: false
+      photoPreview: '',      
     }
   },
   computed: {
@@ -87,8 +85,8 @@ export default {
   },
   methods: {
     saveForm() {
-      if (!this.titlePreview || !this.linkPreview || !this.textPreview) {
-        this.showError = true
+      if (!this.titlePreview || !this.linkPreview || !this.textPreview || !this.tagsPreview) {
+        this.$store.dispatch('setError',{message: 'Поля формы не заполнены'})
       } else {
         if (!!this.item.id) {
           this.$store.dispatch('editWorks', {
@@ -127,7 +125,7 @@ export default {
     this.tagsPreview   = this.item.techs || ''
   },
   components: {
-    BottomButtons,UploadArea,InputField,TextField,ModalWarning
+    BottomButtons,UploadArea,InputField,TextField
   }
 
 }

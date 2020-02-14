@@ -1,7 +1,7 @@
 import axios from '../../axios'
 
 const store = {
-
+  errorSkills: ''
 }
 const getters = {
 
@@ -14,7 +14,8 @@ const actions = {
       })
       .catch(error => {
         console.log(error)
-        commit('SKILLS_SET_ERROR')
+        commit('SKILLS_SET_ERROR', error)
+        commit('SET_ERROR',{message: 'Ошибка при добавлении навыка'},{root: true})
       })
   },
   delSkill({commit},{id,category}) {
@@ -24,7 +25,8 @@ const actions = {
       })
       .catch(error => {
         console.log(error)
-        commit('SKILLS_SET_ERROR')
+        commit('SKILLS_SET_ERROR', error)
+        commit('SET_ERROR',{message: 'Ошибка при удалении навыка'},{root: true})        
       })
   },
   editSkill({commit},{id,title,percent,category}) {
@@ -34,14 +36,15 @@ const actions = {
       })
       .catch(error => {
         console.log(error)
-        commit('SKILLS_SET_ERROR')
+        commit('SKILLS_SET_ERROR', error)
+        commit('SET_ERROR',{message: 'Ошибка при изменении навыка'},{root: true})        
       })      
   }
 
 }
 const mutations = {
-  SKILLS_SET_ERROR(state,error) {
-
+  SKILLS_SET_ERROR(state,error) { 
+    state.errorSkills = error
   } 
 }
 

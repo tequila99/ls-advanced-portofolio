@@ -6,7 +6,7 @@
       .works-page__form(v-if='isEdit')
         form-preview(@close='isEdit=false' :item='currentItem')
       .works-page__previews
-        add-preview-card(class='works-page__preview-card' key='0' @click.native='isEdit=true' v-if='handleNew')
+        add-preview-card(class='works-page__preview-card' key='0' @click.native='handleNew' v-if='!isEdit')
         preview-card(class='works-page__preview-card' @edit='handleEdit' v-for='(item,index) in works' :key='item.id' :id='item.id' :image='item.photo' :title='item.title' :text='item.description' :link='item.link' :tags='item.techs')
 </template>
 
@@ -32,12 +32,18 @@ export default {
     handleEdit(id) {
       this.currentItem = {...this.works.find(el => el.id === id)}
       this.isEdit = true
-      window.scrollTo(0,0)
+      window.scrollTo({
+          top: 200,
+          behavior: 'smooth'
+        })       
     },
     handleNew() {
       this.currentItem = {id:0,title:'',techs:'',photo:'',link: '',description: ''}
       this.isEdit = true      
-      window.scrollTo(0,0)
+      window.scrollTo({
+          top: 200,
+          behavior: 'smooth'
+        })       
     },
     handleClose() {
       this.currentItem = {id:0,title:'',techs:'',photo:'',link: '',description: ''}

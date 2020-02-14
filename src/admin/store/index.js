@@ -15,18 +15,18 @@ export default new Vuex.Store({
     errorMessage: ''
   },
   getters: {
-    getError: state => isError,
-    getErrorMessage: state => errorMessage
+    getError: state => state.isError,
+    getErrorMessage: state => state.errorMessage
   },
   actions: {
-    setError({commit},{message}) {
-      commit('SET_ERROR', message)
+    setError({commit},payload) {
+      commit('SET_ERROR', payload)
     }
   },
   mutations: {
-    SET_ERROR(state,payload) {
-      state.isError = !!payload
-      state.errorMessage = payload
+    SET_ERROR(state,{message}) {
+      state.isError = !!message
+      state.errorMessage = message
     }
   },
   modules: {

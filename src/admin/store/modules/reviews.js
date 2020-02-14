@@ -2,7 +2,8 @@ import axios from '../../axios'
 import { wrapIntoFormData } from '../../helpers'
 
 const state = {
-  reviews: []
+  reviews: [],
+  errorReviews: ''
 }
 
 const getters = {
@@ -20,6 +21,7 @@ const actions = {
       .catch(error => {
         console.log(error)
         commit('REVIEWS_SET_ERROR', error)
+        commit('SET_ERROR',{message: 'Ошибка при запросе списка отзывов'},{root: true})
       })
     }
   },
@@ -34,6 +36,7 @@ const actions = {
         .catch(error => {
           console.log(error)
           commit('REVIEWS_SET_ERROR', error)
+          commit('SET_ERROR',{message: 'Ошибка при добавлении отзыва'},{root: true})
           reject(error)
         })
     })
@@ -50,6 +53,7 @@ const actions = {
         .catch(error => {
           console.log(error)
           commit('REVIEWS_SET_ERROR', error)
+          commit('SET_ERROR',{message: 'Ошибка при изменении отзыва'},{root: true})
           reject(error)
         })
     })
@@ -62,6 +66,7 @@ const actions = {
       .catch(error => {
         console.log(error)
         commit('REVIEWS_SET_ERROR', error)
+        commit('SET_ERROR',{message: 'Ошибка при удалении отзыва'},{root: true})
       })
   }
 
@@ -84,7 +89,7 @@ const mutations ={
     state.reviews = state.reviews.filter(el => el.id !== id)
   },
   REVIEWS_SET_ERROR(state,error) {
-
+    state.errorReviews = error;
   }
 }
 

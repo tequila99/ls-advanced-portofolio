@@ -4,12 +4,13 @@
     toolbar-admin
     .admin-container
       router-view
+    modal-warning
 </template>
 
 <script>
 import Header from  '../components/Header'
 import Toolbar from '../components/Toolbar'
-
+import ModalWarning from '../components/ModalWarning'
 // const Header = require('./components/Header')
 const avatarPath = 'content/user.jpg'
 
@@ -27,6 +28,7 @@ export default {
   components: {
     'header-admin': Header,
     'toolbar-admin': Toolbar,
+    ModalWarning,
   }  
 }
 </script>
