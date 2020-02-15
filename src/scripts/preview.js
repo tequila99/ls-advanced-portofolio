@@ -50,7 +50,7 @@ const previewThmb = {
   methods: {
     handleClick() {
       this.$emit('select', this.index)
-    }
+    },
   }
 }
 
@@ -72,7 +72,7 @@ const previewSlider = {
   },
   data() {
     return {
-      maxItems: 4,
+      maxItems: 3,
       startOffset: 0,
       windowWidth: window.innerWidth
     }
@@ -87,7 +87,7 @@ const previewSlider = {
     },
     windowWidth(newval) {
       this.$nextTick(() => {
-        this.maxItems = this.windowWidth < 1200 ? 3 : 4;
+        this.maxItems = this.windowWidth < 1200 ? 2 : 3;
       })
     }
   },
@@ -97,6 +97,36 @@ const previewSlider = {
     },
     windowItems() {
       return this.items.slice(this.startOffset,this.startOffset+this.maxItems)
+    }
+  },
+  methods: {
+    beforeEnter(el) {
+      el.style.opacity =0;
+      console.log(el)
+      console.log(0)
+    },
+    enter(el,done) {
+      el.style.opacity=1;
+      console.log(el)
+      console.log(1)
+      done()
+    },
+    afterEnter(el) {
+      console.log(2)
+    },
+    enterCancelled(el) {
+      console.log(3)
+    },
+    beforeLeave(el) {
+      el.style.opacity=1
+      console.log(el)
+      console.log(4)
+    },
+    leave(el,done) {
+      el.style.opacity=0;
+      console.log(el)
+      console.log(6)
+      done()
     }
   },
   mounted() {

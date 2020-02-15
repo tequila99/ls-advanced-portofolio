@@ -1,3 +1,56 @@
+.v-leave-active,
+.v-enter-active {
+ transition: height 1s;
+}
+
+.v-leave {
+    animation-name: slideInRight;
+    animation-duration: 1s;
+}
+@keyframes slideInRight {
+  from {
+    transform: translate3d(100%, 0, 0);
+    visibility: visible;
+  }
+
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes slideInUp {
+    from {
+      transform: translate3d(0, 100%, 0);
+      visibility: hidden;
+    }
+
+    to {
+      transform: translate3d(0, 0, 0);
+      visibility:visible;
+    }
+}
+
+@keyframes slideInLeft {
+  from {
+    transform: translate3d(-100%, 0, 0);
+    visibility: visible;
+  }
+
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.v-enter-to {
+   animation-name: slideInRight;
+   animation-duration: 1s;
+}
+
+.v-enter-to.v-leave {
+    animation-name: slideInLeft;
+    animation-duration: 1s;     
+}
+
 .slide-leave-active,
 .slide-enter-active {
   transition: 1s;
@@ -9,14 +62,10 @@
   transform: translate(-100%, 0);
 }
 
-.preview-img {
-  display: flex;
-  position:relative;
-  overflow: hidden;
-  width: 100%;
+.preview-container {
   width: 977px;
   height: 549px;
-  border: 1px solid rgba(0,0,0,.1);
+  position: relative;
   @include desktopHd {
     width: 780px;
     height: 438px;
@@ -37,6 +86,15 @@
     max-width: 330px;
     max-height: 186px;
   }
+}
+.preview-img {
+  display: flex;
+  position:relative;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  border: 1px solid rgba(0,0,0,.1);
+
   &__conatiner {
     width: 100%;
     height: 100%;
@@ -58,8 +116,10 @@
   }
   &__block-thmb {
     position: absolute;
-    right: 0;
-    bottom: 0;
+    /* height: 300px; */
+    overflow: hidden;
+    right: 2px;
+    bottom: 2px;;
     display: flex;
     flex-direction: column;    
     /* width: 20%; */
@@ -69,19 +129,26 @@
     @include phones {
       display: none;
     }
-    li {
-      width: 170px;
-      height: 100px;
-    }
+    
   }
   &__thmb {
   
     width: 170px;
+    height: 100px;
     cursor: pointer;
-    overflow: hidden;
+    
+    /* position: absolute; */
+    /* overflow: hidden; */
     object-fit: cover;
+    /* outline: solid 3px $preview-color; */
+    transition: border 0.4s;        
+    /* border: 3px solid; */
+    border-color: transparent ;
+    /* box-sizing: content-box; */
     &--active {
-      border: 3px solid $preview-color;
+      /* outline-width: 4px; */
+      border: 3px solid;
+      border-color: $preview-color;
     }
   }
   &__nav {
@@ -89,6 +156,7 @@
     position: absolute;
     bottom: -50px;
     right: 0;
+    cursor: pointer;
     @include laptops {
       bottom: 0;
     }

@@ -30,12 +30,31 @@ const Ring = {
     classRing() {
       return `${this.className}__ring`
     },
-    dashOffset() {
-      return this.fullLength / 2
-    },
-    dashArray() {
-      return `${(this.fullLength * this.value)/100}, ${this.fullLength-(this.fullLength * this.value)/100 }`
+  },
+  methods: {
+    drawCircle(entries) {
+      const firstEntry = entries[0];
+      if (firstEntry.isIntersecting) {
+        const circle = this.$refs['color-circle']
+        circle.style.strokeDashoffset = this.fullLength;
+        const dashOffset = parseInt(
+          getComputedStyle(circle).getPropertyValue('stroke-dasharray')
+        );
+        const percent = (dashOffset /100) * (100 - this.value)
+        circle.style.strokeDashoffset = percent;
+      } else {
+        const circle = this.$refs['color-circle']
+        circle.style.strokeDashoffset = this.fullLength;
+      }
     }
+  },
+  mounted () {
+    const options ={
+      rootMargin: '0px',
+      threshold: 1
+    }
+    const observer = new IntersectionObserver(this.drawCircle, options)
+    observer.observe(this.$refs.skill)
   }
 }
 

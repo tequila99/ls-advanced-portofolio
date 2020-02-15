@@ -24,7 +24,12 @@ new Vue({
             slidesPerView: 1,
             spaceBetween: 10
           }
-        }
+        },
+        navigation: {
+          nextEl: '.review-nav__button-right',
+          prevEl: '.review-nav__button-left',
+          disabledClass: 'review-nav__button--disabled'
+        },
       },
       items: [],
 		};
@@ -47,12 +52,12 @@ new Vue({
         el.photo = `${axios.defaults.baseURL}${el.photo}`
       })
     },
-    next() {
-      this.$refs.swiper.swiper.slideNext()
-    },
-    prev() {
-      this.$refs.swiper.swiper.slidePrev()
-    }
+    // next() {
+    //   this.$refs.swiper.swiper.slideNext()
+    // },
+    // prev() {
+    //   this.$refs.swiper.swiper.slidePrev()
+    // }
 	},
 	created() {
     axios.get(`/reviews/${USER}`)

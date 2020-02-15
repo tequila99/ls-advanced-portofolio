@@ -3,10 +3,10 @@ script(type='x/template')#skills-component
     Row(:className='className' v-for='(row,index) in skills' :key='index' :title='row.category' :items='row.skills')
 
 script(type='x/template')#skills-ring    
-  div.ring.ring__border(:class='classRing')
+  div.ring.ring__border(:class='classRing', ref='skill')
     svg(viewBox="0 0 200 200" preserveAspectRatio="none").skill__shape
       circle(r="80" cx="100" cy="100").skill__circle.skill__circle--position-under
-      circle(r="80" cx="100" cy="100", :stroke-dashoffset='dashOffset', :stroke-dasharray='dashArray').skill__circle.skill__circle--position-above
+      circle(r="80" cx="100" cy="100" ,  ref='color-circle' ).skill__circle.skill__circle--position-above
       linear-gradient()
     span.ring__label {{ label }}
 

@@ -4,16 +4,6 @@
   width: 130px;
   height: 130px;
 
-  /* width: 130px;
-  height: 130px;
-  display: flex;
-  position:relative;
-  vertical-align: middle;
-  overflow: hidden;
-  border-radius: 50%;
-  &__border {
-    border: 10px solid $ring-color;
-  } */
   &__label {
     font-weight: 700;
     color: $text-color;
@@ -28,9 +18,7 @@
 .skill__shape {
   width: 130px;
   height: 130px;
-  /* fill: transparent;
-  stroke: $ring-color;
-  stroke-width: 5px; */
+  transform: rotate(180deg);
 }
 
 .skill__circle {
@@ -46,7 +34,8 @@
     fill: transparent;
     stroke: blue;
     stroke-width: 20px;
-    /* stroke-dasharray: 272, 224; */
-    /* stroke-dashoffset: 248; */
+    stroke-dasharray: 502;
+    stroke-dashoffset: 502;
+    transition: stroke-dashoffset 0.5s ease-out;
   }
 }

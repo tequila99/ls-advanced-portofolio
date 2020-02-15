@@ -37,15 +37,15 @@ mixin icon-bg(className, name)
 mixin image(className, path)
   img(src=require(`images/${path}`) class=className)
 
-mixin navlink(className,name,ref='#')
+mixin navlink(className,name,ref='#', anchorSelector='')
   li(class=`${className}__item`)
-    a(class=`${className}__link` href=`${ref}`)=name
+    a(class=`${className}__link` href=`${ref}` data-anchor=`${anchorSelector}`)=name
 
 mixin nav(className,items,activeItem=0)    
   nav(class=`${className}`)
     ul(class=`${className}__list`)
       each item in items
-        +navlink(className,item.name,item.ref)
+        +navlink(className,item.name,item.ref,item.anchorSelector)
 
 mixin social-icon(className,name,icon,ref='#')
     li(class=`${className}__item`)
@@ -113,4 +113,4 @@ mixin nav-list(listClass, itemClass, linkClass)
   ul(class=`${listClass}`)
     each item in menuItems 
       li(class=`${itemClass}`)
-        a(href="#" class=`${linkClass} js-anchor-link`, target="_blank", data-anchor=`${item.anchorSelector}`)= item.name
+        a(href="#" class=`${linkClass} js-anchor-link`, data-anchor=`${item.anchorSelector}`)= item.name

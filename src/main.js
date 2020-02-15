@@ -1,6 +1,7 @@
 import "./styles/main.pcss";
 
 import parallax from "./scripts/parallax-new";
+import mainMenu from "./scripts/menu"
 
 import menuScript from "./scripts/toggleNavPopup";
 
@@ -21,6 +22,8 @@ const buddaOffset = document.querySelector('#budda-section').offsetTop
 
 window.addEventListener('load', () => {
   menuScript.init();
+  const menuLinks = document.querySelectorAll('.top-menu__link')
+  // console.log(menuLinks)
 });
 
 

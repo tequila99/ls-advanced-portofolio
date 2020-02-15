@@ -4,32 +4,48 @@ script(type='x/template')#preview-nav
     a(class='preview-img__nav-button preview-img__nav-button-down' :class='classNavButton' href='#' @click.prevent='$emit("down")') 
 
 script(type='x/template')#preview-thmb
-  img(:src='image' :class='classThmb' class=`${className}__thmb preview-img__thmb ${activeClass}` @click.prevent='handleClick')
+  img(:src='image' :class='classThmb' class='preview-img__thmb' @click.prevent='handleClick')
 
 script(type='x/template')#preview-slider
-  ul(:class='classSlider' class='preview-img__block-thmb')
-    li(v-for='(item,index) in windowItems' :key='index')
-      previewThmb(:className='className' :image='item.photo' :index='index' :active='activeIndex===index+startOffset' @select='$emit("select",$event)')
-
-//- script(type='x/template')#preview-image
-//-   div(class='preview-img' :class='className')
-//-     img(:src='currentImage' :class='classImage' class='preview-img__img')
-//-     previewSlider(:className='className' :items='items' :activeIndex='activeIndex' @select='$emit("select",$event)')
-//-     previewNav(:className='className' @up='$emit("up")' @down='$emit("down")')
+  transition-group(
+    tag='div' 
+    class='preview-img__block-thmb' 
+    @before-enter="beforeEnter"
+    @enter="enter"
+    @after-enter="afterEnter"
+    @enter-cancelled="enterCancelled"
+    @before-leave="beforeLeave"
+    @leave="leave"    
+    mode='in-out'
+  )
+    previewThmb(
+      :className='className' 
+      v-for='(item,index) in windowItems' 
+      :image='item.photo' 
+      :index='index' 
+      :key='item.id' 
+      :active='activeIndex===index+startOffset' 
+      @select='$emit("select",$event)'
+    )
 
 script(type='x/template')#preview-image
-  transition-group(tag='div' class='preview-img' name='slide')
-    //- div(v-for='number in [activeIndex]' :key='number' class='preview-img__container' )
-    img(v-for='number in [activeIndex]' :key='number' :src='currentImage' :class='classImage' class='preview-img__img')
-    //- previewSlider(:className='className' :items='items' :activeIndex='activeIndex' @select='$emit("select",$event)')
-    //- previewNav(:className='className' @up='$emit("up")' @down='$emit("down")')
+  .preview-container
+    transition-group(tag='div' class='preview-img' name='slide')
+      img(
+        v-for='number in [activeIndex]' 
+        :key='number' 
+        :src='currentImage' 
+        :class='classImage' 
+        class='preview-img__img preview-img__img--right'
+      )
+    slot
 
 script(type='x/template')#preview-main
   .preview-content
     .preview-content__img(:data-index='activeIndex+1')
-      previewImage(:className=className :items='items' :activeIndex='activeIndex')
-      previewSlider(:className='className' :items='items' :activeIndex='activeIndex' @select='selectImage')
-      previewNav(:className='className' @up='changeImage("up")' @down='changeImage("down")' @select='selectImage')
+      previewImage(:className='className' :items='items' :activeIndex='activeIndex')
+        previewSlider(:className='className' :items='items' :activeIndex='activeIndex' @select='selectImage' )
+        previewNav(:className='className' @up='changeImage("up")' @down='changeImage("down")' @select='selectImage')
 
       //- .preview-content__index 
       //-   span {{ activeIndex+1 }}

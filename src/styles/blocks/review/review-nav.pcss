@@ -10,7 +10,10 @@
     border:1px solid $preview-nav-bg; 
     margin-right: 50px;
     cursor: pointer;
-    &.disable {
+    &:focus {
+      outline: none;
+    }
+    &--disabled {
       opacity: .3;
       cursor: default;
     }
@@ -21,7 +24,7 @@
     &:hover {
       background: svg-load('short-arrow.svg',fill=$active-color, width=10px, height=10px) center center no-repeat;
       border:1px solid $active-color;
-      &.disable {
+      &--disabled {
         background: svg-load('short-arrow.svg',fill=$preview-nav-bg, width=10px, height=10px) center center no-repeat;
         border:1px solid $preview-nav-bg; 
         opacity: .3;

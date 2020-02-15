@@ -1,11 +1,35 @@
 - 
   var menuItems = [
-    {name: 'Главная',  href: '#'},
-    {name: 'Обо мне',  href: '#'},
-    {name: 'Новости',  href: '#'},
-    {name: 'Работа',   href: '#'},
-    {name: 'Отзывы',   href: '#'},
-    {name: 'Связаться',href: '#'},
+    {
+      name: 'Главная',
+      anchorSelector: 'main',
+      href: '#'
+    },
+    {
+      name: 'Обо мне',
+      anchorSelector: 'about',
+      href: '#'
+    },
+    {
+      name: 'Навыки',
+      anchorSelector: 'skillspage',
+      href: '#'
+    },
+    {
+      name: 'Работы',
+      anchorSelector: 'portfolio',
+      href: '#'
+    },
+    {
+      name: 'Отзывы',
+      anchorSelector: 'feedback',
+      href: '#'
+    },
+    {
+      name: 'Связаться',
+      anchorSelector: 'contacts',
+      href: '#'
+    }
   ]
 
 +nav('top-menu',menuItems)
