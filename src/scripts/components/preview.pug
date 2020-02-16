@@ -1,56 +1,86 @@
 script(type='x/template')#preview-nav
   div(class='preview-img__nav' :class='classNav')
-    a(class='preview-img__nav-button preview-img__nav-button-up' :class='classNavButton' href='#' @click.prevent='$emit("up")') 
-    a(class='preview-img__nav-button preview-img__nav-button-down' :class='classNavButton' href='#' @click.prevent='$emit("down")') 
+    a(
+      class='preview-img__nav-button preview-img__nav-button-up' 
+      :class='{disabled: disabled}' 
+      href='#' 
+      @click.prevent='!disabled&&$emit("down")'
+    ) 
+    a(
+      class='preview-img__nav-button preview-img__nav-button-down'
+      :class='{disabled: disabled}' 
+       href='#' @click.prevent='!disabled&&$emit("up")'
+      ) 
 
 script(type='x/template')#preview-thmb
-  img(:src='image' :class='classThmb' class='preview-img__thmb' @click.prevent='handleClick')
+  .preview-img__thmb-wrapper
+    img(:src='image' :class='classThmb' class='preview-img__thmb' @click.prevent='handleClick')
 
 script(type='x/template')#preview-slider
-  transition-group(
-    tag='div' 
-    class='preview-img__block-thmb' 
-    @before-enter="beforeEnter"
-    @enter="enter"
-    @after-enter="afterEnter"
-    @enter-cancelled="enterCancelled"
-    @before-leave="beforeLeave"
-    @leave="leave"    
-    mode='in-out'
-  )
-    previewThmb(
-      :className='className' 
-      v-for='(item,index) in windowItems' 
-      :image='item.photo' 
-      :index='index' 
-      :key='item.id' 
-      :active='activeIndex===index+startOffset' 
-      @select='$emit("select",$event)'
-    )
+  .preview-img__thmb-slider
+    .preview-img__thmb-container(ref='tmb-container')
+      transition-group(
+        tag='div' 
+        class='preview-img__block-thmb' 
+        :css='false'
+        @enter='enterCb'
+        @after-enter='afterCb'
+        @leave='leaveCb'
+        @before-enter='beforeCb'
+        ref='list-thmb'
+        mode='in-out'
+      )
+        previewThmb(
+          :className='className' 
+          v-for='(item,index) in windowItems' 
+          :image='item.photo' 
+          :index='index' 
+          :key='item.id' 
+          :id='item.id'
+          :active='item.id===items[activeIndex].id' 
+          @select='$emit("select",$event)'
+        )
 
 script(type='x/template')#preview-image
-  .preview-container
-    transition-group(tag='div' class='preview-img' name='slide')
-      img(
-        v-for='number in [activeIndex]' 
-        :key='number' 
-        :src='currentImage' 
-        :class='classImage' 
-        class='preview-img__img preview-img__img--right'
+  .preview-wrapper
+    .preview-container
+      transition-group(
+        tag='div' 
+        class='preview-img' 
+        :css='false'
+        @enter="enterCb"
+        @after-enter='afterCb'
+        @leave='leaveCb'
+        @before-enter='beforeCb'
+
       )
+        div(v-for='slide in showSlide' :key='slide.id' class='preview-img__slide')
+          img(
+            :src='slide.photo' 
+            class='preview-img__img'
+          )
     slot
 
 script(type='x/template')#preview-main
   .preview-content
     .preview-content__img(:data-index='activeIndex+1')
-      previewImage(:className='className' :items='items' :activeIndex='activeIndex')
-        previewSlider(:className='className' :items='items' :activeIndex='activeIndex' @select='selectImage' )
-        previewNav(:className='className' @up='changeImage("up")' @down='changeImage("down")' @select='selectImage')
-
-      //- .preview-content__index 
-      //-   span {{ activeIndex+1 }}
+      previewImage(
+        :className='className' 
+        :items='items' 
+        :displayItems='displayItems' 
+        :activeIndex='activeIndex' 
+        @disable='handleDisableImage'
+      )
+        previewSlider(
+          :className='className' 
+          :items='items' 
+          :activeIndex='activeIndex' 
+          @select='selectImage' 
+          @disable='handleDisableSlider'
+          :disabled='disabled'
+        )
+        previewNav(:className='className' @up='changeImage("up")' @down='changeImage("down")' :disabled='disabled')
     .preview-content__container
-      //- .preview-content__index {{ activeIndex+1 }}
       .preview-content__text-content
         ul.preview-content__tags  
           li.preview-content__tag(v-for='(tag,index) in tags' :key='index')
