@@ -49,7 +49,7 @@
           ul.preview-form__tags
             li.preview-form__tag(v-for='(tag,index) in tags' :key='index')
               span {{ tag }}
-                font-awesome-icon(icon='times' class='preview-form__tag-icon')
+                font-awesome-icon(icon='times' class='preview-form__tag-icon' @click='deleteTag(index)')
       .preview-form__footer
         bottom-buttons(@save='saveForm' @cancel='$emit("close")')
 </template>
@@ -116,6 +116,9 @@ export default {
     handleInputImage(e) {
       this.unloadPreview = e
     },
+    deleteTag(index) {
+      this.tagsPreview = [...this.tags].filter((el,i) => i !== index).join(',')
+    }
   },
   created() {
     this.photoPreview  = this.item.photo || null
@@ -254,6 +257,7 @@ export default {
     &__tag-icon {
       color: #414c63;
       margin-left: 10px;
+      cursor:pointer;
     }
   }
 </style>

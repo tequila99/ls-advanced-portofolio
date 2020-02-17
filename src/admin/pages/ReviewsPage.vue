@@ -30,20 +30,24 @@ export default {
   },
   methods: {
     handleEdit(id) {
-      this.currentItem = {...this.reviews.find(el => el.id === id)}
-      this.isEdit = true
-      window.scrollTo({
-          top: 0,
-          behavior: 'smooth'
-        })    
+      if (!this.isEdit) {
+        this.currentItem = {...this.reviews.find(el => el.id === id)}
+        this.isEdit = true
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+          })    
+      }
     },
     handleNew() {
-      this.currentItem = {id:0, photo: '', author: '', occ: ''}
-      this.isEdit = true  
-      window.scrollTo({
-          top: 0,
-          behavior: 'smooth'
-        })    
+      if (!this.isEdit) {
+        this.currentItem = {id:0, photo: '', author: '', occ: ''}
+        this.isEdit = true  
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+          })    
+      }
     },
     handleClose() {
       this.currentItem = {id:0, photo: '', author: '', occ: ''}
