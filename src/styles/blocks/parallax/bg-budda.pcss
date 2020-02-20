@@ -1,7 +1,12 @@
 .bg-budda {
   position: absolute;
   z-index: -1;
-  top: -100px;
+  /* top: -100px; */
+  top: -5%;
+  @include phones {
+    top: -2%;
+    /* display: none; */
+  }  
   bottom: 0;
   left: 0;
   right: 0;
@@ -25,5 +30,8 @@
     background-size: cover;
   }
   clip-path: polygon(0% 0%, 0% 100%,100% 100%,100% 0%, 50% 5%);
+  @include phones {
+    clip-path: polygon(0% 0%, 0% 100%,100% 100%,100% 0%, 50% 3%);    
+  }
 }
 

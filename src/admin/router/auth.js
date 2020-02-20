@@ -5,18 +5,16 @@ export const ROUTER_AUTH_LOGOUT = (to,from,next) => {
 }
 
 export const ifAuth = (to,from, next) => {
-  if (store.getters.isAuth) {
+  if (store.getters.isAuth && !!localStorage.getItem('loftschool-user-token')) {
     next()
-    return
   } else {
     next('/login')    
   }
 }
 
 export const ifNotAuth = (to, from, next) => {
-  if (!store.getters.isAuth) {
+  if (!store.getters.isAuth || !localStorage.getItem('loftschool-user-token')) {
     next()
-    return
   } else {
     next('/')    
   }
