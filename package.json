@@ -61,7 +61,7 @@
     "babel-preset-es2015": "^6.24.1",
     "normalize.css": "^8.0.1",
     "promptly": "^3.0.3",
-    "pug": "^2.0.4",
+    "pug": "^3.0.1",
     "request": "^2.88.2",
     "require.js": "^1.0.0",
     "signale": "^1.4.0",
